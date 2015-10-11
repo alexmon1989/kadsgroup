@@ -12,3 +12,10 @@
 */
 
 Route::get('/', 'Marketing\HomeController@index');
+// Группа роутов польз. части
+Route::group(['namespace' => 'Marketing'], function()
+{
+    Route::controllers([
+        'news'          => 'NewsController',
+    ]);
+});

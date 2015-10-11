@@ -1,8 +1,8 @@
 <div class="header no-topbar">
     <div class="container">
         <!-- Logo -->
-        <a class="logo" href="#">
-            <img class="" src="assets/img/logo-kadsgroup.png" alt="Logo">
+        <a class="logo" href="{{ url() }}">
+            <img src="{{ asset('assets/img/logo-kadsgroup.png') }}" alt="Логотип">
         </a>
         <!-- End Logo -->
 
@@ -19,9 +19,10 @@
         <div class="container">
             <ul class="nav navbar-nav">
                 <!-- Верхнее меню -->
-                <li class="active">
-                    <a href="#">Головна</a>
+                <li class="{{ Request::segment(1) == 'home' || Request::segment(1) == '' ? 'active' : '' }}">
+                    <a href="{{ action('Marketing\HomeController@index') }}">Головна</a>
                 </li>
+
 
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -35,7 +36,9 @@
                 </li>
 
                 <li><a href="#">Сертифікати</a></li>
-                <li><a href="#">Новини</a></li>
+                <li class="{{ Request::segment(1) == 'news' ? 'active' : '' }}">
+                    <a href="{{ action('Marketing\NewsController@getIndex') }}">Новини</a>
+                </li>
                 <li><a href="#">Контакти</a></li>
                 <!-- Конец Верхнего меню -->
 

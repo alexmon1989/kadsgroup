@@ -19,3 +19,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\News::class, function (Faker\Generator $faker) {
+    $img = $faker->image('public/assets/img/news', 370, 247);
+    return [
+        'title' => $faker->text(40),
+        'full_text' => $faker->text(500),
+        'preview_text_small' => $faker->paragraph(),
+        'preview_text_mid' => $faker->text(300),
+        'thumbnail' => str_replace('public/assets/img/news/', '', $img),
+    ];
+});
