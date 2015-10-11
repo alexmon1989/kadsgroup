@@ -1,0 +1,45 @@
+.margin-top-10 { margin-top: 10px;}
+
+.title-v1 h1::after, .title-v1 h2::after {
+  background: #fff none repeat scroll 0 0;
+}
+
+.content-md {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.companies {
+  background: #dedede;
+  background: linear-gradient(to top, #dedede, #fff);
+
+  img {
+    margin: 0 auto;
+  }
+
+  .company-menu {
+    height: 40px;
+    background-color: #0083c3;
+    background-clip: content-box, padding-box;
+
+    .links {
+      margin-top: 7px;
+      text-transform: uppercase;
+      font-size: larger;
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+
+      a.active {
+        color: #ebcd0f;
+      }
+    }
+  }
+}
+
+.widgets {
+  background-color: #0083c3;
+  padding-top: 10px;
+}
