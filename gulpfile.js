@@ -22,62 +22,73 @@ elixir.extend("remove", function(path) {
 
 var assetsPublicPath = 'public/assets/';
 var assetsResourcesPath = 'resources/assets/';
+var assetsResourcesPathBootstrapUnify = assetsResourcesPath + 'bootstrap_unify/';
+var assetsResourcesPathAdminLte = assetsResourcesPath + 'bower_components/adminlte/';
 
 elixir(function(mix) {
     mix.sass('custom.scss', assetsPublicPath + 'css/custom.css')
 
         // CSS шаблона
-        .copy(assetsResourcesPath + 'plugins/bootstrap',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/bootstrap',
         assetsPublicPath + 'plugins/bootstrap')
-        .copy(assetsResourcesPath + 'css/style.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/style.css',
         assetsPublicPath + 'css/style.css')
-        .copy(assetsResourcesPath + 'css/ie8.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/ie8.css',
         assetsPublicPath + 'css/ie8.css')
-        .copy(assetsResourcesPath + 'css/blocks.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/blocks.css',
         assetsPublicPath + 'css/blocks.css')
-        .copy(assetsResourcesPath + 'css/plugins.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/plugins.css',
         assetsPublicPath + 'css/plugins.css')
-        .copy(assetsResourcesPath + 'css/app.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/app.css',
         assetsPublicPath + 'css/app.css')
-        .copy(assetsResourcesPath + 'css/plugins/style-switcher.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/plugins/style-switcher.css',
         assetsPublicPath + 'css/plugins/style-switcher.css')
-        .copy(assetsResourcesPath + 'css/headers/header-default.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/headers/header-default.css',
         assetsPublicPath + 'css/headers/header-default.css')
-        .copy(assetsResourcesPath + 'css/footers/footer-v7.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v7.css',
         assetsPublicPath + 'css/footers/footer-v7.css')
-        .copy(assetsResourcesPath + 'plugins/animate.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/animate.css',
         assetsPublicPath + 'plugins/animate.css')
-        .copy(assetsResourcesPath + 'plugins/line-icons',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/line-icons',
         assetsPublicPath + 'plugins/line-icons')
-        .copy(assetsResourcesPath + 'plugins/font-awesome',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/font-awesome',
         assetsPublicPath + 'plugins/font-awesome')
-        .copy(assetsResourcesPath + 'plugins/layer-slider/layerslider',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/layer-slider/layerslider',
         assetsPublicPath + 'plugins/layer-slider/layerslider')
-        .copy(assetsResourcesPath + 'css/theme-colors/blue.css',
+        .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/blue.css',
         assetsPublicPath + 'css/theme-colors/blue.css')
 
         // JS шаблона
-        .copy(assetsResourcesPath + 'plugins/jquery',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/jquery',
         assetsPublicPath + 'plugins/jquery')
-        .copy(assetsResourcesPath + 'plugins/back-to-top.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/back-to-top.js',
         assetsPublicPath + 'plugins/back-to-top.js')
-        .copy(assetsResourcesPath + 'plugins/smoothScroll.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/smoothScroll.js',
         assetsPublicPath + 'plugins/smoothScroll.js')
-        .copy(assetsResourcesPath + 'plugins/sky-forms-pro/skyforms/js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/sky-forms-pro/skyforms/js',
         assetsPublicPath + 'plugins/sky-forms-pro/skyforms/js')
-        .copy(assetsResourcesPath + 'js/custom.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
         assetsPublicPath + 'js/custom.js')
-        .copy(assetsResourcesPath + 'js/app.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'js/app.js',
         assetsPublicPath + 'js/app.js')
-        .copy(assetsResourcesPath + 'js/forms/contact.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'js/forms/contact.js',
         assetsPublicPath + 'js/forms/contact.js')
-        .copy(assetsResourcesPath + 'js/plugins/layer-slider.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'js/plugins/layer-slider.js',
         assetsPublicPath + 'js/plugins/layer-slider.js')
-        .copy(assetsResourcesPath + 'plugins/respond.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/respond.js',
         assetsPublicPath + 'plugins/respond.js/')
-        .copy(assetsResourcesPath + 'plugins/html5shiv.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/html5shiv.js',
         assetsPublicPath + 'plugins/html5shiv.js')
-        .copy(assetsResourcesPath + 'plugins/placeholder-IE-fixes.js',
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins/placeholder-IE-fixes.js',
         assetsPublicPath + 'plugins/placeholder-IE-fixes.js')
+
+
+        // AdminLTE
+        .copy(assetsResourcesPathAdminLte + 'bootstrap',
+        assetsPublicPath + 'plugins/adminlte/bootstrap')
+        .copy(assetsResourcesPathAdminLte + 'dist',
+        assetsPublicPath + 'plugins/adminlte/dist')
+        .copy(assetsResourcesPathAdminLte + 'plugins',
+        assetsPublicPath + 'plugins/adminlte/plugins')
     ;
 });

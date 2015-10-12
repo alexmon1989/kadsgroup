@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
+<!--[if !IE]><!--> <html lang="ua"> <!--<![endif]-->
 <head>
     <base href="{{ url() . '/' }}">
     <title>@yield('page_title', 'Главная') - Kads Group</title>
@@ -49,84 +49,11 @@
     @include('marketing.layout.header')
     <!--=== End Header ===-->
 
-    <!--=== Slider ===-->
-    @slider()
-    <!--=== End Slider ===-->
+    @section('top_content')
+        @slider()
+    @show
 
-    <div class="container-fluid">
-        <div class="row height-300 companies">
-            <div class="container content-md">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="thumbnails thumbnail-style">
-                            <div class="row">
-                                <div class="col-md-12 margin-bottom-10 height-100">
-                                    <img class="img-responsive" alt="" src="assets/img/companies/top/1.png">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img alt="" src="assets/img/companies/1.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 company-menu text-center">
-                                    <div class="links">
-                                        <a href="#">Каталог</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="thumbnails thumbnail-style">
-                            <div class="row">
-                                <div class="col-md-12 margin-bottom-10 height-100">
-                                    <img class=" img-responsive" alt="" src="assets/img/companies/top/2.png">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img alt="" src="assets/img/companies/2.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 company-menu text-center">
-                                    <div class="links">
-                                        <a href="#">Каталог</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="thumbnails thumbnail-style">
-                            <div class="row">
-                                <div class="col-md-12 margin-bottom-10 height-100">
-                                    <img class="img-responsive" alt="" src="assets/img/companies/top/3.png">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img alt="" src="assets/img/companies/3.jpg" class="img-responsive">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 company-menu text-center">
-                                    <div class="links">
-                                        <a class="active" href="#">Прайс</a> |
-                                        <a href="#">Відео</a> |
-                                        <a href="#">Каталог</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    @yield('companies')
 
     <!--=== Content ===-->
     <div class="container content-md height-500">

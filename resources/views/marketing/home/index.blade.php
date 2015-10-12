@@ -1,5 +1,9 @@
 @extends('marketing.layout.master')
 
+@section('companies')
+    @include('marketing.home._companies')
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-12 margin-top-20">

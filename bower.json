@@ -1,0 +1,17 @@
+{
+  "name": "kadsgroup",
+  "version": "0.0.1",
+  "homepage": "https://github.com/alexmon1989/kadsgroup",
+  "authors": [
+    "alexmon1989 <alex.mon1989@gmail.com>"
+  ],
+  "description": "Веб-сайт kadsgroup.com.ua",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "resources/assets/bower_components",
+    "test",
+    "tests"
+  ]
+}
