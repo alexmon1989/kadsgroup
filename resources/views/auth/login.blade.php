@@ -39,7 +39,7 @@
                       @endforeach
                   </ul>
               </div>
-         @endif
+        @endif
         <p class="login-box-msg">Авторизируйтесь для начала работы</p>
         <form action="{{ @action('Auth\AuthController@postLogin') }}" method="post">
           {!! csrf_field() !!}

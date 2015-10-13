@@ -45,6 +45,8 @@ elixir(function(mix) {
         assetsPublicPath + 'css/plugins/style-switcher.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/headers/header-default.css',
         assetsPublicPath + 'css/headers/header-default.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v1.css',
+        assetsPublicPath + 'css/footers/footer-v1.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v7.css',
         assetsPublicPath + 'css/footers/footer-v7.css')
         .copy(assetsResourcesPathBootstrapUnify + 'plugins/animate.css',
@@ -90,5 +92,7 @@ elixir(function(mix) {
         assetsPublicPath + 'plugins/adminlte/dist')
         .copy(assetsResourcesPathAdminLte + 'plugins',
         assetsPublicPath + 'plugins/adminlte/plugins')
+        .copy(assetsResourcesPath + 'js/admin-lte/custom.js',
+        assetsPublicPath + 'plugins/adminlte/dist/js/custom.js')
     ;
 });

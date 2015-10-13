@@ -25,7 +25,12 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
+    <?php //dd(Request::segment(1)); ?>
+    @if (Request::segment(1) == null)
     <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
+    @else
+    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+    @endif
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
