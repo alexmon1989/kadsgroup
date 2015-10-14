@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use App\Services\AuthenticatesAndRegistersUsers;
+use App\Services\AuthenticatesAndRegistersAdmins;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersAdmins, ThrottlesLogins;
 
     // Пути
     protected $redirectPath = 'admin/dashboard';

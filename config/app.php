@@ -148,6 +148,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Pingpong\Widget\WidgetServiceProvider::class,
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -198,8 +200,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Widget' => Pingpong\Widget\WidgetFacade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Widget'    => Pingpong\Widget\WidgetFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -35,4 +35,10 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	config.filebrowserBrowseUrl = '/elfinder/ckeditor';
+
+	config.allowedContent = true;
+
+	config.protectedSource.push(/<i[^>]*><\/i>/g);
 };

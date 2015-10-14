@@ -1,4 +1,5 @@
 <?php namespace App\Services;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;

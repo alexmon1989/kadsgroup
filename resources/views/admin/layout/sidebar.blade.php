@@ -21,6 +21,11 @@
                     <i class="fa fa-dashboard"></i> <span>Начало работы</span>
                 </a>
             </li>
+            <li class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">
+                <a href="{{ action('Admin\NewsController@getIndex') }}">
+                    <i class="fa fa-newspaper-o"></i> <span>Новости</span>
+                </a>
+            </li>
         </ul>
 
         <ul class="sidebar-menu">
