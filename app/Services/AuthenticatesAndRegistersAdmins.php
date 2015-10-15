@@ -58,7 +58,7 @@ trait AuthenticatesAndRegistersAdmins {
             $user->password = bcrypt($request->get('password'));
         }
         $user->save();
-        return redirect()->action('Admin\Auth\AuthController@getEdit', array('id' => $user->id))
+        return redirect()->action('Auth\AuthController@getEdit', array('id' => $user->id))
             ->with('success', 'Пользователь успешно отредактирован.');
     }
 
@@ -98,15 +98,15 @@ trait AuthenticatesAndRegistersAdmins {
      */
     public function postRegister(Request $request)
     {
-        $validator = $this->registrar->validator($request->all());
+        $validator = $this->validator($request->all());
         if ($validator->fails())
         {
             $this->throwValidationException(
                 $request, $validator
             );
         }
-        $user = $this->registrar->create($request->all());
-        return redirect()->action('Admin\Auth\AuthController@getEdit', array('id' => $user->id))
+        $user = $this->create($request->all());
+        return redirect()->action('Auth\AuthController@getEdit', array('id' => $user->id))
             ->with('success', 'Пользователь успешно создан.');
     }
 

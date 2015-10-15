@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Services\AuthenticatesAndRegistersAdmins;
 
-class AuthController extends Controller
+class AuthController extends AdminController
 {
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +38,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        parent::__construct();
+
+        $this->middleware('auth', ['except' => ['getLogout', 'getLogin', 'postLogin']]);
     }
 
     /**
@@ -52,6 +55,16 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+        ], [
+            'name.required' => 'Поле "Логин" обязательно для заполнения.',
+            'name.max' => 'Количество символов в поле "Логин" не может превышать :max.',
+            'email.required' => 'Поле "E-Mail" обязательно для заполнения.',
+            'email.email' => 'Поле "E-Mail" должно быть действительным электронным адресом.',
+            'email.max' => 'Количество символов в поле "E-Mail" не может превышать :max.',
+            'email.unique' => 'Такое значение поля "E-Mail" уже существует.',
+            'password.required' => 'Поле "Пароль" обязательно для заполнения.',
+            'password.confirmed' => 'Поле "Пароль" не совпадает с подтверждением.',
+            'password.min' => '"Количество символов в поле "Пароль" должно быть не менее :min.',
         ]);
     }
 
@@ -69,4 +82,11 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function getList()
+    {
+        $data['users'] = User::all();
+        return view('admin.auth.list', $data);
+    }
+
 }
