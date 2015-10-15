@@ -41,48 +41,28 @@ elixir(function(mix) {
         assetsPublicPath + 'css/plugins.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/app.css',
         assetsPublicPath + 'css/app.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'css/plugins/style-switcher.css',
-        assetsPublicPath + 'css/plugins/style-switcher.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/headers/header-default.css',
         assetsPublicPath + 'css/headers/header-default.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v1.css',
         assetsPublicPath + 'css/footers/footer-v1.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v7.css',
         assetsPublicPath + 'css/footers/footer-v7.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/animate.css',
-        assetsPublicPath + 'plugins/animate.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/line-icons',
-        assetsPublicPath + 'plugins/line-icons')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/font-awesome',
-        assetsPublicPath + 'plugins/font-awesome')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/layer-slider/layerslider',
-        assetsPublicPath + 'plugins/layer-slider/layerslider')
         .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/blue.css',
         assetsPublicPath + 'css/theme-colors/blue.css')
 
         // JS шаблона
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/jquery',
-        assetsPublicPath + 'plugins/jquery')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/back-to-top.js',
-        assetsPublicPath + 'plugins/back-to-top.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/smoothScroll.js',
-        assetsPublicPath + 'plugins/smoothScroll.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/sky-forms-pro/skyforms/js',
-        assetsPublicPath + 'plugins/sky-forms-pro/skyforms/js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
         assetsPublicPath + 'js/custom.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/app.js',
         assetsPublicPath + 'js/app.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/forms/contact.js',
         assetsPublicPath + 'js/forms/contact.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'js/plugins/layer-slider.js',
-        assetsPublicPath + 'js/plugins/layer-slider.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/respond.js',
-        assetsPublicPath + 'plugins/respond.js/')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/html5shiv.js',
-        assetsPublicPath + 'plugins/html5shiv.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/placeholder-IE-fixes.js',
-        assetsPublicPath + 'plugins/placeholder-IE-fixes.js')
+        .copy(assetsResourcesPathBootstrapUnify + 'js/pages/page_contacts.js',
+        assetsPublicPath + 'js/pages/page_contacts.js')
+
+        // Plugins Шаблона
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins',
+        assetsPublicPath + 'plugins')
 
 
         // AdminLTE

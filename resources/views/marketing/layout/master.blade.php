@@ -4,7 +4,7 @@
 <!--[if !IE]><!--> <html lang="ua"> <!--<![endif]-->
 <head>
     <base href="{{ url() . '/' }}">
-    <title>@yield('page_title', 'Главная') - Kads Group</title>
+    <title>@yield('page_title', 'Головна') - Kads Group</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -58,6 +58,8 @@
         @slider()
     @show
 
+    @yield('full_width')
+
     @yield('companies')
 
     <!--=== Content ===-->
@@ -90,12 +92,10 @@
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <!-- JS Page Level -->
 <script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/forms/contact.js"></script>
 <script type="text/javascript" src="assets/js/plugins/layer-slider.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
-        ContactForm.initContactForm();
         LayerSlider.initLayerSlider();
     });
 </script>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8883985f850afb04eb816e50d7c9e16e",
+    "hash": "2ce49274c0fc997cd7480b70a7619bfd",
     "packages": [
         {
             "name": "barryvdh/elfinder-builds",
@@ -1643,6 +1643,187 @@
                 "php"
             ],
             "time": "2015-09-19 14:15:08"
+        },
+        {
+            "name": "orchestra/contracts",
+            "version": "v3.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestral/contracts.git",
+                "reference": "579e2fc88e84e856af683df03000065f3fdf3942"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orchestral/contracts/zipball/579e2fc88e84e856af683df03000065f3fdf3942",
+                "reference": "579e2fc88e84e856af683df03000065f3fdf3942",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.1.0",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orchestra\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com",
+                    "homepage": "https://github.com/crynobone"
+                }
+            ],
+            "description": "Contracts for Orchestra Platform",
+            "keywords": [
+                "contracts",
+                "orchestra-platform",
+                "orchestral"
+            ],
+            "time": "2015-09-11 18:09:07"
+        },
+        {
+            "name": "orchestra/memory",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestral/memory.git",
+                "reference": "0df9f749c1b526e82d0d9e39f7c55c91bb9686b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orchestral/memory/zipball/0df9f749c1b526e82d0d9e39f7c55c91bb9686b0",
+                "reference": "0df9f749c1b526e82d0d9e39f7c55c91bb9686b0",
+                "shasum": ""
+            },
+            "require": {
+                "orchestra/support": "~3.1.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "illuminate/container": "~5.1.0",
+                "illuminate/database": "~5.1.0",
+                "mockery/mockery": "^0.9.1"
+            },
+            "suggest": {
+                "laravel/framework": "Allow using orchestra/memory component outside of Orchestra Platform (~5.1).",
+                "orchestra/foundation": "Allow using orchestra/memory with Orchestra Platform (~3.1)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "resources/database/migrations"
+                ],
+                "psr-4": {
+                    "Orchestra\\Memory\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com",
+                    "homepage": "https://github.com/crynobone"
+                }
+            ],
+            "description": "Memory Component for Orchestra Platform",
+            "homepage": "http://orchestraplatform.com/docs/latest/components/memory/",
+            "keywords": [
+                "config",
+                "database-config",
+                "laravel",
+                "orchestra-platform",
+                "orchestral"
+            ],
+            "time": "2015-06-16 11:03:04"
+        },
+        {
+            "name": "orchestra/support",
+            "version": "v3.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestral/support.git",
+                "reference": "dff78128d4d101b854d738d28ba5b51bf806553c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orchestral/support/zipball/dff78128d4d101b854d738d28ba5b51bf806553c",
+                "reference": "dff78128d4d101b854d738d28ba5b51bf806553c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1.0",
+                "orchestra/contracts": "~3.1.0",
+                "php": ">=5.5.0"
+            },
+            "replace": {
+                "orchestra/support-core": "self.version",
+                "orchestra/support-facades": "self.version",
+                "orchestra/support-providers": "self.version"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.1.0",
+                "illuminate/routing": "~5.1.0",
+                "illuminate/session": "~5.1.0",
+                "mockery/mockery": "0.9.*"
+            },
+            "suggest": {
+                "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.1).",
+                "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.1).",
+                "orchestra/messages": "Allow using Messages component (~3.1)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orchestra\\Support\\Facades\\": "src/Facades/",
+                    "Orchestra\\Support\\Providers\\": "src/Providers/",
+                    "Orchestra\\Support\\": "src/Support/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com",
+                    "homepage": "https://github.com/crynobone"
+                }
+            ],
+            "description": "Support Component for Orchestra Platform",
+            "homepage": "http://orchestraplatform.com/docs/latest/components/support/",
+            "keywords": [
+                "laravel",
+                "orchestra-platform",
+                "orchestral",
+                "utilities",
+                "validator"
+            ],
+            "time": "2015-09-18 03:06:25"
         },
         {
             "name": "paragonie/random_compat",

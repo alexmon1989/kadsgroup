@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
         'news'          => 'NewsController',
+        'contacts'      => 'ContactsController',
     ]);
 });
 

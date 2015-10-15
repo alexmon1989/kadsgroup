@@ -36,3 +36,12 @@
 @section('footer')
     @include('marketing.layout.footer_main')
 @stop
+
+@section('scripts')
+    <script type="text/javascript" src="assets/js/forms/contact.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            ContactForm.initContactForm();
+        });
+    </script>
+@stop

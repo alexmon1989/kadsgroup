@@ -35,7 +35,7 @@ var ContactForm = function () {
 	            {
 	                name:
 	                {
-	                    required: 'Будь-ласка, введіть ваше ім\'я',
+	                    required: 'Будь-ласка, введіть ваше ім\'я'
 	                },
 	                email:
 	                {
@@ -44,7 +44,8 @@ var ContactForm = function () {
 	                },
 	                message:
 	                {
-	                    required: 'Будь-ласка, введіть повідомлення'
+	                    required: 'Будь-ласка, введіть повідомлення',
+                        minlength: 'Повідомлення має містити не менше {0} символів'
 	                },
 	                captcha:
 	                {

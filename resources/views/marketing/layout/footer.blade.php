@@ -17,17 +17,17 @@
                 <div class="col-md-3 md-margin-bottom-40">
                     <div class="headline"><h2>Меню</h2></div>
                     <ul class="list-unstyled link-list">
-                        <li><a href="{{ @action('Marketing\HomeController@index') }}">Главная</a><i class="fa fa-angle-right"></i></li>
-                        <li><a href="#">Сертификаты</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{{ @action('Marketing\HomeController@index') }}">Головна</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="#">Сертифікаты</a><i class="fa fa-angle-right"></i></li>
                         <li><a href="{{ @action('Marketing\NewsController@getIndex') }}">Новости</a><i class="fa fa-angle-right"></i></li>
-                        <li><a href="#">Контакты</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="#">Контакти</a><i class="fa fa-angle-right"></i></li>
                     </ul>
                 </div><!--/col-md-3-->
                 <!-- End Link List -->
 
                 <!-- Address -->
                 <div class="col-md-3 map-img md-margin-bottom-40">
-                    <div class="headline"><h2>Свяжитесь с нами</h2></div>
+                    <div class="headline"><h2>Зв'яжіться з нами</h2></div>
                     <address class="md-margin-bottom-40">
                         м. Київ, <br />
                         Куренівський провулок, 4/8, оф. 5 <br />
@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p class="text-center">
-                        2015 &copy; Все права защищены.
+                        {{ date('Y') }} &copy; Все права защищены.
                     </p>
                 </div>
             </div>
