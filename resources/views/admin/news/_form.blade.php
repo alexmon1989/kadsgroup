@@ -13,7 +13,7 @@
         <div class="form-group">
             <label for="thumbnail">Изображение</label>
             <input type="file" id="thumbnail" name="thumbnail">
-            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>973px * 615px</b>. Программа приведёт изображение к этому разрешению автоматически без сохранения пропорций сторон.</p>
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>555px * 247px</b>. Программа приведёт изображение к этому разрешению автоматически без сохранения пропорций сторон.</p>
         </div>
         <div class="form-group">
             <label for="preview_text_small">Текст для виджета на главной</label>

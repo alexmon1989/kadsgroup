@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $news->title,
                 'items' => array(
-                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Новости', 'action' => 'Marketing\NewsController@getIndex', 'active' => FALSE),
+                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
+                        array('title' => 'Новини', 'action' => 'Marketing\NewsController@getIndex', 'active' => FALSE),
                         array('title' => $news->title, 'action' => '', 'active' => TRUE),
                 )
             ])

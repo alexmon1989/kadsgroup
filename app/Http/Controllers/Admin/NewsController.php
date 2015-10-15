@@ -74,7 +74,7 @@ class NewsController extends AdminController {
         $news->is_on_main = Input::get('is_on_main', 0);
         if ($request->hasFile('thumbnail'))
         {
-            $news->thumbnail = $imageSaver->save('thumbnail', 'news', 370, 247, $news->thumbnail);
+            $news->thumbnail = $imageSaver->save('thumbnail', 'news', 555, 370, $news->thumbnail);
         }
         $news->save();
 
@@ -105,7 +105,7 @@ class NewsController extends AdminController {
         $news->preview_text_small = Input::get('preview_text_small');
         $news->preview_text_mid = Input::get('preview_text_mid');
         $news->is_on_main = Input::get('is_on_main', 0);
-        $news->thumbnail = $imageSaver->save('thumbnail', 'news', 370, 247);
+        $news->thumbnail = $imageSaver->save('thumbnail', 'news', 555, 370);
         $news->save();
 
         return redirect()->action('Admin\NewsController@getEdit', array('id' => $news->id))

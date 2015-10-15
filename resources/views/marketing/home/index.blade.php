@@ -17,9 +17,9 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row news-main">
         @foreach($news as $item)
-            <div class="col-md-4 col-sm-6 col-xs-124">
+            <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="thumbnails thumbnail-style">
                     <img alt="{{ $item->title }}" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" class="img-responsive">
                     <div class="caption">

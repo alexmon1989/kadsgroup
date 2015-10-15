@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => 'Новости',
                 'items' => array(
-                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Новости', 'action' => '', 'active' => TRUE),
+                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
+                        array('title' => 'Новини', 'action' => '', 'active' => TRUE),
                 )
             ])
 @stop

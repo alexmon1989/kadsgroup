@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Marketing'], function()
 });
 
 // Authentication routes...
-Route::get('admin', ['middleware' => 'auth', 'Admin\DashboardController@getIndex']);
+Route::get('admin', ['middleware' => 'auth', 'uses' => 'Admin\DashboardController@getIndex']);
 Route::get('admin/auth/login', 'Auth\AuthController@getLogin');
 Route::post('admin/auth/login', 'Auth\AuthController@postLogin');
 Route::get('admin/auth/logout', 'Auth\AuthController@getLogout');
