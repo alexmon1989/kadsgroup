@@ -31,3 +31,13 @@ $factory->define(App\News::class, function (Faker\Generator $faker) {
         'thumbnail' => $match[0],
     ];
 });
+
+
+$factory->define(App\Certificate::class, function (Faker\Generator $faker) {
+    $img = $faker->image('public/assets/img/certificates', 555, 370);
+    preg_match('/(\w+\.jpg)/', $img, $match);
+    return [
+        'title' => $faker->text(30),
+        'file_name' => '123',
+    ];
+});
