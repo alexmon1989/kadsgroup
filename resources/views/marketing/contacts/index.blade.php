@@ -27,8 +27,9 @@
 <div class="row margin-bottom-30">
     <div class="col-md-9 mb-margin-bottom-30">
         <div class="headline"><h2>Напишіть нам</h2></div>
-        <p>Якщо у Вас виникли додаткові питання з будь-якого приводу, можете надіслати нам повідомлення або зателефонувати.</p><br />
-
+        @if ($contacts_form_text->full_text)
+        {!! $contacts_form_text->full_text !!}<br />
+        @endif
         <form action="{{ action('Marketing\ContactsController@postIndex') }}" method="post" id="sky-form3" class="sky-form contact-style">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <fieldset class="no-padding">
@@ -70,31 +71,23 @@
     </div><!--/col-md-9-->
 
     <div class="col-md-3">
+        @if ($contacts_contacts->full_text)
         <!-- Contacts -->
         <div class="headline"><h2>Контакти</h2></div>
-        <ul class="list-unstyled who margin-bottom-30">
-            <li><i class="fa fa-home"></i> м. Київ, Куренівський пров., 4/8, оф. 5</li>
-            <li><i class="fa fa-phone"></i> +38 044 379 16 17, +38 097 638 13 09</li>
-            <li><i class="fa fa-envelope"></i> <a href="mailto:llckadsgroup@gmail.com">llckadsgroup@gmail.com</a></li>
-            <li><i class="fa fa-globe"></i> <a href="{{ url() }}">www.kadsgroup.com.ua</a></li>
-        </ul>
+        {!! $contacts_contacts->full_text !!}
+        @endif
 
+        @if ($contacts_working_time->full_text)
         <!-- Business Hours -->
         <div class="headline"><h2>Робочий час</h2></div>
-        <ul class="list-unstyled margin-bottom-30">
-            <li><strong>Пн-пт:</strong> 9:00 - 18:00</li>
-            <li><strong>Сб:</strong> выходной</li>
-            <li><strong>Вс:</strong> выходной</li>
-        </ul>
+        {!! $contacts_working_time->full_text !!}
+        @endif
 
+        @if ($contacts_why_us->full_text)
         <!-- Why we are? -->
         <div class="headline"><h2>Чому саме ми?</h2></div>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
-        <ul class="list-unstyled">
-            <li><i class="fa fa-check color-green"></i> Odio dignissimos ducimus</li>
-            <li><i class="fa fa-check color-green"></i> Blanditiis praesentium volup</li>
-            <li><i class="fa fa-check color-green"></i> Eos et accusamus</li>
-        </ul>
+        {!! $contacts_why_us->full_text !!}
+        @endif
     </div><!--/col-md-3-->
 </div><!--/row-->
 

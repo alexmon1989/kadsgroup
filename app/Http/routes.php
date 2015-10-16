@@ -39,5 +39,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::controllers([
         'dashboard'                 => 'DashboardController',
         'news'                      => 'NewsController',
+        'contacts'                  => 'ContactsController',
     ]);
 });

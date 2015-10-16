@@ -22,14 +22,30 @@
                 </a>
             </li>
 
+            <li class="{{ Request::segment(2) == 'auth' ? 'active' : '' }}">
+                <a href="{{ action('Auth\AuthController@getList') }}">
+                    <i class="fa fa-users "></i> Пользователи (админы)
+                </a>
+            </li>
+
+            <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-wrench"></i> <span>Настройки</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">Страницы</li>
             <li class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">
                 <a href="{{ action('Admin\NewsController@getIndex') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Новости</span>
                 </a>
             </li>
 
-            <li class="{{ Request::segment(2) == 'auth' ? 'active' : '' }}">
-                <a href="{{ action('Auth\AuthController@getList') }}"><i class="fa fa-users "></i> Пользователи (админы)</a>
+            <li class="{{ Request::segment(2) == 'contacts' ? 'active' : '' }}">
+                <a href="{{ action('Admin\ContactsController@getIndex') }}"><i class="fa fa-map-marker"></i> Контакты</a>
             </li>
         </ul>
 

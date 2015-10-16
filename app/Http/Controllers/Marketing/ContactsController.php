@@ -19,8 +19,10 @@ class ContactsController extends Controller {
     public function getIndex()
     {
         // Контактные данные
-        $data['contacts_article'] = Article::whereType('contacts_article')->first();
-        $data['contacts_widget'] = Article::whereType('contacts_widget')->first();
+        $data['contacts_form_text'] = Article::firstOrCreate(['type' => 'contacts_form_text']);
+        $data['contacts_contacts'] = Article::firstOrCreate(['type' => 'contacts_contacts']);
+        $data['contacts_working_time'] = Article::firstOrCreate(['type' => 'contacts_working_time']);
+        $data['contacts_why_us'] = Article::firstOrCreate(['type' => 'contacts_why_us']);
 
         return view('marketing.contacts.index', $data);
     }
@@ -39,8 +41,7 @@ class ContactsController extends Controller {
         {
             $message->from($request->get('email'), $request->get('name'));
             $message->subject($subject);
-            //$message->to(Memory::get('contacts.email_to'));
-            $message->to('alex.mon1989@gmail.com');
+            $message->to(Memory::get('contacts.email_to', 'llckadsgroup@gmail.com'));
         });
         if ($request->ajax()) {
             return response()->json(['success' => true]);
