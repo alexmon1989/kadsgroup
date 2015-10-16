@@ -3,15 +3,9 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <!-- About -->
-                <div class="col-md-3 md-margin-bottom-40">
-                    <a href="index.html"><img id="logo-footer" class="footer-logo" src="assets/img/logo-kadsgroup-footer.png" alt="{{ url() }}"></a>
-                    <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-                    <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>
-                </div><!--/col-md-3-->
-                <!-- End About -->
+                @footer_about()
 
-                @latest_news_footer()
+                @footer_latest_news()
 
                 <!-- Link List -->
                 <div class="col-md-3 md-margin-bottom-40">
@@ -20,22 +14,12 @@
                         <li><a href="{{ @action('Marketing\HomeController@index') }}">Головна</a><i class="fa fa-angle-right"></i></li>
                         <li><a href="#">Сертифікаты</a><i class="fa fa-angle-right"></i></li>
                         <li><a href="{{ @action('Marketing\NewsController@getIndex') }}">Новости</a><i class="fa fa-angle-right"></i></li>
-                        <li><a href="#">Контакти</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{{ @action('Marketing\ContactsController@getIndex') }}">Контакти</a><i class="fa fa-angle-right"></i></li>
                     </ul>
                 </div><!--/col-md-3-->
                 <!-- End Link List -->
 
-                <!-- Address -->
-                <div class="col-md-3 map-img md-margin-bottom-40">
-                    <div class="headline"><h2>Зв'яжіться з нами</h2></div>
-                    <address class="md-margin-bottom-40">
-                        м. Київ, <br />
-                        Куренівський провулок, 4/8, оф. 5 <br />
-                        Тел.: +38 044 379 16 17, +38 097 638 13 09 <br />
-                        Email: <a href="mailto:llckadsgroup@gmail.com" class="">llckadsgroup@gmail.com</a>
-                    </address>
-                </div><!--/col-md-3-->
-                <!-- End Address -->
+               @footer_contacts()
             </div>
         </div>
     </div><!--/footer-->

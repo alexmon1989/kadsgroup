@@ -29,7 +29,7 @@
             </li>
 
             <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
-                <a href="#">
+                <a href="{{ action('Admin\SettingsController@getIndex') }}">
                     <i class="fa fa-wrench"></i> <span>Настройки</span>
                 </a>
             </li>

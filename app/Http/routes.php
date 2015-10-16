@@ -16,8 +16,8 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'news'          => 'NewsController',
         'contacts'      => 'ContactsController',
+        'news'          => 'NewsController',
     ]);
 });
 
@@ -37,8 +37,9 @@ Route::controller('admin/auth', 'Auth\AuthController');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::controllers([
+        'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
         'news'                      => 'NewsController',
-        'contacts'                  => 'ContactsController',
+        'settings'                  => 'SettingsController',
     ]);
 });
