@@ -38,6 +38,24 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Страницы</li>
+            <li class="{{ Request::segment(2) == 'certificates' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-certificate"></i> <span>Сертификаты</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::segment(2) == 'certificates' && (Request::segment(3) == 'create' || Request::segment(3) == 'edit' || Request::segment(3) == '') ? 'active' : '' }}">
+                        <a href="{{ action('Admin\CertificatesController@getIndex') }}">
+                            <i class="fa fa-circle-o"></i> Список сертификатов
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'certificates' && Request::segment(3) == 'settings' ? 'active' : '' }}">
+                        <a href="{{ action('Admin\CertificatesController@getSettings') }}">
+                            <i class="fa fa-circle-o"></i> Настройки
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">
                 <a href="{{ action('Admin\NewsController@getIndex') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Новости</span>

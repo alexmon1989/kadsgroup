@@ -35,7 +35,9 @@
                     </ul>
                 </li>
 
-                <li><a href="#">Сертифікати</a></li>
+                <li class="{{ Request::segment(1) == 'certificates' ? 'active' : '' }}">
+                    <a href="{{ action('Marketing\CertificatesController@getIndex') }}">Сертифікати</a>
+                </li>
                 <li class="{{ Request::segment(1) == 'news' ? 'active' : '' }}">
                     <a href="{{ action('Marketing\NewsController@getIndex') }}">Новини</a>
                 </li>

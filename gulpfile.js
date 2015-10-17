@@ -27,7 +27,6 @@ var assetsResourcesPathAdminLte = assetsResourcesPath + 'bower_components/adminl
 
 elixir(function(mix) {
     mix.sass('custom.scss', assetsPublicPath + 'css/custom.css')
-
         // CSS шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'plugins/bootstrap',
         assetsPublicPath + 'plugins/bootstrap')
@@ -61,6 +60,8 @@ elixir(function(mix) {
         assetsPublicPath + 'js/pages/page_contacts.js')
 
         // Plugins Шаблона
+        .copy(assetsResourcesPathBootstrapUnify + 'js/plugins',
+        assetsPublicPath + 'js/plugins')
         .copy(assetsResourcesPathBootstrapUnify + 'plugins',
         assetsPublicPath + 'plugins')
 
@@ -74,5 +75,6 @@ elixir(function(mix) {
         assetsPublicPath + 'plugins/adminlte/plugins')
         .copy(assetsResourcesPath + 'js/admin-lte/custom.js',
         assetsPublicPath + 'plugins/adminlte/dist/js/custom.js')
+        .sass('custom-adminlte.scss', assetsPublicPath + 'plugins/adminlte/dist/css/custom.css')
     ;
 });
