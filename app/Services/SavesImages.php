@@ -24,8 +24,13 @@ class SavesImages {
      *
      * @return string Название файла изображения
      */
-    public function save($fieldName, $destFolder, $width, $height, $oldName = NULL)
+    public function save($fieldName, $destFolder, $width = NULL, $height = NULL, $oldName = NULL)
     {
+        // Ширина и высота не могут быть NULL одновременно
+        if (is_null($width) && is_null($height)) {
+            throw new Exception('Ширина и высота не могут быть NULL одновременно.');
+        }
+
         // Название изображения
         $name = str_random(32);
 
@@ -36,10 +41,25 @@ class SavesImages {
         $uploadFile = Input::file($fieldName);
         $uploadedFileName = $name . '.' . $uploadFile->getClientOriginalExtension();
 
-        // Сохранение с преобразование размера
-        Image::make($uploadFile)
-            ->resize($width, $height)
-            ->save($fullPathDestFolder . $uploadedFileName);
+        $img = Image::make($uploadFile);
+        // Если указаны оба аргумента, то сохраняем без сохранения пропорций
+        if ($width && $height) {
+            $img->resize($width, $height);
+        }
+        // А если один из них не указан, то сохраняем пропорции
+        if (is_null($width)) {
+            $img->resize(NULL, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        if (is_null($height)) {
+            $img->resize($width, NULL, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+
+
+        $img->save($fullPathDestFolder . $uploadedFileName);
 
         // Если есть старый файл, то удаляем его
         if ($oldName)

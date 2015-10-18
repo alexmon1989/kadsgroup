@@ -12,7 +12,7 @@
                     <div class="headline"><h2>Меню</h2></div>
                     <ul class="list-unstyled link-list">
                         <li><a href="{{ @action('Marketing\HomeController@index') }}">Головна</a><i class="fa fa-angle-right"></i></li>
-                        <li><a href="#">Сертифікаты</a><i class="fa fa-angle-right"></i></li>
+                        <li><a href="{{ @action('Marketing\CertificatesController@getIndex') }}">Сертифікаты</a><i class="fa fa-angle-right"></i></li>
                         <li><a href="{{ @action('Marketing\NewsController@getIndex') }}">Новости</a><i class="fa fa-angle-right"></i></li>
                         <li><a href="{{ @action('Marketing\ContactsController@getIndex') }}">Контакти</a><i class="fa fa-angle-right"></i></li>
                     </ul>
