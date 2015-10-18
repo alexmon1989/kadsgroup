@@ -4,6 +4,8 @@ Homestead.yaml
 Homestead.json
 .env
 
+_ide_helper.php
+
 public/files
 public/assets/img/news/*
 public/assets/img/certificates/*
