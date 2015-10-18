@@ -60,7 +60,7 @@
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
                                     <a class="active" href="#">Прайс</a> |
-                                    <a href="#">Відео</a> |
+                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a> |
                                     <a href="#">Каталог</a>
                                 </div>
                             </div>

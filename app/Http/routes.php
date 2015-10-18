@@ -19,6 +19,7 @@ Route::group(['namespace' => 'Marketing'], function()
         'certificates'  => 'CertificatesController',
         'contacts'      => 'ContactsController',
         'news'          => 'NewsController',
+        'videos'        => 'VideosController',
     ]);
 });
 
@@ -43,5 +44,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'dashboard'                 => 'DashboardController',
         'news'                      => 'NewsController',
         'settings'                  => 'SettingsController',
+        'videos'                    => 'VideosController',
     ]);
 });
