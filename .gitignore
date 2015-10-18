@@ -5,6 +5,8 @@ Homestead.json
 .env
 
 public/files
+public/assets/img/news/*
+public/assets/img/certificates/*
 
 .idea
 

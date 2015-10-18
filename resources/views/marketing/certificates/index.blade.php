@@ -18,10 +18,12 @@
 @section('content')
     @if (!empty($certificates))
 
+        @if ($certificates_description->title != '' && $certificates_description->full_text != '')
         <div class="text-center margin-bottom-50">
-            <h2 class="title-v2 title-center text-uppercase">{{ $certificates_description->title }}</h2>
-            <p class="space-lg-hor">{!! $certificates_description->full_text !!}</p>
+            @if ($certificates_description->title != '')<h2 class="title-v2 title-center text-uppercase">{{ $certificates_description->title }}</h2>@endif
+            @if ($certificates_description->full_text != '')<p class="space-lg-hor">{!! $certificates_description->full_text !!}</p>@endif
         </div>
+        @endif
 
         @for($i = 0; $i <= count($certificates) - 1; $i += 3)
             <div class="row margin-bottom-30">
