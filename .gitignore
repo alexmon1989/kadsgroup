@@ -9,6 +9,7 @@ _ide_helper.php
 public/files
 public/assets/img/news/*
 public/assets/img/certificates/*
+public/assets/img/galleries/*
 
 .idea
 

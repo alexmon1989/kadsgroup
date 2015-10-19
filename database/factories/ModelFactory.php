@@ -42,3 +42,15 @@ $factory->define(App\Certificate::class, function (Faker\Generator $faker) {
         'file_name' => $match[0],
     ];
 });
+
+
+$factory->define(App\Gallery::class, function (Faker\Generator $faker) {
+    $img = $faker->image('public/assets/img/galleries', 973, 615);
+    preg_match('/(\w+\.jpg)/', $img, $match);
+    return [
+        'file_name' => $match[0],
+        'company_id' => mt_rand(1, 3),
+        'title' => $faker->text(30),
+        'is_main' => FALSE
+    ];
+});
