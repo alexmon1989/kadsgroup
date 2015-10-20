@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Marketing'], function()
     Route::controllers([
         'certificates'  => 'CertificatesController',
         'contacts'      => 'ContactsController',
+        'galleries'     => 'GalleriesController',
         'news'          => 'NewsController',
         'videos'        => 'VideosController',
     ]);
@@ -42,6 +43,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'certificates'              => 'CertificatesController',
         'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
+        'galleries'                 => 'GalleriesController',
         'news'                      => 'NewsController',
         'settings'                  => 'SettingsController',
         'videos'                    => 'VideosController',
