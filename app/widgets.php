@@ -4,11 +4,16 @@
 
 use App\News;
 use App\Article;
+use App\Slider;
 
 // Виджет слайдера
 Widget::register('slider', function()
 {
-    return view('marketing.widgets.slider');
+    // Получение данных
+    $data['slider'] = Slider::orderBy('order', 'ASC')->get();
+
+    // Отображение
+    return view('marketing.widgets.slider', $data);
 });
 
 // Виджет новостей в футере

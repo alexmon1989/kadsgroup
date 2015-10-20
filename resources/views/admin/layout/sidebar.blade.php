@@ -28,6 +28,12 @@
                 </a>
             </li>
 
+            <li class="{{ Request::segment(2) == 'sliders' ? 'active' : '' }}">
+                <a href="{{ action('Admin\SliderController@getIndex') }}">
+                    <i class="fa fa-sliders"></i> <span>Слайдер</span>
+                </a>
+            </li>
+
             <li class="{{ Request::segment(2) == 'settings' ? 'active' : '' }}">
                 <a href="{{ action('Admin\SettingsController@getIndex') }}">
                     <i class="fa fa-wrench"></i> <span>Настройки</span>

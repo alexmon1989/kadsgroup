@@ -10,6 +10,8 @@ public/files
 public/assets/img/news/*
 public/assets/img/certificates/*
 public/assets/img/galleries/*
+public/assets/img/slider/*
+public/assets/img/slider/*/**
 
 .idea
 
