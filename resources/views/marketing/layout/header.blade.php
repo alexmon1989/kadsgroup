@@ -24,14 +24,20 @@
                 </li>
 
 
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="dropdown {{ Request::segment(1) == 'galleries' ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Фотогалерея
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Фотогалерея 1</a></li>
-                        <li><a href="#">Фотогалерея 2</a></li>
-                        <li><a href="#">Фотогалерея 3</a></li>
+                        <li class="{{ Request::segment(3) == 'sika' ? 'active' : '' }}">
+                            <a href="{{ action('Marketing\GalleriesController@getShow', ['company' => 'sika']) }}">Sika</a>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'sfs' ? 'active' : '' }}">
+                            <a href="{{ action('Marketing\GalleriesController@getShow', ['company' => 'sfs']) }}">SFS intec</a>
+                        </li>
+                        <li class="{{ Request::segment(3) == 'primer' ? 'active' : '' }}">
+                            <a href="{{ action('Marketing\GalleriesController@getShow', ['company' => 'primer']) }}">Праймер</a>
+                        </li>
                     </ul>
                 </li>
 

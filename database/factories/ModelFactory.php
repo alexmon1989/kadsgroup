@@ -50,7 +50,6 @@ $factory->define(App\Gallery::class, function (Faker\Generator $faker) {
     return [
         'file_name' => $match[0],
         'company_id' => mt_rand(1, 3),
-        'title' => $faker->text(30),
-        'is_main' => FALSE
+        'title' => $faker->text(30)
     ];
 });

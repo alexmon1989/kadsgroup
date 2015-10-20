@@ -17,12 +17,6 @@
             <input type="file" id="file_name" name="file_name">
             <p class="help-block">Форматы: <b>jpg, png, gif</b>. @if (isset($photo)) Выбирайте изображение только если хотите сменить текущее. @endif</p>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="is_main" value="1" {{ old('is_main', isset($photo) ? $photo->is_main : 0) == 1 ? 'checked=""' : ''  }}> Главное фото галереи
-            </label>
-            <p class="help-block">Отметьте, если хотите использовать это фото как заглавное в списке галерей</p>
-        </div>
     </div><!-- /.box-body -->
 
     <div class="box-footer">

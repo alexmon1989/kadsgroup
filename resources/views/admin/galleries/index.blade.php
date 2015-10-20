@@ -29,7 +29,6 @@
                 <th>ID</th>
                 <th>Название</th>
                 <th>Изображение</th>
-                <th>Главное фото</th>
                 <th>Создано</th>
                 <th>Последнее редактирование</th>
                 <th>Действия</th>
@@ -42,7 +41,6 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
                     <td><img class="img-responsive" width="100" alt="{{ $item->title }}" src="{{ asset('assets/img/galleries/'.$item->file_name) }}"></td>
-                    <td>{!! $item->is_main == TRUE ? '<strong>Да</strong>' : 'Нет' !!}</td>
                     <td>{{ date('d.m.Y H:i:s', strtotime($item->created_at)) }}</td>
                     <td>{{ date('d.m.Y H:i:s', strtotime($item->updated_at)) }}</td>
                     <td>

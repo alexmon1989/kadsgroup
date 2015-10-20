@@ -119,19 +119,6 @@ class GalleriesController extends AdminController
         $photo->file_name = $imageSaver->save('file_name', 'galleries', 973);
         $photo->company_id = Company::whereShortTitle($request->company)->first(['id'])->id;
 
-        // Если выбрано как главное
-        if ($request->is_main == 1) {
-            // Ищем фотографию с is_main = 1 и этим company_id
-            $photoMain = Gallery::whereIsMain(TRUE)
-                ->whereCompanyId($photo->company_id)
-                ->first();
-            if ($photoMain) {
-                $photoMain->is_main = FALSE;
-                $photoMain->save();
-            }
-        }
-        $photo->is_main = $request->is_main;
-
         $photo->save();
 
         return redirect('admin/galleries/edit/'.$photo->id.'?company='.$request->company)
@@ -181,23 +168,9 @@ class GalleriesController extends AdminController
         // Меняем данные и сохраняем
         $photo->title = trim($request->title);
         $photo->company_id = Company::whereShortTitle($request->company)->first(['id'])->id;
-        if ($request->hasFile('file_name'))
-        {
+        if ($request->hasFile('file_name')) {
             $photo->file_name = $imageSaver->save('file_name', 'galleries', 973, NULL, $photo->file_name);
         }
-        // Если выбрано как главное
-        if ($request->is_main == 1) {
-            // Ищем фотографию с is_main = 1 и этим company_id, но не текущую
-            $photoMain = Gallery::whereIsMain(TRUE)
-                ->whereCompanyId($photo->company_id)
-                ->where('id', '<>', $id)
-                ->first();
-            if ($photoMain) {
-                $photoMain->is_main = FALSE;
-                $photoMain->save();
-            }
-        }
-        $photo->is_main = $request->is_main;
 
         $photo->save();
 
@@ -228,6 +201,4 @@ class GalleriesController extends AdminController
         return redirect()->back()
             ->with('success', 'Фотография успешно удалена.');
     }
-
-
 }

@@ -18,7 +18,6 @@ class CreateGalleriesTable extends Migration
             $table->string('title');
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-            $table->boolean('is_main')->default(false);
             $table->timestamps();
         });
     }

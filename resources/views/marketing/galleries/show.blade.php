@@ -1,16 +1,16 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Сертифікати
+Фотогалерея "{{ $company->title }}"
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Сертифікати',
+                'title' => 'Фотогалерея "'.$company->title.'"',
                 'items' => array(
                         array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Фотогалереї', 'action' => '', 'active' => TRUE),
+                        array('title' => 'Фотогалерея "'.$company->title.'"', 'action' => '', 'active' => TRUE),
                 )
             ])
 @stop
@@ -30,8 +30,8 @@
                 @for($j = 0; $j <= 2; $j++)
                     @if (isset($photos[$i+$j]))
                     <div class="col-sm-4 sm-margin-bottom-30">
-                        <a href="{{ asset('assets/img/certificates/'.$photos[$i+$j]->file_name) }}" rel="gallery1" class="fancybox img-hover-v1" title="{{ $photos[$i+$j]->title }}">
-                            <span><img class="img-responsive" src="{{ asset('assets/img/certificates/'.$photos[$i+$j]->file_name) }}" alt="{{ $photos[$i+$j]->title }}"></span>
+                        <a href="{{ asset('assets/img/galleries/'.$photos[$i+$j]->file_name) }}" rel="gallery1" class="fancybox img-hover-v1" title="{{ $photos[$i+$j]->title }}">
+                            <span><img class="img-responsive" src="{{ asset('assets/img/galleries/'.$photos[$i+$j]->file_name) }}" alt="{{ $photos[$i+$j]->title }}"></span>
                         </a>
                     </div>
                     @endif
