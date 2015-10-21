@@ -16,13 +16,16 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'certificates'              => 'CertificatesController',
-        'companies/descriptions'    => 'Companies\DescriptionsController',
-        'contacts'                  => 'ContactsController',
-        'galleries'                 => 'GalleriesController',
-        'news'                      => 'NewsController',
-        'videos'                    => 'VideosController',
+        'certificates'                  => 'CertificatesController',
+        //'companies/descriptions'        => 'Companies\DescriptionsController',
+        'contacts'                      => 'ContactsController',
+        'galleries'                     => 'GalleriesController',
+        'news'                          => 'NewsController',
+        //'companies/videos/show/primer'  => 'VideosController',
     ]);
+
+    Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
+    Route::get('companies/primer/videos', 'VideosController@getIndex');
 });
 
 // Authentication routes...

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class DescriptionsController extends AdminController
+class AboutController extends AdminController
 {
     /**
      * Отображает индексную страницу модуля
