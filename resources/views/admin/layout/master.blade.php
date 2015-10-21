@@ -27,6 +27,9 @@
     <script src="{{ asset('plugins/respond.js') }}"></script>
     <script src="{{ asset('plugins/html5shiv.js') }}"></script>
     <![endif]-->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.gif') }}">
   </head>
   <body class="skin-blue">
     <!-- Site wrapper -->

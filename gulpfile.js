@@ -48,6 +48,12 @@ elixir(function(mix) {
         assetsPublicPath + 'css/footers/footer-v7.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/blue.css',
         assetsPublicPath + 'css/theme-colors/blue.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/default.css',
+        assetsPublicPath + 'css/theme-colors/default.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/theme-skins/dark.css',
+        assetsPublicPath + 'css/theme-skins/dark.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_error4_404.css',
+        assetsPublicPath + 'css/pages/page_error4_404.css')
 
         // JS шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
@@ -64,6 +70,11 @@ elixir(function(mix) {
         assetsPublicPath + 'js/plugins')
         .copy(assetsResourcesPathBootstrapUnify + 'plugins',
         assetsPublicPath + 'plugins')
+
+        // Images шаблона
+        .copy(assetsResourcesPathBootstrapUnify + 'img/blur/img2.jpg',
+        assetsPublicPath + 'img/blur/img2.jpg')
+
 
 
         // AdminLTE
