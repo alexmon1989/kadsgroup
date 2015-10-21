@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="thumbnail">Изображение лого</label>
             <input type="file" id="file_logo" name="file_logo">
-            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Рекомендуемый размер: <b>135px</b> по высоте. Программа не приведёт изображение к этому разрешению автоматически с сохранением пропорций сторон.</p>
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Рекомендуемый размер: <b>135px</b> по высоте. Программа приведёт изображение к этому разрешению автоматически с сохранением пропорций сторон.</p>
         </div>
         <div class="form-group">
             <label for="url">Ссылка (полная)</label>
