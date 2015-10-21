@@ -41,12 +41,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 {
     Route::controllers([
         'certificates'              => 'CertificatesController',
+        'companies/descriptions'    => 'Companies\DescriptionsController',
+        'companies/primer/videos'   => 'VideosController',
         'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
         'galleries'                 => 'GalleriesController',
         'news'                      => 'NewsController',
         'settings'                  => 'SettingsController',
         'sliders'                   => 'SliderController',
-        'videos'                    => 'VideosController',
     ]);
 });
