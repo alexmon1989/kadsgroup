@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Services\SavesImages;
 use App\Slider;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSlidersRequest;
@@ -44,20 +45,23 @@ class SliderController extends AdminController {
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEdit(StoreSlidersRequest $request, $id)
+    public function postEdit(StoreSlidersRequest $request, SavesImages $imageSaver, $id)
     {
         // Ищем слайд
         $slider = $this->findSlider($id);
-        $slider->title = trim($request->get('title'));
-        $slider->description_1 = trim($request->get('description_1'));
-        $slider->description_2 = trim($request->get('description_2'));
-        if ($request->hasFile('file_name'))
-        {
-            $slider->file_name = $this->saveImageToDisk($slider->file_name);
-        }
         $slider->url = trim($request->get('url'));
-        $slider->btn_text = trim($request->get('btn_text'));
-        $slider->enabled = $request->get('enabled', 0);
+        $slider->text_1 = trim($request->get('text_1'));
+        $slider->text_2 = trim($request->get('text_2'));
+        $slider->css_main = trim($request->get('css_main'));
+        $slider->css_1 = trim($request->get('css_1'));
+        $slider->css_2 = trim($request->get('css_2'));
+        $slider->css_3 = trim($request->get('css_3'));
+        if ($request->hasFile('file_main')) {
+            $slider->file_main = $imageSaver->save('file_main', 'slider', 2048, 350, $slider->file_main);
+        }
+        if ($request->hasFile('file_logo')) {
+            $slider->file_logo = $imageSaver->save('file_logo', 'slider'.DIRECTORY_SEPARATOR.'logo', NULL, 135, $slider->file_logo);
+        }
         $slider->save();
         return redirect()->action('Admin\SliderController@getEdit', array('id' => $slider->id))
             ->with('success', 'Слайд успешно изменён.');
@@ -79,17 +83,19 @@ class SliderController extends AdminController {
      * @param StoreSlidersRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreate(StoreSlidersRequest $request)
+    public function postCreate(StoreSlidersRequest $request, SavesImages $imageSaver)
     {
         // Создаём новый слайдер
         $slider = new Slider;
-        $slider->title = trim($request->get('title'));
-        $slider->description_1 = trim($request->get('description_1'));
-        $slider->description_2 = trim($request->get('description_2'));
-        $slider->file_name = $this->saveImageToDisk();
+        $slider->file_main = $imageSaver->save('file_main', 'slider', 2048, 350);
+        $slider->file_logo = $imageSaver->save('file_logo', 'slider'.DIRECTORY_SEPARATOR.'logo', NULL, 135);
         $slider->url = trim($request->get('url'));
-        $slider->btn_text = trim($request->get('btn_text'));
-        $slider->enabled = $request->get('enabled', 0);
+        $slider->text_1 = trim($request->get('text_1'));
+        $slider->text_2 = trim($request->get('text_2'));
+        $slider->css_main = trim($request->get('css_main'));
+        $slider->css_1 = trim($request->get('css_1'));
+        $slider->css_2 = trim($request->get('css_2'));
+        $slider->css_3 = trim($request->get('css_3'));
         // Присваем макс. порядок + 1
         $slider->order = Slider::max('order') + 1;
         $slider->save();
@@ -115,8 +121,8 @@ class SliderController extends AdminController {
             $item->save();
         }
         // Удаляем вместе с файлами
-        File::delete( 'assets/img/slider' . $slider->file_main );
-        File::delete( 'assets/img/slider/logo' . $slider->file_logo );
+        File::delete( 'assets/img/slider/' . $slider->file_main );
+        File::delete( 'assets/img/slider/logo/' . $slider->file_logo );
         $slider->delete();
         return redirect()->back()->with('success', 'Слайд успешно удалён.');
     }
