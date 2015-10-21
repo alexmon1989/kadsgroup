@@ -6,7 +6,7 @@
             'items' => array(
                     array('title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE),
                     array('title' => 'Слайдер', 'action' => 'Admin\SliderController@getIndex', 'active' => FALSE),
-                    array('title' => $slider->title, 'action' => '', 'active' => TRUE),
+                    array('title' => $slider->text_1, 'action' => '', 'active' => TRUE),
             )
         ])
 @stop
@@ -14,7 +14,7 @@
 @section('content')
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">Редактирование слайда "{{ $slider->title }}"</h3>
+        <h3 class="box-title">Редактирование слайда "{{ $slider->text_1 }}"</h3>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
