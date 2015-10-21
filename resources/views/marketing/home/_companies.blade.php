@@ -6,12 +6,12 @@
                     <div class="thumbnails thumbnail-style">
                         <div class="row">
                             <div class="col-md-12 margin-bottom-10 height-100">
-                                <img class="img-responsive" alt="" src="assets/img/companies/top/1.png">
+                                <a href="{{ action('Marketing\Companies\DescriptionsController@getShow').'/sika' }}"><img class="img-responsive" alt="" src="assets/img/companies/top/1.png"></a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <img alt="" src="assets/img/companies/1.jpg" class="img-responsive">
+                                <a href="{{ action('Marketing\Companies\DescriptionsController@getShow').'/sika' }}"><img alt="" src="assets/img/companies/1.jpg" class="img-responsive"></a>
                             </div>
                         </div>
                         <div class="row">

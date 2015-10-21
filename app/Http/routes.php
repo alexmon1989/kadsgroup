@@ -16,11 +16,12 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'certificates'  => 'CertificatesController',
-        'contacts'      => 'ContactsController',
-        'galleries'     => 'GalleriesController',
-        'news'          => 'NewsController',
-        'videos'        => 'VideosController',
+        'certificates'              => 'CertificatesController',
+        'companies/descriptions'    => 'Companies\DescriptionsController',
+        'contacts'                  => 'ContactsController',
+        'galleries'                 => 'GalleriesController',
+        'news'                      => 'NewsController',
+        'videos'                    => 'VideosController',
     ]);
 });
 

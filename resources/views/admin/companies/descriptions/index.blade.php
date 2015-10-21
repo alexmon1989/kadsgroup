@@ -21,6 +21,7 @@
         </div>
     </div>
     <div class="box-body">
+        @include('admin.companies.descriptions._form')
     </div><!-- /.box-body -->
     <div class="box-footer">
 
