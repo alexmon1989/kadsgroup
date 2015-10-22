@@ -16,3 +16,6 @@ public/assets/img/slider/*/**
 .idea
 
 .bowerrc
+
+public/assets/plugins/adminlte/plugins/ckeditor/config.js
+resources/assets/bower_components/adminlte/plugins/ckeditor/config.js
