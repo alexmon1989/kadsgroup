@@ -19,10 +19,6 @@
         <div class="container">
             <ul class="nav navbar-nav">
                 <!-- Верхнее меню -->
-                <li class="{{ Request::segment(1) == 'home' || Request::segment(1) == '' ? 'active' : '' }}">
-                    <a href="{{ action('Marketing\HomeController@index') }}">Головна</a>
-                </li>
-
                 <li class="dropdown {{ Request::segment(1) == 'companies' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Група компаній
@@ -60,7 +56,7 @@
                                     <a href="#">Каталог</a>
                                 </li>
                                 <li>
-                                    <a href="#">Прайс-лист</a>
+                                    <a target="_blank" href="{{ Memory::get('price.primer.file_name') ? asset('assets/price-list/'.Memory::get('price.primer.file_name')) : '#' }} ">Прайс-лист</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a>

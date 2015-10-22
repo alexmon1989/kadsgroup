@@ -3,7 +3,7 @@
     <div class="box-body">
         <div class="form-group">
             <label for="email_to">E-Mail, куда приходят сообщения с формы обратной связи</label>
-            <input type="title" placeholder="E-Mail" id="email_to" name="email_to" class="form-control" value="{{ old('email_to', Memory::get('contacts.email_to', 'llckadsgroup@gmail.com')) }}">
+            <input type="title" placeholder="E-Mail" id="email_to" name="email_to" class="form-control" value="{{ old('email_to', Memory::get('site.email_to', 'llckadsgroup@gmail.com')) }}">
         </div>
 
         <div class="row">

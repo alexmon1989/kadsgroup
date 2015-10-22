@@ -181,7 +181,7 @@
                                     <i class="fa fa-circle-o"></i> Описание
                                 </a>
                             </li>
-                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'price-list' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'primer' && Request::segment(3) == 'prices' ? 'active' : '' }}">
                                 <a href="#">
                                     <i class="fa fa-circle-o"></i> Прайс-лист
                                 </a>
