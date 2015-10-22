@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::controllers([
         'certificates'              => 'CertificatesController',
         'companies/descriptions'    => 'Companies\DescriptionsController',
+        'companies/prices'          => 'Companies\PriceListsController',
         'companies/primer/videos'   => 'VideosController',
         'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
