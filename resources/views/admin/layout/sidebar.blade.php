@@ -132,7 +132,88 @@
                 <a href="{{ action('Admin\ContactsController@getIndex') }}"><i class="fa fa-map-marker"></i> Контакты</a>
             </li>
 
-            <li class="{{ Request::segment(2) == 'videos' ? 'active' : '' }}">
+            <li class="{{ Request::segment(2) == 'companies' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-dollar"></i> <span>Компании</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'sika' ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> Sika <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && Request::get('company') == 'sika' ? 'active' : '' }}">
+                                <a href="{{ action('Admin\Companies\DescriptionsController@getIndex', ['company' => 'sika']) }}">
+                                    <i class="fa fa-circle-o"></i> Описание
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sika' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Каталог
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'sfs' ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> SFS intent <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && Request::get('company') == 'sfs' ? 'active' : '' }}">
+                                <a href="{{ action('Admin\Companies\DescriptionsController@getIndex', ['company' => 'sfs']) }}">
+                                    <i class="fa fa-circle-o"></i> Описание
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sfs' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Каталог
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::segment(3) == 'primer' || Request::get('company') == 'primer') ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> Праймер <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && Request::get('company') == 'primer' ? 'active' : '' }}">
+                                <a href="{{ action('Admin\Companies\DescriptionsController@getIndex', ['company' => 'primer']) }}">
+                                    <i class="fa fa-circle-o"></i> Описание
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'price-list' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Прайс-лист
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'videos' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-video-camera"></i> <span>Видео</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'videos' && (Request::segment(5) == 'create' || Request::segment(5) == 'edit' || Request::segment(5) == '') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\VideosController@getIndex') }}">
+                                            <i class="fa fa-circle-o"></i> Список видео
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'videos' && Request::segment(5) == 'settings' ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\VideosController@getSettings') }}">
+                                            <i class="fa fa-circle-o"></i> Настройки
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Каталог
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!--<li class="{{ Request::segment(2) == 'videos' ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-video-camera"></i> <span>Видео</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -148,7 +229,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>-->
         </ul>
 
         <ul class="sidebar-menu">

@@ -23,6 +23,52 @@
                     <a href="{{ action('Marketing\HomeController@index') }}">Головна</a>
                 </li>
 
+                <li class="dropdown {{ Request::segment(1) == 'companies' ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Група компаній
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sika' ? 'active' : '' }}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sika</a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'about'  ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">Про компанію</a>
+                                </li>
+                                <li>
+                                    <a href="#">Каталог</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' ? 'active' : '' }}">
+                            <a href="#">SFS intec</a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'about' ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">Про компанію</a>
+                                </li>
+                                <li>
+                                    <a href="#">Каталог</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' ? 'active' : '' }}">
+                            <a href="#">Праймер</a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'about' ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">Про компанію</a>
+                                </li>
+                                <li>
+                                    <a href="#">Каталог</a>
+                                </li>
+                                <li>
+                                    <a href="#">Прайс-лист</a>
+                                </li>
+                                <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="dropdown {{ Request::segment(1) == 'galleries' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

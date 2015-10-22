@@ -1,0 +1,37 @@
+<form role="form" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="box-body">
+        <div class="form-group">
+            <label for="url">Название</label>
+            <input type="text" placeholder="Название" id="title" name="title" class="form-control" value="{{ old('title', isset($company) ? $company->title : '') }}">
+        </div>
+        <div class="form-group">
+            <label for="file_main">Изображение основное</label>
+            <div class="row">
+                <div class="col-md-12 margin-bottom-10">
+                    <img src="{{ asset('assets/img/companies/'.$company->file_main) }}" alt="{{ $company->title }}" class="img-responsive">
+                </div>
+            </div>
+            <input type="file" id="file_main" name="file_main">
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>370px * 247px</b>. Программа приведёт изображение к этому разрешению автоматически без сохранения пропорций сторон. Выбирайте только если хотите заменить текущее.</p>
+        </div>
+        <div class="form-group">
+            <label for="file_logo">Изображение лого</label>
+            <div class="row">
+                <div class="col-md-12 margin-bottom-10">
+                    <img src="{{ asset('assets/img/companies/top/'.$company->file_logo) }}" alt="{{ $company->title }}" class="img-responsive">
+                </div>
+            </div>
+            <input type="file" id="file_logo" name="file_logo">
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Рекомендуемый размер: <b>89px</b> по высоте. Программа приведёт изображение к этому разрешению автоматически с сохранением пропорций сторон. Выбирайте только если хотите заменить текущее.</p>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea id="description" name="description" class="form-control ckeditor">{{ old('description', isset($company) ? $company->description : '') }}</textarea>
+        </div>
+    </div><!-- /.box-body -->
+
+    <div class="box-footer">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;&nbsp;Сохранить</button>
+    </div>
+</form>

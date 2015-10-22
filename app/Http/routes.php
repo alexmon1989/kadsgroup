@@ -16,12 +16,16 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'certificates'  => 'CertificatesController',
-        'contacts'      => 'ContactsController',
-        'galleries'     => 'GalleriesController',
-        'news'          => 'NewsController',
-        'videos'        => 'VideosController',
+        'certificates'                  => 'CertificatesController',
+        //'companies/descriptions'        => 'Companies\DescriptionsController',
+        'contacts'                      => 'ContactsController',
+        'galleries'                     => 'GalleriesController',
+        'news'                          => 'NewsController',
+        //'companies/videos/show/primer'  => 'VideosController',
     ]);
+
+    Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
+    Route::get('companies/primer/videos', 'VideosController@getIndex');
 });
 
 // Authentication routes...
@@ -41,12 +45,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 {
     Route::controllers([
         'certificates'              => 'CertificatesController',
+        'companies/descriptions'    => 'Companies\DescriptionsController',
+        'companies/primer/videos'   => 'VideosController',
         'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
         'galleries'                 => 'GalleriesController',
         'news'                      => 'NewsController',
         'settings'                  => 'SettingsController',
         'sliders'                   => 'SliderController',
-        'videos'                    => 'VideosController',
     ]);
 });
