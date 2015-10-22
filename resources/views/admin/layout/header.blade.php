@@ -29,7 +29,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Профиль</a>
+                                <a href="{{ action('Auth\AuthController@getEdit', ['id' => $auser->id]) }}" class="btn btn-default btn-flat">Профиль</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ action('Auth\AuthController@getLogout') }}" class="btn btn-default btn-flat">Выход</a>
