@@ -27,7 +27,6 @@ var assetsResourcesPathAdminLte = assetsResourcesPath + 'bower_components/adminl
 
 elixir(function(mix) {
     mix.sass('custom.scss', assetsPublicPath + 'css/custom.css')
-
         // CSS шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'plugins/bootstrap',
         assetsPublicPath + 'plugins/bootstrap')
@@ -41,48 +40,41 @@ elixir(function(mix) {
         assetsPublicPath + 'css/plugins.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/app.css',
         assetsPublicPath + 'css/app.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'css/plugins/style-switcher.css',
-        assetsPublicPath + 'css/plugins/style-switcher.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/headers/header-default.css',
         assetsPublicPath + 'css/headers/header-default.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v1.css',
         assetsPublicPath + 'css/footers/footer-v1.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/footers/footer-v7.css',
         assetsPublicPath + 'css/footers/footer-v7.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/animate.css',
-        assetsPublicPath + 'plugins/animate.css')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/line-icons',
-        assetsPublicPath + 'plugins/line-icons')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/font-awesome',
-        assetsPublicPath + 'plugins/font-awesome')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/layer-slider/layerslider',
-        assetsPublicPath + 'plugins/layer-slider/layerslider')
         .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/blue.css',
         assetsPublicPath + 'css/theme-colors/blue.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/theme-colors/default.css',
+        assetsPublicPath + 'css/theme-colors/default.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/theme-skins/dark.css',
+        assetsPublicPath + 'css/theme-skins/dark.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_error4_404.css',
+        assetsPublicPath + 'css/pages/page_error4_404.css')
 
         // JS шаблона
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/jquery',
-        assetsPublicPath + 'plugins/jquery')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/back-to-top.js',
-        assetsPublicPath + 'plugins/back-to-top.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/smoothScroll.js',
-        assetsPublicPath + 'plugins/smoothScroll.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/sky-forms-pro/skyforms/js',
-        assetsPublicPath + 'plugins/sky-forms-pro/skyforms/js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
         assetsPublicPath + 'js/custom.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/app.js',
         assetsPublicPath + 'js/app.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/forms/contact.js',
         assetsPublicPath + 'js/forms/contact.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'js/plugins/layer-slider.js',
-        assetsPublicPath + 'js/plugins/layer-slider.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/respond.js',
-        assetsPublicPath + 'plugins/respond.js/')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/html5shiv.js',
-        assetsPublicPath + 'plugins/html5shiv.js')
-        .copy(assetsResourcesPathBootstrapUnify + 'plugins/placeholder-IE-fixes.js',
-        assetsPublicPath + 'plugins/placeholder-IE-fixes.js')
+        .copy(assetsResourcesPathBootstrapUnify + 'js/pages/page_contacts.js',
+        assetsPublicPath + 'js/pages/page_contacts.js')
+
+        // Plugins Шаблона
+        .copy(assetsResourcesPathBootstrapUnify + 'js/plugins',
+        assetsPublicPath + 'js/plugins')
+        .copy(assetsResourcesPathBootstrapUnify + 'plugins',
+        assetsPublicPath + 'plugins')
+
+        // Images шаблона
+        .copy(assetsResourcesPathBootstrapUnify + 'img/blur/img2.jpg',
+        assetsPublicPath + 'img/blur/img2.jpg')
+
 
 
         // AdminLTE
@@ -94,5 +86,6 @@ elixir(function(mix) {
         assetsPublicPath + 'plugins/adminlte/plugins')
         .copy(assetsResourcesPath + 'js/admin-lte/custom.js',
         assetsPublicPath + 'plugins/adminlte/dist/js/custom.js')
+        .sass('custom-adminlte.scss', assetsPublicPath + 'plugins/adminlte/dist/css/custom.css')
     ;
 });

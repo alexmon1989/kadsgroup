@@ -12,8 +12,15 @@
         </div>
         <div class="form-group">
             <label for="thumbnail">Изображение</label>
+            @if (isset($news))
+            <div class="row">
+                <div class="col-md-12 margin-bottom-10">
+                    <img width="400" src="{{ asset('assets/img/news/'.$news->thumbnail) }}" alt="{{ $news->thumbnail }}" class="img-responsive">
+                </div>
+            </div>
+            @endif
             <input type="file" id="thumbnail" name="thumbnail">
-            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>555px * 247px</b>. Программа приведёт изображение к этому разрешению автоматически без сохранения пропорций сторон.</p>
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>555px * 247px</b>. Программа приведёт изображение к этому разрешению автоматически без сохранения пропорций сторон. Выбирайте файл только если хотите сменить текущее изображение.</p>
         </div>
         <div class="form-group">
             <label for="preview_text_small">Текст для виджета на главной</label>

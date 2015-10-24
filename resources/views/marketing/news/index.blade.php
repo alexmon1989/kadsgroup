@@ -1,7 +1,7 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Новости
+Новини
 @stop
 
 @section('top_content')

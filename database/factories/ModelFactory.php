@@ -28,6 +28,28 @@ $factory->define(App\News::class, function (Faker\Generator $faker) {
         'full_text' => $faker->text(500),
         'preview_text_small' => $faker->text(150),
         'preview_text_mid' => $faker->text(300),
+        'is_on_main' => mt_rand(0, 1),
         'thumbnail' => $match[0],
+    ];
+});
+
+
+$factory->define(App\Certificate::class, function (Faker\Generator $faker) {
+    $img = $faker->image('public/assets/img/certificates', 630, 891);
+    preg_match('/(\w+\.jpg)/', $img, $match);
+    return [
+        'title' => $faker->text(30),
+        'file_name' => $match[0],
+    ];
+});
+
+
+$factory->define(App\Gallery::class, function (Faker\Generator $faker) {
+    $img = $faker->image('public/assets/img/galleries', 973, 615);
+    preg_match('/(\w+\.jpg)/', $img, $match);
+    return [
+        'file_name' => $match[0],
+        'company_id' => mt_rand(1, 3),
+        'title' => $faker->text(30)
     ];
 });

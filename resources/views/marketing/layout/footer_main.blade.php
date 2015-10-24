@@ -19,9 +19,10 @@
             </div>
 
             <div class="col-md-6">
-                <form action="assets/php/sky-forms-pro/demo-contacts-process.php" method="post" id="sky-form3" class="sky-form contact-style">
+                <form action="{{ action('Marketing\ContactsController@postIndex') }}" method="post" id="sky-form3" class="sky-form contact-style">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <fieldset>
-                        <label>Ваше ім'я</label>
+                        <label>Ваше ім'я <span class="color-red">*</span></label>
                         <div class="row">
                             <div class="col-md-7 margin-bottom-20 col-md-offset-0">
                                 <div>
@@ -53,7 +54,7 @@
 
                     <div class="message">
                         <i class="rounded-x fa fa-check"></i>
-                        <p>Your message was successfully sent!</p>
+                        <p>Ваше повідомлення успішно відправлено!</p>
                     </div>
                 </form>
             </div>
@@ -61,7 +62,7 @@
     </div>
 
     <div class="copyright-section">
-        <p>2015 &copy; Всі права захищені.</p>
+        <p>{{ date('Y') }} &copy; Всі права захищені.</p>
         <a href="#top"><i class="fa fa-angle-double-up back-to-top"></i></a>
     </div>
 </section>

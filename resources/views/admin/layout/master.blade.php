@@ -19,12 +19,17 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/adminlte/dist/css/skins/_all-skins.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/plugins/adminlte/dist/css/custom.css') }}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="{{ asset('plugins/respond.js') }}"></script>
     <script src="{{ asset('plugins/html5shiv.js') }}"></script>
     <![endif]-->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.gif') }}">
   </head>
   <body class="skin-blue">
     <!-- Site wrapper -->

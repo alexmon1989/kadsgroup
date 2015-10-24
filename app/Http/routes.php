@@ -16,25 +16,43 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'news'          => 'NewsController',
+        'certificates'                  => 'CertificatesController',
+        //'companies/descriptions'        => 'Companies\DescriptionsController',
+        'contacts'                      => 'ContactsController',
+        'galleries'                     => 'GalleriesController',
+        'news'                          => 'NewsController',
+        //'companies/videos/show/primer'  => 'VideosController',
     ]);
+
+    Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
+    Route::get('companies/primer/videos', 'VideosController@getIndex');
 });
 
 // Authentication routes...
 Route::get('admin', ['middleware' => 'auth', 'uses' => 'Admin\DashboardController@getIndex']);
+/*
 Route::get('admin/auth/login', 'Auth\AuthController@getLogin');
 Route::post('admin/auth/login', 'Auth\AuthController@postLogin');
 Route::get('admin/auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+*/
+// Роут контроллера авторизации, middleware указан в его конструкторе
+Route::controller('admin/auth', 'Auth\AuthController');
 
 // Группа роутов админки
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::controllers([
+        'certificates'              => 'CertificatesController',
+        'companies/descriptions'    => 'Companies\DescriptionsController',
+        'companies/prices'          => 'Companies\PriceListsController',
+        'companies/primer/videos'   => 'VideosController',
+        'contacts'                  => 'ContactsController',
         'dashboard'                 => 'DashboardController',
+        'galleries'                 => 'GalleriesController',
         'news'                      => 'NewsController',
+        'settings'                  => 'SettingsController',
+        'sliders'                   => 'SliderController',
     ]);
 });

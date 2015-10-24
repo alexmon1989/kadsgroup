@@ -12,7 +12,8 @@
         "pingpong/widget" : "~2.0",
         "doctrine/dbal": "~2.3",
         "intervention/image": "^2.3",
-        "barryvdh/laravel-elfinder": "^0.3.4"
+        "barryvdh/laravel-elfinder": "^0.3.4",
+        "orchestra/memory": "~3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

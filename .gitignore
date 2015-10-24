@@ -4,8 +4,18 @@ Homestead.yaml
 Homestead.json
 .env
 
+_ide_helper.php
+
 public/files
+public/assets/img/news/*
+public/assets/img/certificates/*
+public/assets/img/galleries/*
+public/assets/img/slider/*
+public/assets/img/slider/*/**
 
 .idea
 
 .bowerrc
+
+public/assets/plugins/adminlte/plugins/ckeditor/config.js
+resources/assets/bower_components/adminlte/plugins/ckeditor/config.js

@@ -8,6 +8,8 @@ class NewsTableSeeder extends Seeder
     {
         DB::table('news')->truncate();
 
+        File::cleanDirectory(public_path('assets/img/news'));
+
         factory(App\News::class, 10)->create();
     }
 }
