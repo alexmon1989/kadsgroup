@@ -44,15 +44,16 @@ Route::controller('admin/auth', 'Auth\AuthController');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::controllers([
-        'certificates'              => 'CertificatesController',
-        'companies/descriptions'    => 'Companies\DescriptionsController',
-        'companies/prices'          => 'Companies\PriceListsController',
-        'companies/primer/videos'   => 'VideosController',
-        'contacts'                  => 'ContactsController',
-        'dashboard'                 => 'DashboardController',
-        'galleries'                 => 'GalleriesController',
-        'news'                      => 'NewsController',
-        'settings'                  => 'SettingsController',
-        'sliders'                   => 'SliderController',
+        'certificates'                          => 'CertificatesController',
+        'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
+        'companies/descriptions'                => 'Companies\DescriptionsController',
+        'companies/prices'                      => 'Companies\PriceListsController',
+        'companies/primer/videos'               => 'VideosController',
+        'contacts'                              => 'ContactsController',
+        'dashboard'                             => 'DashboardController',
+        'galleries'                             => 'GalleriesController',
+        'news'                                  => 'NewsController',
+        'settings'                              => 'SettingsController',
+        'sliders'                               => 'SliderController',
     ]);
 });
