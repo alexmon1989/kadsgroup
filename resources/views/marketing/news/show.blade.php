@@ -30,7 +30,7 @@
 </div>
 <!-- End News v3 -->
 
-<h2>Еще новости</h2>
+<h2>Ще новини</h2>
 <!-- Authored Blog -->
 <div class="row news-v2 margin-bottom-50">
     @foreach($latest_news as $item)
