@@ -158,7 +158,7 @@
                                         </a>
                                     </li>
                                     <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'categories' && Request::get('company') == 'sika' ? 'active' : '' }}">
-                                        <a href="#">
+                                        <a href="{{ action('Admin\Companies\Catalog\CategoriesController@getIndex', ['company' => 'sika']) }}">
                                             <i class="fa fa-circle-o"></i> Категории
                                         </a>
                                     </li>

@@ -22,7 +22,11 @@ class CreateCategoriesTable extends Migration
                 ->on('groups_categories')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
-            $table->integer('parent_id')->nullable();
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')
+                ->references('id')->on('categories')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
             $table->integer('order');
             $table->boolean('enabled');
             $table->timestamps();

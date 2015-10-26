@@ -33,4 +33,14 @@ class Category extends Model
     {
         return $this->belongsTo('App\GroupsCategory');
     }
+
+    public function parent_category()
+    {
+        return $this->belongsTo('App\Category', 'parent_id');
+    }
+
+    public function child_categories()
+    {
+        return $this->hasMany('App\Category', 'parent_id');
+    }
 }
