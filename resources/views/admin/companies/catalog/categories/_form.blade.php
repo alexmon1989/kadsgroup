@@ -78,12 +78,10 @@
                         $( "#parent_id" ).append($("<option />").val(this.id).text(this.title));
                     });
 
-                    @if (isset($category) && count($category->child_categories) == 0)
-                        $("#parent_id [value='{{ $category->parent_id }}']").attr("selected", "selected");
-                    @endif
-
                     @if (old('parent_id'))
                         $("#parent_id [value='{{ old('parent_id') }}']").attr("selected", "selected");
+                    @elseif (isset($category) && count($category->child_categories) == 0)
+                        $("#parent_id [value='{{ $category->parent_id }}']").attr("selected", "selected");
                     @endif
                 });
             }

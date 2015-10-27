@@ -31,4 +31,17 @@
   background-color: #0083c3;
   padding-top: 10px; }
 
+.sidebar-nav-v1 .first {
+  background: #0083c3 none repeat scroll 0 0; }
+  .sidebar-nav-v1 .first a {
+    text-transform: uppercase;
+    color: #fff; }
+
+.news-v3 p {
+  margin-bottom: 5px; }
+
+.news-v2 .news-v2-desc {
+  background: #fff none repeat scroll 0 0;
+  padding: 10px; }
+
 /*# sourceMappingURL=custom.css.map */

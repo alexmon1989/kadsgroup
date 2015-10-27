@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
         'certificates'                  => 'CertificatesController',
-        //'companies/descriptions'        => 'Companies\DescriptionsController',
+        'companies/catalog/sika'        => 'Companies\Sika\CatalogController',
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Marketing'], function()
     ]);
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
+
     Route::get('companies/primer/videos', 'VideosController@getIndex');
 });
 

@@ -12,7 +12,7 @@
                         array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
                         array('title' => 'Група компаній', 'action' => '', 'active' => FALSE),
                         array('title' => $company->title, 'action' => '', 'active' => FALSE),
-                        array('title' => 'Про компанію', 'action' => '', 'active' => FALSE),
+                        array('title' => 'Про компанію', 'action' => '', 'active' => TRUE),
                 )
             ])
 @stop

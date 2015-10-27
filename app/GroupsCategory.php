@@ -31,4 +31,9 @@ class GroupsCategory extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category', 'group_category_id');
+    }
 }
