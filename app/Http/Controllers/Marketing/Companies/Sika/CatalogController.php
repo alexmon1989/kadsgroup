@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Marketing\Companies\Sika;
 use App\Category;
 use App\Company;
 use App\GroupsCategory;
+use App\ProductSika;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -47,15 +48,28 @@ class CatalogController extends BaseCatalogController
 
         // Категория вместе с товарами
         $data['category'] = Category::whereEnabled(TRUE)
-            ->has('parent_category')
+            ->whereHas('parent_category', function ($q) {
+                $q->whereEnabled(TRUE);
+            })
             ->with('parent_category')
+            ->whereEnabled(TRUE)
             ->find($categoryId);
 
         if (!$data['category']) {
             abort(404);
         }
 
+        // Получаем товары отдельно для погинации
+        $data['products'] = ProductSika::whereCategoryId($categoryId)
+            ->whereEnabled(TRUE)
+            ->paginate(9);
+
         // Отображаем
         return view('marketing.companies.catalog.sika.index', $data);
+    }
+
+    public function getShow($id)
+    {
+
     }
 }

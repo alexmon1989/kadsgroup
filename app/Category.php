@@ -43,4 +43,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Category', 'parent_id');
     }
+
+    public function products_sika()
+    {
+        return $this->hasMany('App\ProductSika');
+    }
 }

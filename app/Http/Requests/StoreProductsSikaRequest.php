@@ -10,7 +10,7 @@ class StoreProductsSikaRequest extends Request {
         'characteristics'   => '',
         'using_area'        => '',
         'photo'             => 'image',
-        'category_id'       => 'required|exists:categories',
+        'category_id'       => 'required|exists:categories,id',
         'enabled'           => 'boolean',
         'tech_cart_file'    => 'mimes:pdf',
     ];
@@ -32,7 +32,7 @@ class StoreProductsSikaRequest extends Request {
 	 */
 	public function rules()
 	{
-        if (Request::segment(3) == 'create')
+        if (Request::segment(6) == 'create')
         {
             $this->rules['photo'] .= '|required';
         }

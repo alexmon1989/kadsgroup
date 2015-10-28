@@ -7,9 +7,11 @@ use App\Company;
 use App\GroupsCategory;
 use App\Http\Controllers\Admin\AdminController;
 use App\ProductSika;
+use App\Services\SavesImages;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use yajra\Datatables\Datatables;
 
 class SikaController extends AdminController
@@ -46,9 +48,44 @@ class SikaController extends AdminController
         return view('admin.companies.catalog.products.sika.create', $data);
     }
 
-    public function postCreate(Requests\StoreProductsSikaRequest $request)
+    /**
+     * Обработчик запроса на создание продукта.
+     *
+     * @param Requests\StoreProductsSikaRequest $request
+     * @param SavesImages $imageSaver
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Services\Exception
+     */
+    public function postCreate(Requests\StoreProductsSikaRequest $request, SavesImages $imageSaver)
     {
+        // Создаём продукт
+        $product = new ProductSika;
 
+        // Текстовые данные
+        $product->title = trim($request->title);
+        $product->description = trim($request->description);
+        $product->package = trim($request->package);
+        $product->package_list = trim($request->package_list);
+        $product->characteristics = trim($request->characteristics);
+        $product->using_area = trim($request->using_area);
+        $product->category_id = $request->category_id;
+        $product->enabled = $request->get('enabled', FALSE);
+
+        // Изображение
+        $product->photo = $imageSaver->save('photo', 'products/sika', 230);
+
+        // Техкарта
+        if ($request->hasFile('tech_cart_file')) {
+            $generator = \Faker\Factory::create();
+            $product->tech_cart_file = $generator->uuid.'.pdf';
+            $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
+        }
+
+        // Сохраняем
+        $product->save();
+
+        return redirect()->action('Admin\Companies\Catalog\Products\SikaController@getEdit', ['id' => $product->id])
+            ->with('success', 'Продукт успешно сохранён.');
     }
 
     /**
@@ -77,9 +114,47 @@ class SikaController extends AdminController
         return view('admin.companies.catalog.products.sika.edit', $data);
     }
 
-    public function postEdit($id)
+    /**
+     * Действие для редктирования продукта.
+     *
+     * @param Requests\StoreProductsSikaRequest $request
+     * @param SavesImages $imageSaver
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postEdit(Requests\StoreProductsSikaRequest $request, SavesImages $imageSaver, $id)
     {
+        $product = $this->findProduct($id);
 
+        // Текстовые данные
+        $product->title = trim($request->title);
+        $product->description = trim($request->description);
+        $product->package = trim($request->package);
+        $product->package_list = trim($request->package_list);
+        $product->characteristics = trim($request->characteristics);
+        $product->using_area = trim($request->using_area);
+        $product->category_id = $request->category_id;
+        $product->enabled = $request->get('enabled', FALSE);
+
+        // Изображение
+        if ($request->hasFile('photo')) {
+            $product->photo = $imageSaver->save('photo', 'products/sika', 230, NULL, $product->photo);
+        }
+
+        // Техкарта
+        if ($request->hasFile('tech_cart_file')) {
+            // Удаляем старый файл
+            File::delete(public_path('assets/img/products/sika/tech-carts/'.$product->tech_cart_file));
+            $generator = \Faker\Factory::create();
+            $product->tech_cart_file = $generator->uuid.'.pdf';
+            $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
+        }
+
+        // Сохраняем
+        $product->save();
+
+        // Возвращаем назад с успехом
+        return redirect()->back()->with('success', 'Продукт успешно сохранён.');
     }
 
     /**

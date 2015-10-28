@@ -38,7 +38,7 @@
             </div>
             @endif
             <input type="file" id="photo" name="photo">
-            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>370px</b> по вертикали. Программа приведёт изображение к этому разрешению автоматически с сохранением пропорций сторон. Выбирайте файл только если хотите сменить текущее изображение.</p>
+            <p class="help-block">Форматы: <b>jpg, png, gif</b>. Размер: <b>230 px</b> по горизонтали. Программа приведёт изображение к этому разрешению автоматически с сохранением пропорций сторон. Выбирайте файл только если хотите сменить текущее изображение.</p>
         </div>
 
         <div class="form-group">
@@ -79,7 +79,7 @@
 
         <div class="form-group">
             <label for="tech_cart_file">Тех. карта</label>
-            @if (isset($product))
+            @if (isset($product) && $product->tech_cart_file)
             <div class="row">
                 <div class="col-md-12 margin-bottom-10">
                    <p>Ссылка на текущий файл: <a href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" target="_blank">Скачать</a></p>
