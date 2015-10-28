@@ -48,6 +48,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'certificates'                          => 'CertificatesController',
         'companies/catalog/categories'          => 'Companies\Catalog\CategoriesController',
         'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
+        //'companies/catalog/products/sika'       => 'Companies\Catalog\Products\SikaController',
         'companies/descriptions'                => 'Companies\DescriptionsController',
         'companies/prices'                      => 'Companies\PriceListsController',
         'companies/primer/videos'               => 'VideosController',
@@ -57,5 +58,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'news'                                  => 'NewsController',
         'settings'                              => 'SettingsController',
         'sliders'                               => 'SliderController',
+    ]);
+
+    Route::controller('companies/catalog/products/sika', 'Companies\Catalog\Products\SikaController', [
+        'anyData'  => 'datatables.data',
     ]);
 });

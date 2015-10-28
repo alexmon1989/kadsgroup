@@ -16,13 +16,6 @@ class NewsController extends AdminController {
     // Расположение картинок-превью новостей
     protected $thumbDest;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->thumbDest = public_path('img/thumb/');
-    }
-
 	/**
 	 * Отображает список новостей
 	 *

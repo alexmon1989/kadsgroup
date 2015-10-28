@@ -162,8 +162,8 @@
                                             <i class="fa fa-circle-o"></i> Категории
                                         </a>
                                     </li>
-                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'items' && Request::get('company') == 'sika' ? 'active' : '' }}">
-                                        <a href="#">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && Request::get('company') == 'sika' ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\Products\SikaController@getIndex') }}">
                                             <i class="fa fa-circle-o"></i> Товары
                                         </a>
                                     </li>

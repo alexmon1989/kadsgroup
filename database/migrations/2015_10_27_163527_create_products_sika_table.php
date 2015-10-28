@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemsSikaTable extends Migration
+class CreateProductsSikaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateItemsSikaTable extends Migration
      */
     public function up()
     {
-        Schema::create('items_sika', function (Blueprint $table) {
+        Schema::create('products_sika', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description')->nullable();
@@ -40,6 +40,6 @@ class CreateItemsSikaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('items_sika');
+        Schema::drop('products_sika');
     }
 }

@@ -152,6 +152,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Orchestra\Memory\MemoryServiceProvider::class,
         Orchestra\Memory\CommandServiceProvider::class,
+        yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
 
@@ -206,6 +207,7 @@ return [
         'Widget'    => Pingpong\Widget\WidgetFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Memory'    => Orchestra\Support\Facades\Memory::class,
+        'Datatables' => yajra\Datatables\Datatables::class,
 
     ],
 

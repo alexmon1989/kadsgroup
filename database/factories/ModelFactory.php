@@ -53,3 +53,18 @@ $factory->define(App\Gallery::class, function (Faker\Generator $faker) {
         'title' => $faker->text(30)
     ];
 });
+
+$factory->define(App\ProductSika::class, function (Faker\Generator $faker) {
+    return [
+        'title'             => $faker->text(30),
+        'description'       => $faker->text(255),
+        'package'           => $faker->text(30),
+        'package_list'      => '10 л',
+        'characteristics'   => $faker->text(255),
+        'using_area'        => $faker->text(255),
+        'photo'             => $faker->image('public/assets/img/products/sika', 555, 370, NULL, FALSE),
+        'category_id'       => 2,
+        'enabled'           => TRUE,
+        'tech_cart_file'    => $faker->file(base_path('resources/tech_carts'), base_path('public/assets/img/products/sika/tech-carts'), FALSE),
+    ];
+});
