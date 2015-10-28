@@ -137,20 +137,37 @@
                     <i class="fa fa-dollar"></i> <span>Компании</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'sika' ? 'active' : '' }}">
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-circle-o"></i> Sika <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && Request::get('company') == 'sika' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
                                 <a href="{{ action('Admin\Companies\DescriptionsController@getIndex', ['company' => 'sika']) }}">
                                     <i class="fa fa-circle-o"></i> Описание
                                 </a>
                             </li>
-                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sika' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
                                 <a href="#">
-                                    <i class="fa fa-circle-o"></i> Каталог
+                                    <i class="fa fa-circle-o"></i> Каталог <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'groups-categories' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\GroupsCategoriesController@getIndex', ['company' => 'sika']) }}">
+                                            <i class="fa fa-circle-o"></i> Групы категорий
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'categories' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\CategoriesController@getIndex', ['company' => 'sika']) }}">
+                                            <i class="fa fa-circle-o"></i> Категории
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\Products\SikaController@getIndex') }}">
+                                            <i class="fa fa-circle-o"></i> Товары
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

@@ -178,29 +178,6 @@ class SliderController extends AdminController {
     }
 
     /**
-     * Метод для добавления изображения в соотв. папку
-     *
-     * @param $old_name Название старого фалйа (если указан, то он удаляется)
-     * @return string Название загруженного файла с его расширением
-     */
-    private function saveImageToDisk($old_name = NULL)
-    {
-        // Название изображения
-        $name = str_random(10);
-        // Загруженный файл
-        $upload_file = Input::file('file_name');
-        Image::make($upload_file)
-            ->resize(1920, 350)
-            ->save($this->thumbDest.$name.'.'.$upload_file->getClientOriginalExtension());
-        // Если есть старый файл, то удаляем его
-        if ($old_name)
-        {
-            File::delete( $this->thumbDest.$old_name );
-        }
-        return $name.'.'.$upload_file->getClientOriginalExtension();
-    }
-
-    /**
      * Поиск слайдера в БД по ид или переадресация на 404
      *
      * @param $id

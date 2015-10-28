@@ -31,7 +31,7 @@
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">Про компанію</a>
                                 </li>
                                 <li>
-                                    <a href="#">Каталог</a>
+                                    <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                             </ul>
                         </li>

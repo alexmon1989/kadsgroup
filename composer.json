@@ -13,7 +13,8 @@
         "doctrine/dbal": "~2.3",
         "intervention/image": "^2.3",
         "barryvdh/laravel-elfinder": "^0.3.4",
-        "orchestra/memory": "~3.1"
+        "orchestra/memory": "~3.1",
+        "yajra/laravel-datatables-oracle": "^5.11"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

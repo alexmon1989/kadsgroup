@@ -18,11 +18,23 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Company whereShortTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Company whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Company whereUpdatedAt($value)
+ * @property string $file_main
+ * @property string $file_logo
+ * @property string $description
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\GroupsCategory[] $groups_categories
+ * @method static \Illuminate\Database\Query\Builder|\App\Company whereFileMain($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Company whereFileLogo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Company whereDescription($value)
  */
 class Company extends Model
 {
     public function galleries()
     {
         return $this->hasMany('App\Gallery');
+    }
+
+    public function groups_categories()
+    {
+        return $this->hasMany('App\GroupsCategory');
     }
 }
