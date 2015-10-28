@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
         'certificates'                  => 'CertificatesController',
-        //'companies/descriptions'        => 'Companies\DescriptionsController',
+        'companies/catalog/sika'        => 'Companies\Sika\CatalogController',
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Marketing'], function()
     ]);
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
+
     Route::get('companies/primer/videos', 'VideosController@getIndex');
 });
 
@@ -44,15 +45,22 @@ Route::controller('admin/auth', 'Auth\AuthController');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function()
 {
     Route::controllers([
-        'certificates'              => 'CertificatesController',
-        'companies/descriptions'    => 'Companies\DescriptionsController',
-        'companies/prices'          => 'Companies\PriceListsController',
-        'companies/primer/videos'   => 'VideosController',
-        'contacts'                  => 'ContactsController',
-        'dashboard'                 => 'DashboardController',
-        'galleries'                 => 'GalleriesController',
-        'news'                      => 'NewsController',
-        'settings'                  => 'SettingsController',
-        'sliders'                   => 'SliderController',
+        'certificates'                          => 'CertificatesController',
+        'companies/catalog/categories'          => 'Companies\Catalog\CategoriesController',
+        'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
+        //'companies/catalog/products/sika'       => 'Companies\Catalog\Products\SikaController',
+        'companies/descriptions'                => 'Companies\DescriptionsController',
+        'companies/prices'                      => 'Companies\PriceListsController',
+        'companies/primer/videos'               => 'VideosController',
+        'contacts'                              => 'ContactsController',
+        'dashboard'                             => 'DashboardController',
+        'galleries'                             => 'GalleriesController',
+        'news'                                  => 'NewsController',
+        'settings'                              => 'SettingsController',
+        'sliders'                               => 'SliderController',
+    ]);
+
+    Route::controller('companies/catalog/products/sika', 'Companies\Catalog\Products\SikaController', [
+        'anyData'  => 'datatables.data',
     ]);
 });

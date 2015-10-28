@@ -19,7 +19,7 @@
 @section('content')
 
 <!-- News v3 -->
-<div class="news-v3 margin-bottom-30">
+<div class="news-v3">
     <div class="news-v3-in">
         <ul class="list-inline posted-info">
             <li>Создано {{ date('d.m.Y', strtotime($news->created_at)) }}</li>
@@ -30,9 +30,9 @@
 </div>
 <!-- End News v3 -->
 
-<h2>Еще новости</h2>
+<h2>Ще новини</h2>
 <!-- Authored Blog -->
-<div class="row news-v2 margin-bottom-50">
+<div class="row news-v2">
     @foreach($latest_news as $item)
     <div class="col-sm-4 sm-margin-bottom-30">
         <div class="news-v2-badge">

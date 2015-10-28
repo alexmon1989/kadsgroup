@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     // Подтверждение удаления
-    $('.item-delete').click(function() {
+    $('body').on('click', '.item-delete', function() {
         return confirm('Вы уверены?');
     });
 } );

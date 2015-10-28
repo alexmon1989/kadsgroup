@@ -2,7 +2,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="box-body">
         <div class="form-group">
-            <label for="thumbnail">Файл</label>
+            <label for="file_name">Файл</label>
             <input type="file" id="file_name" name="file_name">
             <p class="help-block">Выбирайте файл только если хотите изменить текущий.</p>
         </div>
