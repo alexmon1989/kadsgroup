@@ -13,7 +13,6 @@
                         [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
-                        [ 'title' => $category->parent_category->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => $category->title, 'action' => '', 'active' => TRUE ],
                 ]
             ])
@@ -21,13 +20,14 @@
 
 @section('content')
 <div class="row margin-bottom-20 margin-top-20">
-    <div class="col-md-4">
+
+    <div class="col-md-3">
         @foreach($group_categories as $group_category)
-            <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+            <ul class="list-group sidebar-nav-v1" id="sidebar-nav-{{ $group_category->id }}">
                 <li class="list-group-item first"><a href="{{ Request::url() }}#">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
-                <li class="list-group-item list-toggle {{ $cat->child_categories->contains($category->id) ? 'active' : '' }}">
-                    <a data-toggle="collapse" data-parent="#sidebar-nav" href="#category-{{ $cat->id }}">{{ $cat->title }}</a>
+                <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($category->id) || $cat->id == $category->id ? 'active' : '' }}">
+                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/catalog/sika/index/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse {{ $cat->child_categories->contains($category->id) ? 'in' : '' }}">
                         @foreach($cat->child_categories as $child_category)
@@ -43,14 +43,20 @@
         @endforeach
     </div>
 
-    <div class="col-md-8">
-        {{ $category->parent_category->description }}
+    <div class="col-md-9">
+        {!! isset($category->parent_category) ? $category->parent_category->description : $category->description !!}
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товары</h2>
+                <h2>Товари</h2>
             </div>
         </div>
+
+        <!-- Pager -->
+        <div class="text-center">
+            {!! str_replace('/?', '?', $products->render()) !!}
+        </div>
+        <!-- End Pager -->
 
         @if (count($products) > 0)
             @for($i = 0; $i < count($products); $i = $i + 3)
@@ -75,7 +81,7 @@
                                         {!! $products[$i+$j]->package_list !!}
 
                                         @if ($products[$i+$j]->tech_cart_file)
-                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded"><i class="fa fa-file-pdf-o"></i> Техническая карта</a>
+                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Техничіна карта</a>
                                         @endif
                                     </div>
                                 </div>
@@ -89,7 +95,7 @@
         @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>Товары отсутствуют</p>
+                    <p>Товари відсутні</p>
                 </div>
             </div>
         @endif

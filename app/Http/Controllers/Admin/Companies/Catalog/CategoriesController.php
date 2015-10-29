@@ -76,7 +76,7 @@ class CategoriesController extends AdminController
         $category = new Category;
         $category->title = trim($request->title);
         $category->description = trim($request->description);
-        $category->enabled = $request->enabled;
+        $category->enabled = $request->get('enabled', FALSE);
         if ($request->get('parent_id')) {
             $category->parent_id = (int) $request->get('parent_id');
         }
@@ -132,10 +132,10 @@ class CategoriesController extends AdminController
         $category = $this->findCategory($id);
         $category->title = trim($request->title);
         $category->description = trim($request->description);
-        $category->enabled = $request->enabled;
+        $category->enabled = $request->get('enabled', FALSE);
         $oldGroupCategoryId = $category->group_category_id;
         $oldParentId = $category->parent_id;
-        if ($request->get('group_category_id')) {
+        if ($request->get('group_category_id') != '') {
             $category->group_category_id = (int) $request->get('group_category_id');
         }
         if ($request->get('parent_id') != '') {
@@ -145,7 +145,7 @@ class CategoriesController extends AdminController
         }
 
         // Менять ли порядок
-        if ($oldGroupCategoryId != $request->get('group_category_id') || $oldParentId != $request->get('parent_id')) {
+        if ($oldGroupCategoryId != $request->get('group_category_id', $oldGroupCategoryId) || $oldParentId != $request->get('parent_id', $oldParentId)) {
             // Изем категории со "старыми" group_category_id и parent_id
             $categories = Category::whereGroupCategoryId($oldGroupCategoryId)
                 ->where('order', '>', $category->order);
@@ -191,25 +191,32 @@ class CategoriesController extends AdminController
     {
         // Ищем категорию
         $category = $this->findCategory($id);
-        // Всем категориям после этой уменьшаем позицию
-        $categories = Category::whereGroupCategoryId($category->group_category_id)
-            ->where('order', '>', $category->order);
-        // Есть ли родители или нет
-        if ($category->parent_id) {
-            $categories->where('parent_id', '=', $category->parent_id);
+
+        // Разрешаем удалять только если нет дочерних категорий
+        if (count($category->child_categories) == 0 && count($category->products_sika) == 0) {
+
+            // Всем категориям после этой уменьшаем позицию
+            $categories = Category::whereGroupCategoryId($category->group_category_id)
+                ->where('order', '>', $category->order);
+            // Есть ли родители или нет
+            if ($category->parent_id) {
+                $categories->where('parent_id', '=', $category->parent_id);
+            } else {
+                $categories->whereNull('parent_id');
+            }
+            $categories = $categories->get();
+
+            foreach ($categories as $item) {
+                $item->order -= 1;
+                $item->save();
+            }
+            $category->delete();
+
+            return redirect()->back()->with('success', 'Категория успешно удалена.');
+
         } else {
-            $categories->whereNull('parent_id');
+            return redirect()->back()->with('errors', 'Категория не может быть удалена, т.к. содержит дочерние категории или товары.');
         }
-        $categories = $categories->get();
-
-        foreach($categories as $item)
-        {
-            $item->order -= 1;
-            $item->save();
-        }
-        $category->delete();
-
-        return redirect()->back()->with('success', 'Категория успешно удалена.');
     }
 
     /**

@@ -42,6 +42,7 @@ class SikaController extends AdminController
                 $q->where('enabled', '=', TRUE); // Категории Sika
             })
             ->where('enabled', '=', TRUE)
+            ->where('company_id', '=', 1) // Категории Sika
             ->orderBy('order')
             ->get();
 
@@ -72,7 +73,7 @@ class SikaController extends AdminController
         $product->enabled = $request->get('enabled', FALSE);
 
         // Изображение
-        $product->photo = $imageSaver->save('photo', 'products/sika', 230);
+        $product->photo = $imageSaver->save('photo', 'products/sika', 260);
 
         // Техкарта
         if ($request->hasFile('tech_cart_file')) {
@@ -105,9 +106,10 @@ class SikaController extends AdminController
                 $q->with('child_categories');
             }])
             ->whereHas('categories', function ($q) {
-                $q->where('enabled', '=', TRUE); // Категории Sika
+                $q->where('enabled', '=', TRUE);
             })
             ->where('enabled', '=', TRUE)
+            ->where('company_id', '=', 1) // Категории Sika
             ->orderBy('order')
             ->get();
 
@@ -138,7 +140,7 @@ class SikaController extends AdminController
 
         // Изображение
         if ($request->hasFile('photo')) {
-            $product->photo = $imageSaver->save('photo', 'products/sika', 230, NULL, $product->photo);
+            $product->photo = $imageSaver->save('photo', 'products/sika', 260, NULL, $product->photo);
         }
 
         // Техкарта

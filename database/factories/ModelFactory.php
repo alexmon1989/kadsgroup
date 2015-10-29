@@ -62,7 +62,7 @@ $factory->define(App\ProductSika::class, function (Faker\Generator $faker) {
         'package_list'      => '<p><strong>Упаковка:</strong> 10 л</p>',
         'characteristics'   => '<p>'.$faker->text(255).'</p>',
         'using_area'        => '<p>'.$faker->text(255).'</p>',
-        'photo'             => $faker->image('public/assets/img/products/sika', 230, 350, NULL, FALSE),
+        'photo'             => $faker->image('public/assets/img/products/sika', 260, 370, NULL, FALSE),
         'category_id'       => 2,
         'enabled'           => TRUE,
         'tech_cart_file'    => $faker->file(base_path('resources/tech_carts'), base_path('public/assets/img/products/sika/tech-carts'), FALSE),
