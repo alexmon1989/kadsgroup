@@ -42,53 +42,48 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Описание</label>
-            <textarea id="description" name="description" class="form-control ckeditor">{{ old('description', isset($product) ? $product->description : '') }}</textarea>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="package">Упаковка</label>
-                    <textarea id="package" name="package" class="form-control ckeditor">{{ old('package', isset($product) ? $product->package : '') }}</textarea>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="package_list">Упаковка (для страницы со списком товаров)</label>
-                    <textarea id="package_list" name="package_list" class="form-control ckeditor">{{ old('package_list', isset($product) ? $product->package_list : '') }}</textarea>
-                    <p class="help-block">Заполните по желанию короткую версию для страницы списка товаов.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="characteristics">Технические характеристики</label>
-                    <textarea id="characteristics" name="characteristics" class="form-control ckeditor">{{ old('characteristics', isset($product) ? $product->characteristics : '') }}</textarea>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="using_area">Область применения</label>
-                    <textarea id="using_area" name="using_area" class="form-control ckeditor">{{ old('using_area', isset($product) ? $product->using_area : '') }}</textarea>
-                </div>
-            </div>
+            <label for="description_small">Описание короткое</label>
+            <textarea id="description_small" name="description_small" class="form-control ckeditor">{{ old('description_small', isset($product) ? $product->description_small : '') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="tech_cart_file">Тех. карта</label>
-            @if (isset($product) && $product->tech_cart_file)
-            <div class="row">
-                <div class="col-md-12 margin-bottom-10">
-                   <p>Ссылка на текущий файл: <a href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" target="_blank">Скачать</a></p>
-                </div>
-            </div>
-            @endif
-            <input type="file" id="tech_cart_file" name="tech_cart_file">
-            <p class="help-block">Формат: <b>pdf</b>.</p>
+            <label for="description_full">Описание длинное</label>
+            <textarea id="description_full" name="description_full" class="form-control ckeditor">{{ old('description_full', isset($product) ? $product->description_full : '') }}</textarea>
         </div>
+
+        <div class="form-group">
+            <label for="package">Упаковка</label>
+            <input type="text" placeholder="Упаковка" id="package" name="package" class="form-control" value="{{ old('title', isset($product) ? $product->package : '') }}">
+        </div>
+
+        @foreach(['using' => 'Використання',
+        'tech_characteristics' => '',
+        'application' => '',
+        'properties_using' => '',
+        'application' => '',
+        'phys_chem_properties' => '',
+        'restrictions' => '',
+        'safety' => '',
+        'general_characteristics' => '',
+        ] as $key => $item)
+        <div class="box box-default box-solid collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ $item }}</h3>
+
+              <div class="box-tools pull-right">
+                <button data-widget="collapse" class="btn btn-box-tool" type="button"><i class="fa {{ isset($product) && $product->$item && $product->$item != '' ? 'fa-minus' : 'fa-plus' }}"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: {{ isset($product) && $product->$item && $product->$item != '' ? 'block' : 'none' }};">
+              <textarea id="using" name="using" class="form-control ckeditor">{{ old('using', isset($product) ? $product->$item : '') }}</textarea>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        @endforeach
+
     </div><!-- /.box-body -->
 
     <div class="box-footer">

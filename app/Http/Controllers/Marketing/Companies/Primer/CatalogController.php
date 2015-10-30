@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\Marketing\Companies\Primer;
+
+use App\Category;
+use App\Company;
+use App\GroupsCategory;
+use App\ProductSika;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Marketing\Companies\CatalogController as BaseCatalogController;
+use Illuminate\Support\Facades\View;
+
+class CatalogController extends BaseCatalogController
+{
+    // Краткий код фирмы
+    protected $shortTitle = 'primer';
+
+    /**
+     * Отображает страницу каталога Sika
+     *
+     * @param null $categoryId
+     * @return \Illuminate\View\View
+     */
+    public function getIndex($categoryId = NULL)
+    {
+        // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
+        $data['group_categories'] = $this->getCategories();
+
+
+        // Если категория не выбрана, то выбираем первую категорию
+        if (!$categoryId && isset($data['group_categories'][0]->categories[0])) {
+            if (isset($data['group_categories'][0]->categories[0]->child_categories[0])) {
+                $categoryId = $data['group_categories'][0]->categories[0]
+                    ->child_categories[0]
+                    ->id;
+            } elseif (isset($data['group_categories'][0]->categories[0]->id)) {
+                $categoryId = $data['group_categories'][0]->categories[0]->id;
+            } else {
+                abort(404);
+            }
+        }
+
+        // Категория
+        $data['category'] = Category::whereEnabled(TRUE)
+            ->with(['parent_category' => function ($q) {
+                $q->whereEnabled(TRUE);
+            }])
+            ->whereEnabled(TRUE)
+            ->find($categoryId);
+
+        if (!$data['category']) {
+            abort(404);
+        }
+
+        $data['products'] = [];
+        // Получаем товары отдельно для погинации
+        /*$data['products'] = ProductSika::whereCategoryId($categoryId)
+            ->whereEnabled(TRUE)
+            ->orderBy('created_at')
+            ->paginate(9);*/
+
+        // Отображаем
+        return view('marketing.companies.catalog.primer.index', $data);
+    }
+
+    /**
+     * Страница товара.
+     *
+     * @param $id
+     * @return View
+     */
+    public function getShow($id)
+    {
+        // Получаем продукт из БД
+        $data['product'] = ProductSika::whereEnabled(TRUE)
+            ->with('category')
+            ->find($id);
+
+        if (!empty($data['product']))
+        {
+            // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
+            $data['group_categories'] = $this->getCategories();
+
+            // Отображаем
+            return view('marketing.companies.catalog.sika.show', $data);
+        } else {
+            abort(404);
+        }
+    }
+
+    /**
+     * Выборка групп категорий для фирмы "Сика" вместе с подкатегориями (для бокового меню)
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    private function getCategories()
+    {
+        $categories = GroupsCategory::whereEnabled(TRUE)
+            ->orderBy('order', 'ASC')
+            ->with(['categories' => function ($q) {
+                $q->whereNull('parent_id')
+                    ->where('enabled', '=', TRUE)
+                    ->orderBy('order', 'asc')
+                    ->with('child_categories');
+            }])
+            ->whereHas('company', function($query) {
+                $query->where('short_title', '=', $this->shortTitle);
+            })
+            ->get();
+
+        return $categories;
+    }
+}

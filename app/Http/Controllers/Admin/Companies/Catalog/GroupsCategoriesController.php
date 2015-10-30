@@ -55,6 +55,12 @@ class GroupsCategoriesController extends AdminController
         return view('admin.companies.catalog.groups_categories.create', $data);
     }
 
+    /**
+     * Обработчик запроса на создание группы категорий.
+     *
+     * @param Requests\StoreGroupsCategoriesRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postCreate(Requests\StoreGroupsCategoriesRequest $request)
     {
         // Компания, для которой создаётся группа

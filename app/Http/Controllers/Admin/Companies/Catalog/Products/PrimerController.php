@@ -6,6 +6,7 @@ use App\Category;
 use App\Company;
 use App\GroupsCategory;
 use App\Http\Controllers\Admin\AdminController;
+use App\ProductPrimer;
 use App\ProductSika;
 use App\Services\SavesImages;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use yajra\Datatables\Datatables;
 
-class SikaController extends AdminController
+class PrimerController extends AdminController
 {
     /**
      * Отображает список товаров.
@@ -23,7 +24,7 @@ class SikaController extends AdminController
      */
     public function getIndex()
     {
-        return view('admin.companies.catalog.products.sika.index');
+        return view('admin.companies.catalog.products.primer.index');
     }
 
     /**
@@ -36,10 +37,10 @@ class SikaController extends AdminController
         // Группы категорий вместе с категориями
         $data['group_categories'] = GroupsCategory::whereEnabled(true)
             ->whereHas('categories', function ($q) {
-                $q->where('enabled', '=', TRUE); // Категории Sika
+                $q->where('enabled', '=', TRUE);
             })
             ->where('enabled', '=', TRUE)
-            ->where('company_id', '=', 1) // Категории Sika
+            ->where('company_id', '=', 3) // Категории primer
             ->orderBy('order')
             ->get();
         // Lazy loading для правильной сортировки по алфавиту укр. симоволов
@@ -47,7 +48,7 @@ class SikaController extends AdminController
             $q->orderBy('title', 'ASC');
         }]);
 
-        return view('admin.companies.catalog.products.sika.create', $data);
+        return view('admin.companies.catalog.products.primer.create', $data);
     }
 
     /**
@@ -183,7 +184,7 @@ class SikaController extends AdminController
      */
     public function anyData()
     {
-        $products = ProductSika::with('category')->get();
+        $products = ProductPrimer::with('category')->get();
 
         return Datatables::of($products)
             ->addColumn('category', function ($item) {
@@ -191,8 +192,8 @@ class SikaController extends AdminController
                 return $s;
             })
             ->addColumn('action', function ($item) {
-                $s =  '<a class="btn btn-primary btn-sm" href="'.action('Admin\Companies\Catalog\Products\SikaController@getEdit', ['id' => $item->id]).'" title="Редактировать"><i class="fa fa-edit"></i></a>';
-                $s .= '<a class="btn btn-danger btn-sm item-delete" href="'.action('Admin\Companies\Catalog\Products\SikaController@getDelete', ['id' => $item->id]).'" title="Удалить"><i class="fa fa-remove"></i></a>';
+                $s =  '<a class="btn btn-primary btn-sm" href="'.action('Admin\Companies\Catalog\Products\PrimerController@getEdit', ['id' => $item->id]).'" title="Редактировать"><i class="fa fa-edit"></i></a>';
+                $s .= '<a class="btn btn-danger btn-sm item-delete" href="'.action('Admin\Companies\Catalog\Products\PrimerController@getDelete', ['id' => $item->id]).'" title="Удалить"><i class="fa fa-remove"></i></a>';
                 return $s;
             })
             ->addColumn('enabled', function ($item) {

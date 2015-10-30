@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Marketing'], function()
     Route::controllers([
         'certificates'                  => 'CertificatesController',
         'companies/catalog/sika'        => 'Companies\Sika\CatalogController',
+        'companies/catalog/primer'      => 'Companies\Primer\CatalogController',
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
@@ -61,6 +62,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     ]);
 
     Route::controller('companies/catalog/products/sika', 'Companies\Catalog\Products\SikaController', [
-        'anyData'  => 'datatables.data',
+        'anyData'  => 'datatables.sika.data',
+    ]);
+
+    Route::controller('companies/catalog/products/primer', 'Companies\Catalog\Products\PrimerController', [
+        'anyData'  => 'datatables.primer.data',
     ]);
 });
