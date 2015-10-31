@@ -2,11 +2,11 @@
 
 @section('top_content')
     @include('admin.layout.breadcrumbs', [
-                'title' => 'Товары Sika',
+                'title' => 'Товары Primer',
                 'items' => [
                         [ 'title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE ],
                         [ 'title' => 'Компании', 'action' => '', 'active' => FALSE ],
-                        [ 'title' => 'Sika', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Primer', 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Товары', 'action' => '', 'active' => TRUE ],
                 ]
             ])
@@ -23,7 +23,7 @@
         </div>
         <div class="box-body">
             <p>
-                <a class="btn btn-primary" href="{{ action('Admin\Companies\Catalog\Products\SikaController@getCreate') }}"><i class="fa fa-plus"></i> Создать</a>
+                <a class="btn btn-primary" href="{{ action('Admin\Companies\Catalog\Products\PrimerController@getCreate') }}"><i class="fa fa-plus"></i> Создать</a>
             </p>
 
             <table id="data-products" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -53,7 +53,7 @@
         $('#data-products').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('datatables.sika.data') !!}',
+            ajax: '{!! route('datatables.primer.data') !!}',
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'title', name: 'title' },

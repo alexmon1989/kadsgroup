@@ -30,6 +30,14 @@ class GroupsCategoriesTableSeeder extends Seeder
             'description' => $faker->text(),
         ]);
 
+        GroupsCategory::create([
+            'title' => 'Будівельна хімія',
+            'company_id' => 3,
+            'order' => 1,
+            'enabled' => TRUE,
+            'description' => $faker->text(),
+        ]);
+
         Model::reguard();
     }
 }

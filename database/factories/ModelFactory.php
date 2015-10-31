@@ -62,9 +62,42 @@ $factory->define(App\ProductSika::class, function (Faker\Generator $faker) {
         'package_list'      => '<p><strong>Упаковка:</strong> 10 л</p>',
         'characteristics'   => '<p>'.$faker->text(255).'</p>',
         'using_area'        => '<p>'.$faker->text(255).'</p>',
-        'photo'             => $faker->image('public/assets/img/products/sika', 230, 350, NULL, FALSE),
+        'photo'             => $faker->image('public/assets/img/products/sika', 260, 370, NULL, FALSE),
         'category_id'       => 2,
         'enabled'           => TRUE,
         'tech_cart_file'    => $faker->file(base_path('resources/tech_carts'), base_path('public/assets/img/products/sika/tech-carts'), FALSE),
+    ];
+});
+
+$factory->define(App\ProductPrimer::class, function (Faker\Generator $faker) {
+    return [
+        'title'                     => $faker->text(30),
+        'category_id'               => \App\Category::whereHas('group_category', function($q) {
+                                            $q->whereHas('company', function($q) {
+                                                $q->whereShortTitle('primer');
+                                            });
+                                        })->first()->id,
+        'photo'                     => $faker->image('public/assets/img/products/primer', 260, 370, NULL, FALSE),
+        'description_small'         => $faker->text(100),
+        'description_full'          => '<p>'.$faker->text(300).'</p>',
+        'package'                   => '1 л., 2 л., 3 л., 4 л.',
+        'using'                     => '<p>'.$faker->text(255).'</p>',
+        'tech_characteristics'      => '<p>'.$faker->text(255).'</p>',
+        'exec_works'                => '<p>'.$faker->text(255).'</p>',
+        'application'               => NULL,
+        'properties_using'          => NULL,
+        'phys_chem_properties'      => NULL,
+        'restrictions'              => NULL,
+        'safety'                    => NULL,
+        'general_characteristics'   => NULL,
+        'price_1_name'              => '1 л.',
+        'price_1_val'               => '10 грн',
+        'price_2_name'              => '2 л.',
+        'price_2_val'               => '20 грн',
+        'price_3_name'              => '3 л.',
+        'price_3_val'               => '30 грн',
+        'price_4_name'              => '4 л.',
+        'price_4_val'               => '40 грн',
+        'enabled'                   => TRUE,
     ];
 });

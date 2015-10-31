@@ -188,7 +188,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(2) == 'companies' && (Request::segment(3) == 'primer' || Request::get('company') == 'primer') ? 'active' : '' }}">
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::segment(5) == 'primer' || Request::get('company') == 'primer') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-circle-o"></i> Праймер <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -199,7 +199,7 @@
                                 </a>
                             </li>
                             <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'primer' && Request::segment(3) == 'prices' ? 'active' : '' }}">
-                                <a href="#">
+                                <a href="{{ action('Admin\Companies\PriceListsController@getIndex', ['company' => 'primer']) }}">
                                     <i class="fa fa-circle-o"></i> Прайс-лист
                                 </a>
                             </li>
@@ -220,10 +220,27 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
                                 <a href="#">
-                                    <i class="fa fa-circle-o"></i> Каталог
+                                    <i class="fa fa-circle-o"></i> Каталог <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'groups-categories' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\GroupsCategoriesController@getIndex', ['company' => 'primer']) }}">
+                                            <i class="fa fa-circle-o"></i> Групы категорий
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'categories' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\CategoriesController@getIndex', ['company' => 'primer']) }}">
+                                            <i class="fa fa-circle-o"></i> Категории
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\Products\PrimerController@getIndex') }}">
+                                            <i class="fa fa-circle-o"></i> Товары
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

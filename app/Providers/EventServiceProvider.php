@@ -62,5 +62,25 @@ class EventServiceProvider extends ServiceProvider
 
             return TRUE;
         });
+
+        // Событие удаления продукта Primer
+        ProductSika::deleting(function($product)
+        {
+            // Удаляем изображение и техкарту
+
+            if ($product->photo) {
+                $imgPath = public_path('assets' . DIRECTORY_SEPARATOR
+                    . 'img' . DIRECTORY_SEPARATOR
+                    . 'products' . DIRECTORY_SEPARATOR
+                    . 'primer' . DIRECTORY_SEPARATOR
+                    . $product->photo);
+
+                if (file_exists($imgPath)) {
+                    File::delete($imgPath);
+                }
+            }
+
+            return TRUE;
+        });
     }
 }

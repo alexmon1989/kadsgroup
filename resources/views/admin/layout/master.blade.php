@@ -49,11 +49,15 @@
             <div class="alert alert-danger alert-dismissable">
                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
                 <h4>Ошибка!</h4>
-                @foreach (Session::get('errors')->getMessages() as $msg)
-                    @foreach ($msg as $value)
-                        {{ $value }}<br>
+                @if (is_object(Session::get('errors')))
+                    @foreach (Session::get('errors')->getMessages() as $msg)
+                        @foreach ($msg as $value)
+                            {{ $value }}<br>
+                        @endforeach
                     @endforeach
-                @endforeach
+                @else
+                    {{ Session::get('errors') }}
+                @endif
             </div>
             @endif
 
