@@ -13,7 +13,7 @@
                         [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
-                        [ 'title' => $product->category->title, 'url' => url('/companies/catalog/primer/index/'.$product->category->id), 'active' => FALSE ],
+                        [ 'title' => $product->category->title, 'url' => url('/companies/primer/catalog/index/'.$product->category->id), 'active' => FALSE ],
                         [ 'title' => $product->title, 'action' => '', 'active' => TRUE ],
                 ]
             ])
@@ -28,12 +28,12 @@
                 <li class="list-group-item first"><a href="{{ Request::url() }}#">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($product->category->id) || $cat->id == $product->category->id ? 'active' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/catalog/primer/index/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/primer/catalog/index/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse {{ $cat->child_categories->contains($product->category->id) ? 'in' : '' }}">
                         @foreach($cat->child_categories as $child_category)
                         <li class="{{ $child_category->id == $product->category->id ? 'active' : '' }}">
-                            <a href="{{ url('/companies/catalog/primer/index/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
+                            <a href="{{ url('/companies/primer/catalog/index/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -47,7 +47,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
-                <p><a href="{{ url('/companies/catalog/primer/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Повернутись до товарів категорії <strong>"{{ $product->category->title }}"</strong></a></p>
+                <p><a href="{{ url('/companies/primer/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Повернутись до товарів категорії <strong>"{{ $product->category->title }}"</strong></a></p>
                 <div class="panel panel-grey">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ $product->title }}</h3>
