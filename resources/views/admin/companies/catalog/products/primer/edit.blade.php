@@ -6,7 +6,7 @@
             'items' => [
                     ['title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE ],
                     [ 'title' => 'Компании', 'action' => '', 'active' => FALSE ],
-                    [ 'title' => 'Sika', 'action' => '', 'active' => FALSE ],
+                    [ 'title' => 'Primer', 'action' => '', 'active' => FALSE ],
                     [ 'title' => 'Редактирование товара '.$product->title, 'action' => '', 'active' => TRUE ],
             ]
         ])
@@ -22,10 +22,10 @@
         </div>
     </div>
     <div class="box-body">
-        @include('admin.companies.catalog.products.sika._form')
+        @include('admin.companies.catalog.products.primer._form')
     </div><!-- /.box-body -->
     <div class="box-footer">
-        <a href="{{ action('Admin\Companies\Catalog\Products\SikaController@getIndex') }}">Назад ко всем продуктам</a>
+        <a href="{{ action('Admin\Companies\Catalog\Products\PrimerController@getIndex') }}">Назад ко всем продуктам</a>
     </div><!-- /.box-footer-->
 </div><!-- /.box -->
 @stop

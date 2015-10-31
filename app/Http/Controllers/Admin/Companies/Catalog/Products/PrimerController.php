@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Companies\Catalog\Products;
 
-use App\Category;
-use App\Company;
 use App\GroupsCategory;
 use App\Http\Controllers\Admin\AdminController;
 use App\ProductPrimer;
-use App\ProductSika;
 use App\Services\SavesImages;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use yajra\Datatables\Datatables;
 
 class PrimerController extends AdminController
@@ -54,40 +50,48 @@ class PrimerController extends AdminController
     /**
      * Обработчик запроса на создание продукта.
      *
-     * @param Requests\StoreProductsSikaRequest $request
+     * @param Requests\StoreProductsPrimerRequest $request
      * @param SavesImages $imageSaver
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Services\Exception
      */
-    public function postCreate(Requests\StoreProductsSikaRequest $request, SavesImages $imageSaver)
+    public function postCreate(Requests\StoreProductsPrimerRequest $request, SavesImages $imageSaver)
     {
         // Создаём продукт
-        $product = new ProductSika;
+        $product = new ProductPrimer;
 
         // Текстовые данные
-        $product->title = trim($request->title);
-        $product->description = trim($request->description);
-        $product->package = trim($request->package);
-        $product->package_list = trim($request->package_list);
-        $product->characteristics = trim($request->characteristics);
-        $product->using_area = trim($request->using_area);
-        $product->category_id = $request->category_id;
-        $product->enabled = $request->get('enabled', FALSE);
+        $product->title                     = trim($request->title);
+        $product->category_id               = $request->category_id;
+        $product->package                   = trim($request->package);
+        $product->description_small         = trim($request->description_small);
+        $product->description_full          = trim($request->description_full);
+        $product->using                     = trim($request->using);
+        $product->tech_characteristics      = trim($request->tech_characteristics);
+        $product->exec_works                = trim($request->exec_works);
+        $product->application               = trim($request->application);
+        $product->properties_using          = trim($request->properties_using);
+        $product->phys_chem_properties      = trim($request->phys_chem_properties);
+        $product->restrictions              = trim($request->restrictions);
+        $product->safety                    = trim($request->safety);
+        $product->general_characteristics   = trim($request->general_characteristics);
+        $product->price_1_name              = trim($request->price_1_name);
+        $product->price_1_val               = trim($request->price_1_val);
+        $product->price_2_name              = trim($request->price_2_name);
+        $product->price_2_val               = trim($request->price_2_val);
+        $product->price_3_name              = trim($request->price_3_name);
+        $product->price_3_val               = trim($request->price_3_val);
+        $product->price_4_name              = trim($request->price_4_name);
+        $product->price_4_val               = trim($request->price_4_val);
+        $product->enabled                   = $request->get('enabled', FALSE);
 
         // Изображение
-        $product->photo = $imageSaver->save('photo', 'products/sika', 260);
-
-        // Техкарта
-        if ($request->hasFile('tech_cart_file')) {
-            $generator = \Faker\Factory::create();
-            $product->tech_cart_file = $generator->uuid.'.pdf';
-            $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
-        }
+        $product->photo = $imageSaver->save('photo', 'products/primer', 260);
 
         // Сохраняем
         $product->save();
 
-        return redirect()->action('Admin\Companies\Catalog\Products\SikaController@getEdit', ['id' => $product->id])
+        return redirect()->action('Admin\Companies\Catalog\Products\PrimerController@getEdit', ['id' => $product->id])
             ->with('success', 'Продукт успешно сохранён.');
     }
 
@@ -104,18 +108,19 @@ class PrimerController extends AdminController
 
         // Группы категорий вместе с категориями
         $data['group_categories'] = GroupsCategory::whereEnabled(true)
-            ->with(['categories' => function ($q) {
-                $q->with('child_categories');
-            }])
             ->whereHas('categories', function ($q) {
                 $q->where('enabled', '=', TRUE);
             })
             ->where('enabled', '=', TRUE)
-            ->where('company_id', '=', 1) // Категории Sika
+            ->where('company_id', '=', 3) // Категории primer
             ->orderBy('order')
             ->get();
+        // Lazy loading для правильной сортировки по алфавиту укр. симоволов
+        $data['group_categories']->load(['categories' => function ($q) {
+            $q->orderBy('title', 'ASC');
+        }]);
 
-        return view('admin.companies.catalog.products.sika.edit', $data);
+        return view('admin.companies.catalog.products.primer.edit', $data);
     }
 
     /**
@@ -131,27 +136,34 @@ class PrimerController extends AdminController
         $product = $this->findProduct($id);
 
         // Текстовые данные
-        $product->title = trim($request->title);
-        $product->description = trim($request->description);
-        $product->package = trim($request->package);
-        $product->package_list = trim($request->package_list);
-        $product->characteristics = trim($request->characteristics);
-        $product->using_area = trim($request->using_area);
-        $product->category_id = $request->category_id;
-        $product->enabled = $request->get('enabled', FALSE);
+        $product->title                     = trim($request->title);
+        $product->category_id               = $request->category_id;
+        $product->package                   = trim($request->package);
+        $product->description_small         = trim($request->description_small);
+        $product->description_full          = trim($request->description_full);
+        $product->using                     = trim($request->using);
+        $product->tech_characteristics      = trim($request->tech_characteristics);
+        $product->exec_works                = trim($request->exec_works);
+        $product->application               = trim($request->application);
+        $product->properties_using          = trim($request->properties_using);
+        $product->phys_chem_properties      = trim($request->phys_chem_properties);
+        $product->restrictions              = trim($request->restrictions);
+        $product->safety                    = trim($request->safety);
+        $product->general_characteristics   = trim($request->general_characteristics);
+        $product->price_1_name              = trim($request->price_1_name);
+        $product->price_1_val               = trim($request->price_1_val);
+        $product->price_2_name              = trim($request->price_2_name);
+        $product->price_2_val               = trim($request->price_2_val);
+        $product->price_3_name              = trim($request->price_3_name);
+        $product->price_3_val               = trim($request->price_3_val);
+        $product->price_4_name              = trim($request->price_4_name);
+        $product->price_4_val               = trim($request->price_4_val);
+        $product->enabled                   = $request->get('enabled', FALSE);
+
 
         // Изображение
         if ($request->hasFile('photo')) {
-            $product->photo = $imageSaver->save('photo', 'products/sika', 260, NULL, $product->photo);
-        }
-
-        // Техкарта
-        if ($request->hasFile('tech_cart_file')) {
-            // Удаляем старый файл
-            File::delete(public_path('assets/img/products/sika/tech-carts/'.$product->tech_cart_file));
-            $generator = \Faker\Factory::create();
-            $product->tech_cart_file = $generator->uuid.'.pdf';
-            $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
+            $product->photo = $imageSaver->save('photo', 'products/primer', 260, NULL, $product->photo);
         }
 
         // Сохраняем
@@ -172,7 +184,7 @@ class PrimerController extends AdminController
         $product = $this->findProduct($id);
         $product->delete();
 
-        // ВНИМАНИЕ! Изображение и техкарта удаляются в EventServiceProvider (событийно)
+        // ВНИМАНИЕ! Изображение удаляется в EventServiceProvider (событийно)
 
         return redirect()->back()->with('success', 'Продукт успешно удален.');
     }
@@ -212,7 +224,7 @@ class PrimerController extends AdminController
     private function findProduct($id)
     {
         // Ищем товар
-        $product = ProductSika::find($id);
+        $product = ProductPrimer::find($id);
         if (empty($product))
         {
             abort(404);

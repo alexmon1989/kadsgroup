@@ -59,6 +59,24 @@ class CategoriesTableSeeder extends Seeder
             'enabled' => TRUE,
         ]);
 
+        Category::create([
+            'title' => 'Грунтівки',
+            'description' => NULL,
+            'group_category_id' => 3,
+            'parent_id' => NULL,
+            'order' => 1,
+            'enabled' => TRUE,
+        ]);
+
+        Category::create([
+            'title' => 'Лаки',
+            'description' => NULL,
+            'group_category_id' => 3,
+            'parent_id' => NULL,
+            'order' => 1,
+            'enabled' => TRUE,
+        ]);
+
 
         Model::reguard();
     }

@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CompaniesTableSeeder::class);
         $this->call(GalleriesTableSeeder::class);
         $this->call(SlidersTableSeeder::class);
+        $this->call(GroupsCategoriesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductsSikaTableSeeder::class);
+        $this->call(ProductsPrimerTableSeeder::class);
 
         Model::reguard();
     }

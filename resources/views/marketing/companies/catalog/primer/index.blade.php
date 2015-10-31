@@ -52,6 +52,69 @@
             </div>
         </div>
 
+        @if (count($products) > 0)
+        @for($i = 0; $i < count($products); $i = $i + 3)
+        @if (isset($products[$i]))
+        <!-- Thumbnails v1 -->
+        <div class="row">
+            @for($j = 0; $j < 3; $j++)
+                @if (isset($products[$i+$j]))
+                    <div class="col-md-4">
+                        <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                            <div class="thumbnail-img">
+                                <div class="overflow-hidden">
+                                    <a href="{{ action('Marketing\Companies\Primer\CatalogController@getShow', ['id'=>$products[$i+$j]->id]) }}">
+                                        <img class="img-responsive" src="{{ asset('assets/img/products/primer/'.$products[$i+$j]->photo) }}" alt="{{ $products[$i+$j]->title }}" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <h3><a class="hover-effect" href="{{ action('Marketing\Companies\Primer\CatalogController@getShow', ['id'=>$products[$i+$j]->id]) }}">{{ $products[$i+$j]->title }}</a></h3>
+                                {!! $products[$i+$j]->description_small !!}
+                                <p></p>
+
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Фасовка:</strong></div>
+                                    <div class="col-md-9">{{ $products[$i+$j]->package }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @if ($products[$i+$j]->price_1_name && $products[$i+$j]->price_1_val)
+                                        <strong>Ціна:</strong>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-9">
+                                        @if ($products[$i+$j]->price_1_name && $products[$i+$j]->price_1_val)
+                                            {{ $products[$i+$j]->price_1_name . ' - ' . $products[$i+$j]->price_1_val }}
+
+                                            @if ($products[$i+$j]->price_2_name && $products[$i+$j]->price_2_val)
+                                            <br /> {{ $products[$i+$j]->price_2_name . ' - ' . $products[$i+$j]->price_2_val }}
+                                            @endif
+                                            @if ($products[$i+$j]->price_3_name && $products[$i+$j]->price_3_val)
+                                            <br /> {{ $products[$i+$j]->price_3_name . ' - ' . $products[$i+$j]->price_3_val }}
+                                            @endif
+                                            @if ($products[$i+$j]->price_4_name && $products[$i+$j]->price_4_val)
+                                            <br /> {{ $products[$i+$j]->price_4_name . ' - ' . $products[$i+$j]->price_4_val }}
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endfor
+        </div><!--/row-->
+        <!-- End Thumbnails v1 -->
+        @endif
+        @endfor
+        @else
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Товари відсутні</p>
+                </div>
+            </div>
+        @endif
 
     </div>
 </div>

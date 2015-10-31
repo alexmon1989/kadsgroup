@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="description_small">Описание короткое</label>
-            <textarea id="description_small" name="description_small" class="form-control ckeditor">{{ old('description_small', isset($product) ? $product->description_small : '') }}</textarea>
+            <textarea id="description_small" name="description_small" class="form-control">{{ old('description_small', isset($product) ? $product->description_small : '') }}</textarea>
         </div>
 
         <div class="form-group">
@@ -53,36 +53,72 @@
 
         <div class="form-group">
             <label for="package">Упаковка</label>
-            <input type="text" placeholder="Упаковка" id="package" name="package" class="form-control" value="{{ old('title', isset($product) ? $product->package : '') }}">
+            <input type="text" placeholder="Упаковка" id="package" name="package" class="form-control" value="{{ old('package', isset($product) ? $product->package : '') }}">
         </div>
 
-        @foreach(['using' => 'Використання',
-        'tech_characteristics' => '',
-        'application' => '',
-        'properties_using' => '',
-        'application' => '',
-        'phys_chem_properties' => '',
-        'restrictions' => '',
-        'safety' => '',
-        'general_characteristics' => '',
+        <div class="alert alert-info alert-dismissible">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <h4><i class="icon fa fa-info"></i> Внимание!</h4>
+            Следующие поля не есть обязательными для заполнения. Для раскрытия любого из них нажмите плюс ("+").
+        </div>
+        @foreach(['using'           => 'Використання',
+        'exec_works'                => 'Виконання робіт',
+        'tech_characteristics'      => 'Технічні характеристики',
+        'general_characteristics'   => 'Загальні характеристики',
+        'application'               => 'Використання',
+        'properties_using'          => 'Властивості та призначення матеріалу',
+        'application'               => 'Нанесення',
+        'phys_chem_properties'      => 'Фізичні та хімічні властивості',
+        'restrictions'              => 'Обмеження',
+        'safety'                    => 'Заходи безпеки',
         ] as $key => $item)
         <div class="box box-default box-solid collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">{{ $item }}</h3>
 
               <div class="box-tools pull-right">
-                <button data-widget="collapse" class="btn btn-box-tool" type="button"><i class="fa {{ isset($product) && $product->$item && $product->$item != '' ? 'fa-minus' : 'fa-plus' }}"></i>
+                <button data-widget="collapse" class="btn btn-box-tool" type="button"><i class="fa {{ isset($product) && $product->$key != '' ? 'fa-minus' : 'fa-plus' }}"></i>
                 </button>
               </div>
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body" style="display: {{ isset($product) && $product->$item && $product->$item != '' ? 'block' : 'none' }};">
-              <textarea id="using" name="using" class="form-control ckeditor">{{ old('using', isset($product) ? $product->$item : '') }}</textarea>
+            <div class="box-body" style="display: {{ isset($product) && $product->$key ? 'block' : 'none' }};">
+              <textarea id="{{ $key }}" name="{{ $key }}" class="form-control ckeditor">{{ old($key , isset($product) ? $product->$key : '') }}</textarea>
             </div>
             <!-- /.box-body -->
         </div>
         @endforeach
+
+        @for ($i = 1; $i <= 4; $i++)
+        <?php
+            $price_name = 'price_'.$i.'_name';
+            $price_val = 'price_'.$i.'_val';
+        ?>
+        <div class="box box-default box-solid collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Цена {{ $i }}</h3>
+
+                <div class="box-tools pull-right">
+                    <button data-widget="collapse" class="btn btn-box-tool" type="button"><i class="fa {{ isset($product) && $product->$price_name != '' ? 'fa-minus' : 'fa-plus' }}"></i>
+                    </button>
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: {{ isset($product) && $product->$price_name ? 'block' : 'none' }};">
+                <div class="form-group">
+                    <label for="{{ $price_name }}">Название поля</label>
+                    <input type="text" placeholder="Название поля" id="{{ $price_name }}" name="{{ $price_name }}" class="form-control" value="{{ old($price_name, isset($product) ? $product->$price_name : '') }}">
+                </div>
+                <div class="form-group">
+                    <label for="{{ $price_val }}">Значение</label>
+                    <input type="text" placeholder="Значение" id="{{ $price_val }}" name="{{ $price_val }}" class="form-control" value="{{ old($price_val, isset($product) ? $product->$price_val : '') }}">
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        @endfor
 
     </div><!-- /.box-body -->
 

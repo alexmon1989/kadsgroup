@@ -199,7 +199,7 @@
                                 </a>
                             </li>
                             <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'primer' && Request::segment(3) == 'prices' ? 'active' : '' }}">
-                                <a href="#">
+                                <a href="{{ action('Admin\Companies\PriceListsController@getIndex', ['company' => 'primer']) }}">
                                     <i class="fa fa-circle-o"></i> Прайс-лист
                                 </a>
                             </li>

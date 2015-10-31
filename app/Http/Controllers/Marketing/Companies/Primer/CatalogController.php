@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Marketing\Companies\Primer;
 use App\Category;
 use App\Company;
 use App\GroupsCategory;
+use App\ProductPrimer;
 use App\ProductSika;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -47,19 +48,17 @@ class CatalogController extends BaseCatalogController
             ->with(['parent_category' => function ($q) {
                 $q->whereEnabled(TRUE);
             }])
-            ->whereEnabled(TRUE)
             ->find($categoryId);
 
         if (!$data['category']) {
             abort(404);
         }
 
-        $data['products'] = [];
         // Получаем товары отдельно для погинации
-        /*$data['products'] = ProductSika::whereCategoryId($categoryId)
+        $data['products'] = ProductPrimer::whereCategoryId($categoryId)
             ->whereEnabled(TRUE)
             ->orderBy('created_at')
-            ->paginate(9);*/
+            ->paginate(9);
 
         // Отображаем
         return view('marketing.companies.catalog.primer.index', $data);
@@ -74,7 +73,7 @@ class CatalogController extends BaseCatalogController
     public function getShow($id)
     {
         // Получаем продукт из БД
-        $data['product'] = ProductSika::whereEnabled(TRUE)
+        $data['product'] = ProductPrimer::whereEnabled(TRUE)
             ->with('category')
             ->find($id);
 
@@ -84,7 +83,7 @@ class CatalogController extends BaseCatalogController
             $data['group_categories'] = $this->getCategories();
 
             // Отображаем
-            return view('marketing.companies.catalog.sika.show', $data);
+            return view('marketing.companies.catalog.primer.show', $data);
         } else {
             abort(404);
         }

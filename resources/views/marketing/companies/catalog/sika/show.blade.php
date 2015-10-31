@@ -51,7 +51,7 @@
 
                 <div class="panel panel-grey margin-bottom-40">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> {{ $product->title }}</h3>
+                        <h3 class="panel-title">{{ $product->title }}</h3>
                     </div>
                     <div class="panel-body">
                         <strong>{!! $product->description !!}</strong>

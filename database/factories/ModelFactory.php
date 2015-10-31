@@ -78,9 +78,9 @@ $factory->define(App\ProductPrimer::class, function (Faker\Generator $faker) {
                                             });
                                         })->first()->id,
         'photo'                     => $faker->image('public/assets/img/products/primer', 260, 370, NULL, FALSE),
-        'description_small'         => '<p>'.$faker->text(100).'</p>',
+        'description_small'         => $faker->text(100),
         'description_full'          => '<p>'.$faker->text(300).'</p>',
-        'package'                   => '<p>'.$faker->text(20).'</p>',
+        'package'                   => '1 л., 2 л., 3 л., 4 л.',
         'using'                     => '<p>'.$faker->text(255).'</p>',
         'tech_characteristics'      => '<p>'.$faker->text(255).'</p>',
         'exec_works'                => '<p>'.$faker->text(255).'</p>',

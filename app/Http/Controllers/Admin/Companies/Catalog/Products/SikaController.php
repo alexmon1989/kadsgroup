@@ -103,16 +103,17 @@ class SikaController extends AdminController
 
         // Группы категорий вместе с категориями
         $data['group_categories'] = GroupsCategory::whereEnabled(true)
-            ->with(['categories' => function ($q) {
-                $q->with('child_categories');
-            }])
             ->whereHas('categories', function ($q) {
-                $q->where('enabled', '=', TRUE);
+                $q->where('enabled', '=', TRUE); // Категории Sika
             })
             ->where('enabled', '=', TRUE)
             ->where('company_id', '=', 1) // Категории Sika
             ->orderBy('order')
             ->get();
+        // Lazy loading для правильной сортировки по алфавиту укр. симоволов
+        $data['group_categories']->load(['categories' => function ($q) {
+            $q->orderBy('title', 'ASC');
+        }]);
 
         return view('admin.companies.catalog.products.sika.edit', $data);
     }

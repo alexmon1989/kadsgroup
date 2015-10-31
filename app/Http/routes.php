@@ -22,7 +22,6 @@ Route::group(['namespace' => 'Marketing'], function()
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
-        //'companies/videos/show/primer'  => 'VideosController',
     ]);
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
@@ -49,7 +48,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'certificates'                          => 'CertificatesController',
         'companies/catalog/categories'          => 'Companies\Catalog\CategoriesController',
         'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
-        //'companies/catalog/products/sika'       => 'Companies\Catalog\Products\SikaController',
         'companies/descriptions'                => 'Companies\DescriptionsController',
         'companies/prices'                      => 'Companies\PriceListsController',
         'companies/primer/videos'               => 'VideosController',
