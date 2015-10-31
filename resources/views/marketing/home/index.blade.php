@@ -21,7 +21,7 @@
         @foreach($news as $item)
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="thumbnails thumbnail-style">
-                    <img alt="{{ $item->title }}" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" class="img-responsive">
+                    <a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}"><img alt="{{ $item->title }}" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" class="img-responsive"></a>
                     <div class="caption">
                         <h3><a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}" class="hover-effect">{{ $item->title }}</a></h3>
                         <p>{!! $item->preview_text_small !!}</p>
