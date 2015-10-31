@@ -17,8 +17,8 @@ Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
         'certificates'                  => 'CertificatesController',
-        'companies/catalog/sika'        => 'Companies\Sika\CatalogController',
-        'companies/catalog/primer'      => 'Companies\Primer\CatalogController',
+        'companies/sika/catalog'        => 'Companies\Sika\CatalogController',
+        'companies/primer/catalog'      => 'Companies\Primer\CatalogController',
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',

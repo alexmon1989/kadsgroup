@@ -30,7 +30,7 @@
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'about'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">Про компанію</a>
                                 </li>
-                                <li>
+                                <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                             </ul>
@@ -52,7 +52,7 @@
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'about' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">Про компанію</a>
                                 </li>
-                                <li>
+                                <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'primer' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                                 <li>
