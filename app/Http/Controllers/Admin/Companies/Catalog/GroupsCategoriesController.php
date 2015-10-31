@@ -55,6 +55,12 @@ class GroupsCategoriesController extends AdminController
         return view('admin.companies.catalog.groups_categories.create', $data);
     }
 
+    /**
+     * Обработчик запроса на создание группы категорий.
+     *
+     * @param Requests\StoreGroupsCategoriesRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postCreate(Requests\StoreGroupsCategoriesRequest $request)
     {
         // Компания, для которой создаётся группа
@@ -64,7 +70,7 @@ class GroupsCategoriesController extends AdminController
         $groupCategory = new GroupsCategory;
         $groupCategory->title = trim($request->title);
         $groupCategory->description = trim($request->description);
-        $groupCategory->enabled = $request->enabled;
+        $groupCategory->enabled = $request->get('enabled', FALSE);
         $groupCategory->company_id = $company->id;
         $groupCategory->order = GroupsCategory::whereCompanyId($groupCategory->company_id)->max('order') + 1;
         $groupCategory->save();
@@ -103,7 +109,7 @@ class GroupsCategoriesController extends AdminController
         $groupCategory = $this->findGroupCategory($id);
         $groupCategory->title = trim($request->title);
         $groupCategory->description = trim($request->description);
-        $groupCategory->enabled = $request->enabled;
+        $groupCategory->enabled = $request->get('enabled', FALSE);
         $groupCategory->save();
 
         return redirect()->back()->with('success', 'Группа категорий успешно отредактирована.');
@@ -119,16 +125,19 @@ class GroupsCategoriesController extends AdminController
     {
         // Ищем группу
         $groupCategory = $this->findGroupCategory($id);
-        // Всем группам после этой уменьшаем позицию
-        $groups = GroupsCategory::whereCompanyId($groupCategory->company_id)->where('order', '>', $groupCategory->order)->get();
-        foreach($groups as $item)
-        {
-            $item->order -= 1;
-            $item->save();
-        }
-        $groupCategory->delete();
+        if (count($groupCategory->categories) == 0) {
+            // Всем группам после этой уменьшаем позицию
+            $groups = GroupsCategory::whereCompanyId($groupCategory->company_id)->where('order', '>', $groupCategory->order)->get();
+            foreach ($groups as $item) {
+                $item->order -= 1;
+                $item->save();
+            }
+            $groupCategory->delete();
 
-        return redirect()->back()->with('success', 'Группа категорий успешно удалена.');
+            return redirect()->back()->with('success', 'Группа категорий успешно удалена.');
+        } else {
+            return redirect()->back()->with('errors', 'Группа категорий не может быть удалена, т.к. содержит категории.');
+        }
     }
 
     /**

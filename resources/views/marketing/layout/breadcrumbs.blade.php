@@ -5,8 +5,10 @@
         <ul class="pull-right breadcrumb">
             @foreach($items as $item)
                 <li class="{{ $item['active'] == TRUE ? 'active' : '' }}">
-                    @if ($item['action'] != '')
+                    @if (isset($item['action']) && $item['action'] != '')
                         <a href="{{ action($item['action'], isset($item['action_params']) ? $item['action_params'] : NULL) }}">{{ $item['title'] }}</a>
+                    @elseif (isset($item['url']) && $item['url'] != '')
+                        <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
                     @else
                       {{ $item['title'] }}
                     @endif

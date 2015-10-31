@@ -36,7 +36,7 @@
     @foreach($latest_news as $item)
     <div class="col-sm-4 sm-margin-bottom-30">
         <div class="news-v2-badge">
-            <img class="img-responsive" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" alt="">
+            <a href="{{ action('Marketing\NewsController@getShow', array('id' => $item->id)) }}"><img class="img-responsive" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" alt="{{ $item->title }}"></a>
         </div>
         <div class="news-v2-desc">
             <h3><a href="{{ action('Marketing\NewsController@getShow', array('id' => $item->id)) }}">{{ $item->title }}</a></h3>

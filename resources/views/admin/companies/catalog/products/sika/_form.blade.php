@@ -12,7 +12,7 @@
                 <option></option>
                 @foreach($group_categories as $group_category)
                     <optgroup label="{{ $group_category->title }}">
-                    @foreach($group_category->categories->sortBy('title') as $category)
+                    @foreach($group_category->categories as $category)
                         @if (count($category->child_categories) == 0)
                             <option value="{{ $category->id }}" {{ old('category_id', isset($product) ? $product->category_id : NULL) == $category->id ? 'selected=""' : '' }}>{{ $category->title }}</option>
                         @endif

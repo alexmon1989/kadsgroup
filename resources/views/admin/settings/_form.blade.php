@@ -6,6 +6,11 @@
             <input type="title" placeholder="E-Mail" id="email_to" name="email_to" class="form-control" value="{{ old('email_to', Memory::get('site.email_to', 'llckadsgroup@gmail.com')) }}">
         </div>
 
+        <div class="form-group">
+            <label for="main_article">Текст статьи на главной странице</label>
+            <textarea id="main_article" name="main_article" rows="10" cols="80" class="form-control ckeditor">{{ old('main_article', isset($main_article) ? $main_article->full_text : '') }}</textarea>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">

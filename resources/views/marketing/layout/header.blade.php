@@ -53,10 +53,14 @@
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">Про компанію</a>
                                 </li>
                                 <li>
-                                    <a href="#">Каталог</a>
+                                    <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="{{ Memory::get('price.primer.file_name') ? asset('assets/price-list/'.Memory::get('price.primer.file_name')) : '#' }} ">Прайс-лист</a>
+                                    @if(Memory::get('price.primer.file_name'))
+                                    <a target="_blank" href="{{ asset('assets/price-list/'.Memory::get('price.primer.file_name')) }}">Прайс-лист</a>
+                                    @else
+                                    <a href="{{ Request::url().'#' }} ">Прайс-лист</a>
+                                    @endif
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a>

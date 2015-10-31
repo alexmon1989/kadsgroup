@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Marketing\Companies\Sika;
+namespace App\Http\Controllers\Marketing\Companies\Primer;
 
 use App\Category;
 use App\Company;
 use App\GroupsCategory;
+use App\ProductPrimer;
 use App\ProductSika;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\View;
 class CatalogController extends BaseCatalogController
 {
     // Краткий код фирмы
-    protected $shortTitle = 'sika';
+    protected $shortTitle = 'primer';
 
     /**
      * Отображает страницу каталога Sika
@@ -28,19 +29,25 @@ class CatalogController extends BaseCatalogController
         // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
         $data['group_categories'] = $this->getCategories();
 
+
         // Если категория не выбрана, то выбираем первую категорию
-        if (!$categoryId && isset($data['group_categories'][0]->categories[0]->id)) {
-            $categoryId = $data['group_categories'][0]->categories[0]
-                                                    ->child_categories[0]
-                                                    ->id;
+        if (!$categoryId && isset($data['group_categories'][0]->categories[0])) {
+            if (isset($data['group_categories'][0]->categories[0]->child_categories[0])) {
+                $categoryId = $data['group_categories'][0]->categories[0]
+                    ->child_categories[0]
+                    ->id;
+            } elseif (isset($data['group_categories'][0]->categories[0]->id)) {
+                $categoryId = $data['group_categories'][0]->categories[0]->id;
+            } else {
+                abort(404);
+            }
         }
 
-        // Категория вместе с товарами
+        // Категория
         $data['category'] = Category::whereEnabled(TRUE)
             ->with(['parent_category' => function ($q) {
                 $q->whereEnabled(TRUE);
             }])
-            ->whereEnabled(TRUE)
             ->find($categoryId);
 
         if (!$data['category']) {
@@ -48,13 +55,13 @@ class CatalogController extends BaseCatalogController
         }
 
         // Получаем товары отдельно для погинации
-        $data['products'] = ProductSika::whereCategoryId($categoryId)
+        $data['products'] = ProductPrimer::whereCategoryId($categoryId)
             ->whereEnabled(TRUE)
             ->orderBy('created_at')
             ->paginate(9);
 
         // Отображаем
-        return view('marketing.companies.catalog.sika.index', $data);
+        return view('marketing.companies.catalog.primer.index', $data);
     }
 
     /**
@@ -66,7 +73,7 @@ class CatalogController extends BaseCatalogController
     public function getShow($id)
     {
         // Получаем продукт из БД
-        $data['product'] = ProductSika::whereEnabled(TRUE)
+        $data['product'] = ProductPrimer::whereEnabled(TRUE)
             ->with('category')
             ->find($id);
 
@@ -76,7 +83,7 @@ class CatalogController extends BaseCatalogController
             $data['group_categories'] = $this->getCategories();
 
             // Отображаем
-            return view('marketing.companies.catalog.sika.show', $data);
+            return view('marketing.companies.catalog.primer.show', $data);
         } else {
             abort(404);
         }
