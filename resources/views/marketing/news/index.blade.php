@@ -21,7 +21,7 @@
         <!-- News v3 -->
         <div class="row margin-bottom-20 margin-top-20">
             <div class="col-sm-5 sm-margin-bottom-20">
-                <img class="img-responsive" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" alt="{{ $item->title }}">
+                <a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}"><img class="img-responsive" src="{{ asset('assets/img/news/'.$item->thumbnail) }}" alt="{{ $item->title }}"></a>
             </div>
             <div class="col-sm-7">
                 <div class="news-v3">
