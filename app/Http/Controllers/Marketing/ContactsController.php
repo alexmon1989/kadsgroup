@@ -41,7 +41,7 @@ class ContactsController extends Controller {
         {
             $message->from($request->get('email'), $request->get('name'));
             $message->subject($subject);
-            $message->to(Memory::get('contacts.email_to', 'llckadsgroup@gmail.com'));
+            $message->to(Memory::get('site.email_to', 'llckadsgroup@gmail.com'));
         });
         if ($request->ajax()) {
             return response()->json(['success' => true]);
