@@ -21,6 +21,7 @@ class SettingsController extends AdminController
     {
         // Контактные данные
         Model::unguard();
+        $data['main_article'] = Article::firstOrCreate(['type' => 'main_article']);
         $data['footer_about'] = Article::firstOrCreate(['type' => 'footer_about']);
         $data['footer_contacts'] = Article::firstOrCreate(['type' => 'footer_contacts']);
         Model::reguard();
@@ -40,14 +41,17 @@ class SettingsController extends AdminController
         Memory::put('site.email_to', $request->get('email_to'));
 
         // Данные статей
+        $mainArticle = Article::whereType('main_article')->first();
         $footerAbout = Article::whereType('footer_about')->first();
         $footerContacts = Article::whereType('footer_contacts')->first();
 
         // Обновляем тексты
+        $mainArticle->full_text = $request->get('main_article');
         $footerAbout->full_text = $request->get('footer_about');
         $footerContacts->full_text = $request->get('footer_contacts');
 
         // Сохранение
+        $mainArticle->save();
         $footerAbout->save();
         $footerContacts->save();
 
