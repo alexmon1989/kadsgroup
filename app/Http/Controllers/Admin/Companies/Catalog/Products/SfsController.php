@@ -124,6 +124,8 @@ class SfsController extends AdminController
         $product->enabled                   = $request->get('enabled', FALSE);
         // PDF
         if ($request->hasFile('file_name')) {
+            // Удаляем старый файл
+            File::delete(public_path('assets/img/products/sfs/'.$product->file_name));
             $generator = \Faker\Factory::create();
             $product->file_name = $generator->uuid.'.pdf';
             $request->file('file_name')->move(public_path('assets/img/products/sfs/'), $product->file_name);
