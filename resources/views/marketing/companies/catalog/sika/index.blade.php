@@ -101,10 +101,10 @@
         @endif
 
         <!-- Pager -->
-        <div class="text-center">
-            {!! str_replace('/?', '?', $products->render()) !!}
-        </div>
-        <!-- End Pager -->
-    </div>
+<div class="text-center">
+    {!! str_replace('/?', '?', $products->render()) !!}
+</div>
+<!-- End Pager -->
+</div>
 </div>
 @stop
