@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ProductSfs;
 use App\ProductSika;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -77,6 +78,26 @@ class EventServiceProvider extends ServiceProvider
 
                 if (file_exists($imgPath)) {
                     File::delete($imgPath);
+                }
+            }
+
+            return TRUE;
+        });
+
+        // Событие удаления продукта Sfs
+        ProductSfs::deleting(function($product)
+        {
+            // Удаляем PDF
+
+            if ($product->file_name) {
+                $filePath = public_path('assets' . DIRECTORY_SEPARATOR
+                    . 'img' . DIRECTORY_SEPARATOR
+                    . 'products' . DIRECTORY_SEPARATOR
+                    . 'sfs' . DIRECTORY_SEPARATOR
+                    . $product->file_name);
+
+                if (file_exists($filePath)) {
+                    File::delete($filePath);
                 }
             }
 

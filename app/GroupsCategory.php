@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\GroupsCategory whereEnabled($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GroupsCategory whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GroupsCategory whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
  */
 class GroupsCategory extends Model
 {

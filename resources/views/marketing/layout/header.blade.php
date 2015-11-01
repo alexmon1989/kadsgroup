@@ -41,8 +41,8 @@
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'about' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">Про компанію</a>
                                 </li>
-                                <li>
-                                    <a href="#">Каталог</a>
+                                <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sfs' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                             </ul>
                         </li>

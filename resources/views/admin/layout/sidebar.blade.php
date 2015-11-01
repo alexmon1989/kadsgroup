@@ -171,7 +171,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(2) == 'companies' && Request::get('company') == 'sfs' ? 'active' : '' }}">
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-circle-o"></i> SFS intent <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -181,10 +181,27 @@
                                     <i class="fa fa-circle-o"></i> Описание
                                 </a>
                             </li>
-                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sfs' && Request::segment(4) == 'catalog' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
                                 <a href="#">
-                                    <i class="fa fa-circle-o"></i> Каталог
+                                    <i class="fa fa-circle-o"></i> Каталог <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'groups-categories' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\GroupsCategoriesController@getIndex', ['company' => 'sfs']) }}">
+                                            <i class="fa fa-circle-o"></i> Групы категорий
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'categories' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\CategoriesController@getIndex', ['company' => 'sfs']) }}">
+                                            <i class="fa fa-circle-o"></i> Категории
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\Products\SfsController@getIndex') }}">
+                                            <i class="fa fa-circle-o"></i> Товары
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

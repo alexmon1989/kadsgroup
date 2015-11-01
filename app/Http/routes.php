@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Marketing'], function()
     Route::controllers([
         'certificates'                  => 'CertificatesController',
         'companies/sika/catalog'        => 'Companies\Sika\CatalogController',
+        'companies/sfs/catalog'         => 'Companies\Sfs\CatalogController',
         'companies/primer/catalog'      => 'Companies\Primer\CatalogController',
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
@@ -31,13 +32,7 @@ Route::group(['namespace' => 'Marketing'], function()
 
 // Authentication routes...
 Route::get('admin', ['middleware' => 'auth', 'uses' => 'Admin\DashboardController@getIndex']);
-/*
-Route::get('admin/auth/login', 'Auth\AuthController@getLogin');
-Route::post('admin/auth/login', 'Auth\AuthController@postLogin');
-Route::get('admin/auth/logout', 'Auth\AuthController@getLogout');
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-*/
+
 // Роут контроллера авторизации, middleware указан в его конструкторе
 Route::controller('admin/auth', 'Auth\AuthController');
 
@@ -65,5 +60,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
     Route::controller('companies/catalog/products/primer', 'Companies\Catalog\Products\PrimerController', [
         'anyData'  => 'datatables.primer.data',
+    ]);
+
+    Route::controller('companies/catalog/products/sfs', 'Companies\Catalog\Products\SfsController', [
+        'anyData'  => 'datatables.sfs.data',
     ]);
 });

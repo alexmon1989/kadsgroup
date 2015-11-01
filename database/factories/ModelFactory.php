@@ -101,3 +101,16 @@ $factory->define(App\ProductPrimer::class, function (Faker\Generator $faker) {
         'enabled'                   => TRUE,
     ];
 });
+
+$factory->define(App\ProductSfs::class, function (Faker\Generator $faker) {
+    return [
+        'title'                     => $faker->text(30),
+        'category_id'               => \App\Category::whereHas('group_category', function($q) {
+            $q->whereHas('company', function($q) {
+                $q->whereShortTitle('sfs');
+            });
+        })->first()->id,
+        'file_name'                 => $faker->file(base_path('resources/tech_carts'), base_path('public/assets/img/products/sfs'), FALSE),
+        'enabled'                   => TRUE,
+    ];
+});
