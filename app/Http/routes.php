@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Marketing'], function()
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
+        'search'                        => 'SearchController',
     ]);
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');

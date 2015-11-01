@@ -54,6 +54,8 @@ elixir(function(mix) {
         assetsPublicPath + 'css/theme-skins/dark.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_error4_404.css',
         assetsPublicPath + 'css/pages/page_error4_404.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_search_inner.css',
+        assetsPublicPath + 'css/pages/page_search_inner.css')
 
         // JS шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
