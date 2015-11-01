@@ -21,12 +21,6 @@
         </div>
     </div>
     <div class="box-body">
-            <div class="row">
-                <div class="col-xs-10 col-md-5">
-                    <img width="1000" src="{{ asset('img/sliders/'.$slider->file_name) }}" alt="" />
-                </div>
-            </div>
-
         @include('admin.slider._form')
     </div><!-- /.box-body -->
     <div class="box-footer">
