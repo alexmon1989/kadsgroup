@@ -77,6 +77,15 @@ class CategoriesTableSeeder extends Seeder
             'enabled' => TRUE,
         ]);
 
+        Category::create([
+            'title' => 'Категорія 1',
+            'description' => NULL,
+            'group_category_id' => 4,
+            'parent_id' => NULL,
+            'order' => 1,
+            'enabled' => TRUE,
+        ]);
+
 
         Model::reguard();
     }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Marketing\Companies\Sika;
+namespace App\Http\Controllers\Marketing\Companies\Sfs;
 
 use App\Category;
 use App\Company;
 use App\GroupsCategory;
+use App\ProductSfs;
 use App\ProductSika;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\View;
 class CatalogController extends BaseCatalogController
 {
     // Краткий код фирмы
-    protected $shortTitle = 'sika';
+    protected $shortTitle = 'sfs';
 
     /**
      * Отображает страницу каталога Sika
@@ -54,13 +55,13 @@ class CatalogController extends BaseCatalogController
         }
 
         // Получаем товары отдельно для погинации
-        $data['products'] = ProductSika::whereCategoryId($categoryId)
+        $data['products'] = ProductSfs::whereCategoryId($categoryId)
             ->whereEnabled(TRUE)
             ->orderBy('created_at')
             ->paginate(9);
 
         // Отображаем
-        return view('marketing.companies.catalog.sika.index', $data);
+        return view('marketing.companies.catalog.sfs.index', $data);
     }
 
     /**
@@ -71,20 +72,7 @@ class CatalogController extends BaseCatalogController
      */
     public function getShow($id)
     {
-        // Получаем продукт из БД
-        $data['product'] = ProductSika::whereEnabled(TRUE)
-            ->with('category')
-            ->find($id);
-
-        if (!empty($data['product']))
-        {
-            // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
-            $data['group_categories'] = $this->getCategories();
-
-            // Отображаем
-            return view('marketing.companies.catalog.sika.show', $data);
-        } else {
-            abort(404);
-        }
+        // Для этого каталога нет страницы товара
+        abort(404);
     }
 }

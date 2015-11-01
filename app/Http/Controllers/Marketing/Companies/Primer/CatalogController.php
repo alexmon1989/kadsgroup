@@ -88,27 +88,4 @@ class CatalogController extends BaseCatalogController
             abort(404);
         }
     }
-
-    /**
-     * Выборка групп категорий для фирмы "Сика" вместе с подкатегориями (для бокового меню)
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    private function getCategories()
-    {
-        $categories = GroupsCategory::whereEnabled(TRUE)
-            ->orderBy('order', 'ASC')
-            ->with(['categories' => function ($q) {
-                $q->whereNull('parent_id')
-                    ->where('enabled', '=', TRUE)
-                    ->orderBy('order', 'asc')
-                    ->with('child_categories');
-            }])
-            ->whereHas('company', function($query) {
-                $query->where('short_title', '=', $this->shortTitle);
-            })
-            ->get();
-
-        return $categories;
-    }
 }

@@ -38,6 +38,14 @@ class GroupsCategoriesTableSeeder extends Seeder
             'description' => $faker->text(),
         ]);
 
+        GroupsCategory::create([
+            'title' => 'Группа 1',
+            'company_id' => 2,
+            'order' => 1,
+            'enabled' => TRUE,
+            'description' => $faker->text(),
+        ]);
+
         Model::reguard();
     }
 }

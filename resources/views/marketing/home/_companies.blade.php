@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
-                                    <a href="#">Каталог</a>
+                                    <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
                                 </div>
                             </div>
                         </div>
