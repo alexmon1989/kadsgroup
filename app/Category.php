@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereEnabled($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereUpdatedAt($value)
+ * @property-read \App\Category $parent_category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $child_categories
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductSika[] $products_sika
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductSfs[] $products_sfs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductPrimer[] $products_primer
  */
 class Category extends Model
 {
@@ -47,5 +52,15 @@ class Category extends Model
     public function products_sika()
     {
         return $this->hasMany('App\ProductSika');
+    }
+
+    public function products_sfs()
+    {
+        return $this->hasMany('App\ProductSfs');
+    }
+
+    public function products_primer()
+    {
+        return $this->hasMany('App\ProductPrimer');
     }
 }
