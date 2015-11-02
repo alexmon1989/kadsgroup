@@ -51,7 +51,11 @@
                 <h2>Товари</h2>
             </div>
         </div>
-
+        <!-- Pager -->
+        <div class="text-center">
+            {!! str_replace('/?', '?', $products->render()) !!}
+        </div>
+        <!-- End Pager -->
         @if (count($products) > 0)
         @for($i = 0; $i < count($products); $i = $i + 3)
         @if (isset($products[$i]))
@@ -115,7 +119,11 @@
                 </div>
             </div>
         @endif
-
+        <!-- Pager -->
+        <div class="text-center">
+            {!! str_replace('/?', '?', $products->render()) !!}
+        </div>
+        <!-- End Pager -->
     </div>
 </div>
 @stop
