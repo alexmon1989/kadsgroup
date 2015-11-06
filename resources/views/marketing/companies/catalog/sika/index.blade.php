@@ -81,7 +81,7 @@
                                         {!! $products[$i+$j]->package_list !!}
 
                                         @if ($products[$i+$j]->tech_cart_file)
-                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Техничіна карта</a>
+                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Технічна карта</a>
                                         @endif
                                     </div>
                                 </div>
