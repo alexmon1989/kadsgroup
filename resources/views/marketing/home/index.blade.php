@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h2>Новини</h2>
+            <h2 class="news-link"><a href="{{ action('Marketing\NewsController@getIndex') }}">Новини</a></h2>
         </div>
     </div>
 
