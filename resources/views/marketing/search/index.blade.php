@@ -22,14 +22,14 @@
     <div class="container">
         <div class="col-md-6 col-md-offset-3 search">
             <h2>Пошук ще раз</h2>
-            <div class="input-group">
-                <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
-                    <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
-                    <span class="input-group-btn">
-                        <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
-                    </span>
-                </form>
-            </div>
+            <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
+                        <span class="input-group-btn">
+                            <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                </div>
+            </form>
         </div>
     </div>
 </div><!--/container-->
