@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
                 'items' => [
-                        [ 'title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
+                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $category->title, 'action' => '', 'active' => TRUE ],
@@ -48,7 +48,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товари</h2>
+                <h2>Товары</h2>
             </div>
         </div>
 
@@ -61,13 +61,13 @@
         @if (count($products) > 0)
             <ul>
             @foreach($products as $item)
-                <li><a class="text-primary" href="{{ asset('assets/img/products/sfs/'.$item->file_name) }}" target="_blank" title="Завантажити">{{ $item->title }}</a></li>
+                <li><a class="text-primary" href="{{ asset('assets/img/products/sfs/'.$item->file_name) }}" target="_blank" title="Загрузить">{{ $item->title }}</a></li>
             @endforeach
             </ul>
         @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>Товари відсутні</p>
+                    <p>Товары отсутствуют</p>
                 </div>
             </div>
         @endif

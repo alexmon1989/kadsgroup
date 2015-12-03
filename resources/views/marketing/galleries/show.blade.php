@@ -9,7 +9,7 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => 'Фотогалерея "'.$company->title.'"',
                 'items' => array(
-                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
+                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
                         array('title' => 'Фотогалерея "'.$company->title.'"', 'action' => '', 'active' => TRUE),
                 )
             ])
@@ -45,7 +45,7 @@
         </div>
         <!-- End Pager -->
     @else
-        <h2>Фотографії відсутні</h2>
+        <h2>Фотографии отсутствуют</h2>
     @endif
 @stop
 

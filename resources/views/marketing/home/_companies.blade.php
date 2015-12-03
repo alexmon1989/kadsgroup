@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-md-12 margin-bottom-10 height-100">
                                 <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">
-                                    <img class="img-responsive" alt="" src="assets/img/companies/top/1.png">
+                                    <img class="img-responsive" alt="Sika" src="assets/img/companies/top/1.png">
                                 </a>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-12 margin-bottom-10 height-100">
                                 <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">
-                                    <img class="img-responsive" alt="" src="assets/img/companies/top/2.png">
+                                    <img class="img-responsive" alt="Sfs intec" src="assets/img/companies/top/2.png">
                                 </a>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-md-12 margin-bottom-10 height-100">
                                 <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">
-                                    <img class="img-responsive" alt="" src="assets/img/companies/top/3.png">
+                                    <img class="img-responsive" alt="Праймер" src="assets/img/companies/top/3.png">
                                 </a>
                             </div>
                         </div>
@@ -69,8 +69,8 @@
                         <div class="row">
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
-                                    <a class="active" target="_blank" href="{{ Memory::get('price.primer.file_name') ? asset('assets/price-list/'.Memory::get('price.primer.file_name')) : '#' }} ">Прайс</a> |
-                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a> |
+                                    <a class="active" target="_blank" href="{{ Memory::get('price.primer.file_name') ? asset('assets/price-list/'.Memory::get('price.primer.file_name')) : '#' }} ">Прайс-лист</a> |
+                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a> |
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </div>
                             </div>

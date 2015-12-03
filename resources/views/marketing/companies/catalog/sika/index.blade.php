@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
                 'items' => [
-                        [ 'title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
+                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $category->title, 'action' => '', 'active' => TRUE ],
@@ -48,7 +48,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товари</h2>
+                <h2>Товары</h2>
             </div>
         </div>
 
@@ -81,7 +81,7 @@
                                         {!! $products[$i+$j]->package_list !!}
 
                                         @if ($products[$i+$j]->tech_cart_file)
-                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Технічна карта</a>
+                                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$products[$i+$j]->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Техническая карта</a>
                                         @endif
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
         @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>Товари відсутні</p>
+                    <p>Товары отсутствуют</p>
                 </div>
             </div>
         @endif

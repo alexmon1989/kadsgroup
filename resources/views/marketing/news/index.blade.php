@@ -1,17 +1,17 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Новини
+Новости
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
                 'title' => 'Новости',
-                'items' => array(
-                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Новини', 'action' => '', 'active' => TRUE),
-                )
+                'items' => [
+                        ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                        ['title' => 'Новости', 'action' => '', 'active' => TRUE],
+                ]
             ])
 @stop
 
@@ -28,9 +28,9 @@
                     <ul class="list-inline posted-info">
                         <li>Создано {{ date('d.m.Y', strtotime($item->created_at)) }}</li>
                     </ul>
-                    <h2><a href="{{ action('Marketing\NewsController@getShow', array('id' => $item->id)) }}">{{ $item->title }}</a></h2>
+                    <h2><a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">{{ $item->title }}</a></h2>
                     <p>{!! $item->preview_text_mid !!}</p>
-                    <p><a class="btn-u btn-u-xs" href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">Детальніше <i class="fa fa-angle-right margin-left-5"></i></a></p>
+                    <p><a class="btn-u btn-u-xs" href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">Детальнее <i class="fa fa-angle-right margin-left-5"></i></a></p>
 
                 </div>
             </div>
@@ -46,7 +46,7 @@
         </div>
         <!-- End Pager -->
     @else
-        <h2>Новини відсутні</h2>
+        <h2>Новости отсутствуют</h2>
     @endif
 @stop
 

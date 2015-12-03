@@ -1,7 +1,7 @@
 <!-- Latest -->
 <div class="col-md-3 md-margin-bottom-40">
     <div class="posts">
-        <div class="headline"><h2>Останні новини</h2></div>
+        <div class="headline"><h2>Последние новости</h2></div>
         <ul class="list-unstyled latest-list">
             @foreach($news as $item)
             <li>

@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
                 'items' => [
-                        [ 'title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
+                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $product->category->title, 'url' => url('/companies/sika/catalog/index/'.$product->category->id), 'active' => FALSE ],
@@ -47,7 +47,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
-                <p><a href="{{ url('/companies/sika/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Повернутись до товарів категорії <strong>"{{ $product->category->title }}"</strong></a></p>
+                <p><a href="{{ url('/companies/sika/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Вернутся к товарам категории <strong>"{{ $product->category->title }}"</strong></a></p>
 
                 <div class="panel panel-grey margin-bottom-40">
                     <div class="panel-heading">
@@ -57,16 +57,16 @@
                         <strong>{!! $product->description !!}</strong>
 
                         @if ($product->tech_cart_file)
-                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Технічна карта</a>
+                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Технческая карта</a>
                         @endif
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <td><strong>Упаковка</strong></td>
-                                <td><strong>Область застосування</strong></td>
-                                <td><strong>Технічні характеристики</strong></td>
-                                <td><strong>Приклад застосування</strong></td>
+                                <td><strong>Область применения</strong></td>
+                                <td><strong>Техические характеристики</strong></td>
+                                <td><strong>Пример применения</strong></td>
                             </tr>
                         </thead>
                         <tbody>
