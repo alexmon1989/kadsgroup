@@ -1,16 +1,16 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Сертифікати
+Сертификаты
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Сертифікати',
+                'title' => 'Сертификаты',
                 'items' => array(
-                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Сертифікати', 'action' => '', 'active' => TRUE),
+                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
+                        array('title' => 'Сертификаты', 'action' => '', 'active' => TRUE),
                 )
             ])
 @stop
@@ -46,7 +46,7 @@
         </div>
         <!-- End Pager -->
     @else
-        <h2>Сертифікати відсутні</h2>
+        <h2>Сертификаты отсутствуют</h2>
     @endif
 @stop
 

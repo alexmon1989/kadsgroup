@@ -1,17 +1,17 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Контакти
+Контакты
 @stop
 
 @section('top_content')
 @slider()
 @include('marketing.layout.breadcrumbs', [
-            'title' => 'Контакти',
-            'items' => array(
-                    array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                    array('title' => 'Контакти', 'action' => '', 'active' => TRUE),
-            )
+            'title' => 'Контакты',
+            'items' => [
+                    ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                    ['title' => 'Контакты', 'action' => '', 'active' => TRUE],
+            ]
         ])
 @stop
 
@@ -26,14 +26,14 @@
 
 <div class="row margin-bottom-30">
     <div class="col-md-9 mb-margin-bottom-30">
-        <div class="headline"><h2>Напишіть нам</h2></div>
+        <div class="headline"><h2>Напишите нам</h2></div>
         @if ($contacts_form_text->full_text)
         {!! $contacts_form_text->full_text !!}<br />
         @endif
         <form action="{{ action('Marketing\ContactsController@postIndex') }}" method="post" id="sky-form3" class="sky-form contact-style">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <fieldset class="no-padding">
-                <label>Ваше ім'я <span class="color-red">*</span></label>
+                <label>Ваше имя <span class="color-red">*</span></label>
                 <div class="row sky-space-20">
                     <div class="col-md-7 col-md-offset-0">
                         <div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <label>Повідомлення <span class="color-red">*</span></label>
+                <label>Сообщение <span class="color-red">*</span></label>
                 <div class="row sky-space-20">
                     <div class="col-md-11 col-md-offset-0">
                         <div>
@@ -60,12 +60,12 @@
                     </div>
                 </div>
 
-                <p><button type="submit" class="btn-u">Надіслати</button></p>
+                <p><button type="submit" class="btn-u">Отправить</button></p>
             </fieldset>
 
             <div class="message">
                 <i class="rounded-x fa fa-check"></i>
-                <p>Ваше повідомлення успішно відправлено!</p>
+                <p>Ваше сообщение успешно отправлено!</p>
             </div>
         </form>
     </div><!--/col-md-9-->
@@ -73,19 +73,19 @@
     <div class="col-md-3">
         @if ($contacts_contacts->full_text)
         <!-- Contacts -->
-        <div class="headline"><h2>Контакти</h2></div>
+        <div class="headline"><h2>Контакты</h2></div>
         {!! $contacts_contacts->full_text !!}
         @endif
 
         @if ($contacts_working_time->full_text)
         <!-- Business Hours -->
-        <div class="headline"><h2>Робочий час</h2></div>
+        <div class="headline"><h2>Рабочее время</h2></div>
         {!! $contacts_working_time->full_text !!}
         @endif
 
         @if ($contacts_why_us->full_text)
         <!-- Why we are? -->
-        <div class="headline"><h2>Чому саме ми?</h2></div>
+        <div class="headline"><h2>Почему именно мы?</h2></div>
         {!! $contacts_why_us->full_text !!}
         @endif
     </div><!--/col-md-3-->

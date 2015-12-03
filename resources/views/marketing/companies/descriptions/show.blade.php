@@ -8,12 +8,12 @@
     @slider()
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
-                'items' => array(
-                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Група компаній', 'action' => '', 'active' => FALSE),
-                        array('title' => $company->title, 'action' => '', 'active' => FALSE),
-                        array('title' => 'Про компанію', 'action' => '', 'active' => TRUE),
-                )
+                'items' => [
+                        ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                        ['title' => 'Группа компаний', 'action' => '', 'active' => FALSE],
+                        ['title' => $company->title, 'action' => '', 'active' => FALSE],
+                        ['title' => 'О компании', 'action' => '', 'active' => TRUE],
+                ]
             ])
 @stop
 

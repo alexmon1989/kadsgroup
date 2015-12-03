@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="logo" href="{{ url() }}">
-            <img src="{{ asset('assets/img/logo-kadsgroup.png') }}" alt="Логотип">
+            <img src="{{ asset('assets/img/logo-kadsgroup.png') }}" alt="Группа компаний Kadsgroup">
         </a>
         <!-- End Logo -->
 
@@ -21,14 +21,14 @@
                 <!-- Верхнее меню -->
                 <li class="dropdown {{ Request::segment(1) == 'companies' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Група компаній
+                        Группа компаний
                     </a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sika' ? 'active' : '' }}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sika</a>
                             <ul class="dropdown-menu">
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'about'  ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">Про компанію</a>
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex') }}">Каталог</a>
@@ -36,10 +36,10 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' ? 'active' : '' }}">
-                            <a href="#">SFS intec</a>
+                            <a href="#">Sfs intec</a>
                             <ul class="dropdown-menu">
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'about' ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">Про компанію</a>
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sfs' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
@@ -50,7 +50,7 @@
                             <a href="#">Праймер</a>
                             <ul class="dropdown-menu">
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'about' ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">Про компанію</a>
+                                    <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'primer' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
@@ -63,7 +63,7 @@
                                     @endif
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Відео</a>
+                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a>
                                 </li>
                             </ul>
                         </li>
@@ -72,7 +72,7 @@
 
                 <li class="dropdown {{ Request::segment(1) == 'galleries' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Фотогалерея
+                        Фотогалереи
                     </a>
                     <ul class="dropdown-menu">
                         <li class="{{ Request::segment(3) == 'sika' ? 'active' : '' }}">
@@ -88,13 +88,13 @@
                 </li>
 
                 <li class="{{ Request::segment(1) == 'certificates' ? 'active' : '' }}">
-                    <a href="{{ action('Marketing\CertificatesController@getIndex') }}">Сертифікати</a>
+                    <a href="{{ action('Marketing\CertificatesController@getIndex') }}">Сертификаты</a>
                 </li>
                 <li class="{{ Request::segment(1) == 'news' ? 'active' : '' }}">
-                    <a href="{{ action('Marketing\NewsController@getIndex') }}">Новини</a>
+                    <a href="{{ action('Marketing\NewsController@getIndex') }}">Новости</a>
                 </li>
                 <li class="{{ Request::segment(1) == 'contacts' ? 'active' : '' }}">
-                    <a href="{{ action('Marketing\ContactsController@getIndex') }}">Контакти</a>
+                    <a href="{{ action('Marketing\ContactsController@getIndex') }}">Контакты</a>
                 </li>
                 <!-- Конец Верхнего меню -->
 
@@ -104,9 +104,9 @@
                     <div class="search-open">
                         <div class="input-group animated fadeInDown">
                             <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
-                                <input type="text" name="q" class="form-control" placeholder="Пошук">
+                                <input type="text" name="q" class="form-control" placeholder="Поиск">
                                 <span class="input-group-btn">
-                                    <button class="btn-u" type="submit">Шукати</button>
+                                    <button class="btn-u" type="submit">Искать</button>
                                 </span>
                             </form>
                         </div>
