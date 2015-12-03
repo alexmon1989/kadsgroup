@@ -48,7 +48,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товари</h2>
+                <h2>Товары</h2>
             </div>
         </div>
         <!-- Pager -->
@@ -115,7 +115,7 @@
         @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>Товари отсутствуют</p>
+                    <p>Товары отсутствуют</p>
                 </div>
             </div>
         @endif
