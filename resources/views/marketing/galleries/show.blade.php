@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Фотогалерея "{{ $company->title }}"
+{{ $article->page_title != '' ? $article->page_title  : 'Фотогалерея "'.$company->title.'"' }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Фотогалерея "'.$company->title.'"',
+                'title' => $article->page_h1 != '' ? $article->page_h1  : 'Фотогалерея "'.$company->title.'"',
                 'items' => array(
                         array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
                         array('title' => 'Фотогалерея "'.$company->title.'"', 'action' => '', 'active' => TRUE),
@@ -65,4 +65,10 @@
             FancyBox.initFancybox();
         });
     </script>
+@stop
+
+
+@section('meta')
+    <meta name="keywords" content="{{ $article->page_keywords }}">
+    <meta name="description" content="{{ $article->page_description }}">
 @stop

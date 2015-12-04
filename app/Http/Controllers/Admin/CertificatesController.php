@@ -53,8 +53,12 @@ class CertificatesController extends AdminController
     {
         // Изменяем статью
         $article = Article::whereType('certificates_description')->first();
-        $article->title = $request->get('title');
-        $article->full_text = $request->get('full_text');
+        $article->title             = $request->get('title');
+        $article->full_text         = $request->get('full_text');
+        $article->page_title        = $request->get('page_title');
+        $article->page_keywords     = $request->get('page_keywords');
+        $article->page_description  = $request->get('page_description');
+        $article->page_h1           = $request->get('page_h1');
         $article->save();
 
         return redirect()->back()->with('success', 'Данные успешно сохранены.');

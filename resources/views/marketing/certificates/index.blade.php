@@ -1,17 +1,17 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Сертификаты
+{{ $certificates_description->page_title != '' ? $certificates_description->page_title  : 'Сертификаты' }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Сертификаты',
-                'items' => array(
-                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Сертификаты', 'action' => '', 'active' => TRUE),
-                )
+                'title' => $certificates_description->page_h1 != '' ? $certificates_description->page_h1  : 'Сертификаты',
+                'items' => [
+                        ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                        ['title' => 'Сертификаты', 'action' => '', 'active' => TRUE],
+                ]
             ])
 @stop
 
@@ -66,4 +66,9 @@
             FancyBox.initFancybox();
         });
     </script>
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $certificates_description->page_keywords }}">
+    <meta name="description" content="{{ $certificates_description->page_description }}">
 @stop

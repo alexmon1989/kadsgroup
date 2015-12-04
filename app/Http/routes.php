@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'contacts'                              => 'ContactsController',
         'dashboard'                             => 'DashboardController',
         'galleries'                             => 'GalleriesController',
+        'home'                                  => 'HomeController',
         'news'                                  => 'NewsController',
         'settings'                              => 'SettingsController',
         'sliders'                               => 'SliderController',

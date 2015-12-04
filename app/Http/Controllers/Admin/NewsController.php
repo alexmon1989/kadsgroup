@@ -59,16 +59,21 @@ class NewsController extends AdminController {
             abort(404);
         }
 
-        // меняем данные и сохраняем
-        $news->title = trim(Input::get('title'));
-        $news->full_text = Input::get('full_text');
-        $news->preview_text_small = Input::get('preview_text_small');
-        $news->preview_text_mid = Input::get('preview_text_mid');
-        $news->is_on_main = Input::get('is_on_main', 0);
+        // Меняем данные и сохраняем
+        $news->title                = trim(Input::get('title'));
+        $news->full_text            = Input::get('full_text');
+        $news->preview_text_small   = Input::get('preview_text_small');
+        $news->preview_text_mid     = Input::get('preview_text_mid');
+        $news->is_on_main           = Input::get('is_on_main', 0);
         if ($request->hasFile('thumbnail'))
         {
             $news->thumbnail = $imageSaver->save('thumbnail', 'news', 555, 370, $news->thumbnail);
         }
+        // Настройки seo
+        $news->page_title           = trim($request->get('page_title'));
+        $news->page_keywords        = trim($request->get('page_keywords'));
+        $news->page_description     = trim($request->get('page_description'));
+        $news->page_h1              = trim($request->get('page_h1'));
         $news->save();
 
         return redirect()->action('Admin\NewsController@getEdit', array('id' => $id))
@@ -93,12 +98,17 @@ class NewsController extends AdminController {
 	public function postCreate(StoreNewsRequest $request, SavesImages $imageSaver)
 	{
 		$news = new News;
-        $news->title = trim(Input::get('title'));
-        $news->full_text = Input::get('full_text');
-        $news->preview_text_small = Input::get('preview_text_small');
-        $news->preview_text_mid = Input::get('preview_text_mid');
-        $news->is_on_main = Input::get('is_on_main', 0);
-        $news->thumbnail = $imageSaver->save('thumbnail', 'news', 555, 370);
+        $news->title                = trim(Input::get('title'));
+        $news->full_text            = Input::get('full_text');
+        $news->preview_text_small   = Input::get('preview_text_small');
+        $news->preview_text_mid     = Input::get('preview_text_mid');
+        $news->is_on_main           = Input::get('is_on_main', 0);
+        $news->thumbnail            = $imageSaver->save('thumbnail', 'news', 555, 370);
+        // Настройки seo
+        $news->page_title           = trim($request->get('page_title'));
+        $news->page_keywords        = trim($request->get('page_keywords'));
+        $news->page_description     = trim($request->get('page_description'));
+        $news->page_h1              = trim($request->get('page_h1'));
         $news->save();
 
         return redirect()->action('Admin\NewsController@getEdit', array('id' => $news->id))

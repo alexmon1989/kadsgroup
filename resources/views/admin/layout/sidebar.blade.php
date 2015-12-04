@@ -45,6 +45,13 @@
         <ul class="sidebar-menu">
             <li class="header">Страницы</li>
 
+
+            <li class="{{ Request::segment(2) == 'home' ? 'active' : '' }}">
+                <a href="{{ action('Admin\HomeController@getIndex') }}">
+                    <i class="fa fa-home"></i> <span>Главная</span>
+                </a>
+            </li>
+
             <li class="{{ Request::segment(2) == 'galleries' ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-photo"></i> <span>Фотогалерея</span> <i class="fa fa-angle-left pull-right"></i>

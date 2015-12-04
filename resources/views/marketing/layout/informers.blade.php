@@ -12,9 +12,9 @@
                         <style>
                             #IUAweather {min-width: 120px; width: 250px; cursor: pointer; height: 120px; border-radius: 4px;}
                             #IUAweather * {margin: 0; padding: 0;}#IUAweather .content {overflow: hidden; padding: 4px; font-family: Arial; font-size: 10px; color: #000000; background: #EEEEEE; border: 1px solid #00529c; border-radius: 5px;}
-                            #IUAweather h1 {overflow: hidden; margin-top: -4px; font-size: 12px; font-weight: bold; height: 20px; line-height: 20px; color: #1166CC;}
-                            #IUAweather h1 span {float: left; white-space: nowrap;}
-                            #IUAweather h1 i {float: right; display: inline-block; width: 36px; height: 15px; background: url(http://i3.i.ua/v2/logo/logo_small_14_black.png) no-repeat 0 1px transparent; opacity: .3;}
+                            #IUAweather .IUAweatherTitle {overflow: hidden; margin-top: -4px; font-size: 12px; font-weight: bold; height: 20px; line-height: 20px; color: #1166CC;}
+                            #IUAweather .IUAweatherTitle span {float: left; white-space: nowrap;}
+                            #IUAweather .IUAweatherTitle i {float: right; display: inline-block; width: 36px; height: 15px; background: url(http://i3.i.ua/v2/logo/logo_small_14_black.png) no-repeat 0 1px transparent; opacity: .3;}
                             #IUAweather a, #IUAweather a:hover {border: none; text-decoration: underline; color: #1166CC;}
                             #IUAweather dl {overflow: hidden; background: #FFFFFF; color:#000000; padding: 4px; margin-bottom: 4px;height:74px}
                             #IUAweather dl dt {font-weight: bold; font-size: 12px;}
@@ -23,7 +23,7 @@
                         </style>
                         <div id="IUAweather" onclick="window.location.href='http://weather.i.ua/';">
                             <div class="content" id="IUAweatherBody">
-                                <h1 id="IUAweatherTitle"><span><a href="http://weather.i.ua/" id="IUAweatherTitleLink">Погода</a></span><i></i></h1>
+                                <div class="IUAweatherTitle" id="IUAweatherTitle"><span><a href="http://weather.i.ua/" id="IUAweatherTitleLink">Погода</a></span><i></i></div>
                                 <dl id="IUAweatherEmbed"></dl><a href="http://weather.i.ua/" id="IUAweatherLink">Прогноз погоди на тиждень</a>
                             </div>
                         </div>

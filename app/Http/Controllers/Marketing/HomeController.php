@@ -18,7 +18,8 @@ class HomeController extends Controller
     public function index()
     {
         // Главная статья
-        $data['article'] = Article::whereType('main_article')->first();
+        $data['article'] = Article::whereType('main_article')
+            ->first(['full_text', 'page_title', 'page_keywords', 'page_description']);
 
         // Три новости
         $data['news'] = News::whereIsOnMain(TRUE)

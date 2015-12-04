@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Контакты
+{{ $contacts_form_text->page_title != '' ? $contacts_form_text->page_title  : 'Контакты' }}
 @stop
 
 @section('top_content')
 @slider()
 @include('marketing.layout.breadcrumbs', [
-            'title' => 'Контакты',
+            'title' => $contacts_form_text->page_h1 != '' ? $contacts_form_text->page_h1  : 'Контакты',
             'items' => [
                     ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
                     ['title' => 'Контакты', 'action' => '', 'active' => TRUE],
@@ -113,4 +113,9 @@
             ContactPage.initMap(lat, lng);
         });
     </script>
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $contacts_form_text->page_keywords }}">
+    <meta name="description" content="{{ $contacts_form_text->page_description }}">
 @stop
