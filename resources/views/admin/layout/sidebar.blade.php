@@ -130,9 +130,21 @@
             </li>
 
             <li class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">
-                <a href="{{ action('Admin\NewsController@getIndex') }}">
-                    <i class="fa fa-newspaper-o"></i> <span>Новости</span>
+                <a href="#">
+                    <i class="fa fa-newspaper-o"></i> <span>Новости</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::segment(2) == 'news' && (Request::segment(3) == 'create' || Request::segment(3) == 'edit' || Request::segment(3) == '') ? 'active' : '' }}">
+                        <a href="{{ action('Admin\NewsController@getIndex') }}">
+                            <i class="fa fa-circle-o"></i> Список новостей
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'news' && Request::segment(3) == 'settings' ? 'active' : '' }}">
+                        <a href="{{ action('Admin\NewsController@getSettings') }}">
+                            <i class="fa fa-circle-o"></i> Настройки
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="{{ Request::segment(2) == 'contacts' ? 'active' : '' }}">

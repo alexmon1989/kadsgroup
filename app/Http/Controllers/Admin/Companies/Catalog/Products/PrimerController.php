@@ -88,6 +88,12 @@ class PrimerController extends AdminController
         // Изображение
         $product->photo = $imageSaver->save('photo', 'products/primer', 260);
 
+        // SEO
+        $product->page_title = $request->page_title;
+        $product->page_keywords = $request->page_keywords;
+        $product->page_description = $request->page_description;
+        $product->page_h1 = $request->page_h1;
+
         // Сохраняем
         $product->save();
 
@@ -165,6 +171,12 @@ class PrimerController extends AdminController
         if ($request->hasFile('photo')) {
             $product->photo = $imageSaver->save('photo', 'products/primer', 260, NULL, $product->photo);
         }
+
+        // SEO
+        $product->page_title = $request->page_title;
+        $product->page_keywords = $request->page_keywords;
+        $product->page_description = $request->page_description;
+        $product->page_h1 = $request->page_h1;
 
         // Сохраняем
         $product->save();

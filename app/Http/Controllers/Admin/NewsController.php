@@ -1,14 +1,17 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Services\SavesImages;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\News;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\StoreNewsSettingsRequest;
 use Illuminate\Support\Facades\File;
 
 class NewsController extends AdminController {
@@ -138,4 +141,40 @@ class NewsController extends AdminController {
         return redirect()->action('Admin\NewsController@getIndex')
                         ->with('success', 'Новость успешно удалена.');
 	}
+
+    /**
+     * Действие для отображения страницы настроек модуля.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function getSettings()
+    {
+        // Статья с описанием новостей
+        Model::unguard();
+        $data['news_description'] = Article::firstOrCreate(['type' => 'news_description']);
+        Model::reguard();
+
+        return view('admin.news.settings', $data);
+    }
+
+    /**
+     * Действие-обработчик сохранение настроек модуля
+     *
+     * @param StoreNewsSettingsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postSettings(StoreNewsSettingsRequest $request)
+    {
+        // Изменяем статью
+        $article = Article::whereType('news_description')->first();
+        $article->title             = $request->get('title');
+        $article->full_text         = $request->get('full_text');
+        $article->page_title        = $request->get('page_title');
+        $article->page_keywords     = $request->get('page_keywords');
+        $article->page_description  = $request->get('page_description');
+        $article->page_h1           = $request->get('page_h1');
+        $article->save();
+
+        return redirect()->back()->with('success', 'Данные успешно сохранены.');
+    }
 }

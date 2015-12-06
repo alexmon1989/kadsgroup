@@ -83,6 +83,13 @@ class SikaController extends AdminController
             $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
         }
 
+        // SEO
+        $product->page_title = $request->page_title;
+        $product->page_keywords = $request->page_keywords;
+        $product->page_description = $request->page_description;
+        $product->page_h1 = $request->page_h1;
+
+
         // Сохраняем
         $product->save();
 
@@ -153,6 +160,12 @@ class SikaController extends AdminController
             $product->tech_cart_file = $generator->uuid.'.pdf';
             $request->file('tech_cart_file')->move(public_path('assets/img/products/sika/tech-carts/'), $product->tech_cart_file);
         }
+
+        // SEO
+        $product->page_title = $request->page_title;
+        $product->page_keywords = $request->page_keywords;
+        $product->page_description = $request->page_description;
+        $product->page_h1 = $request->page_h1;
 
         // Сохраняем
         $product->save();

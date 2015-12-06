@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Marketing'], function()
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
 
     Route::get('companies/primer/videos', 'VideosController@getIndex');
+
+    // Sitemap
+    Route::get('sitemap/{format?}/{cached?}', 'SitemapController@getIndex');
 });
 
 // Authentication routes...

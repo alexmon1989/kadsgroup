@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Новости
+{{ $news_description->page_title != '' ? $news_description->page_title  : 'Новости' }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Новости',
+                'title' => $news_description->page_h1 != '' ? $news_description->page_h1  : 'Новости',
                 'items' => [
                         ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
                         ['title' => 'Новости', 'action' => '', 'active' => TRUE],
@@ -16,6 +16,17 @@
 @stop
 
 @section('content')
+    @if ($news_description->title != '' || $news_description->full_text != '')
+        <div class="text-center margin-bottom-50">
+            @if ($news_description->title != '')
+                <h2 class="{{ $news_description->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $news_description->title }}</h2>
+            @endif
+            @if ($news_description->full_text != '')
+                <p class="space-lg-hor">{!! $news_description->full_text !!}</p>
+            @endif
+        </div>
+    @endif
+
     @if (!empty($news))
         @foreach($news as $item)
         <!-- News v3 -->
@@ -52,4 +63,9 @@
 
 @section('footer')
     @include('marketing.layout.footer')
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $news_description->page_keywords }}">
+    <meta name="description" content="{{ $news_description->page_description }}">
 @stop

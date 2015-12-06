@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-{{ $company->title }}
+    {{ $product->page_title != '' ? $product->page_title  : $product->title }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => $company->title,
+                'title' => $product->page_h1 != '' ? $product->page_h1  : $product->title,
                 'items' => [
                         [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
                         [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
@@ -84,4 +84,9 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $product->page_keywords }}">
+    <meta name="description" content="{{ $product->page_description }}">
 @stop

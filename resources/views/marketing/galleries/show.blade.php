@@ -18,11 +18,15 @@
 @section('content')
     @if (!empty($photos))
 
-        @if ($article->title != '' && $article->full_text != '')
-        <div class="text-center margin-bottom-50">
-            @if ($article->title != '')<h2 class="title-v2 title-center text-uppercase">{{ $article->title }}</h2>@endif
-            @if ($article->full_text != '')<p class="space-lg-hor">{!! $article->full_text !!}</p>@endif
-        </div>
+        @if ($article->title != '' || $article->full_text != '')
+            <div class="text-center margin-bottom-50">
+                @if ($article->title != '')
+                    <h2 class="{{ $article->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $article->title }}</h2>
+                @endif
+                @if ($article->full_text != '')
+                    <p class="space-lg-hor">{!! $article->full_text !!}</p>
+                @endif
+            </div>
         @endif
 
         @for($i = 0; $i <= count($photos) - 1; $i += 3)
