@@ -1,16 +1,16 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Результати пошуку
+Результаты поиска
 @stop
 
 @section('top_content')
 @slider()
 @include('marketing.layout.breadcrumbs', [
-            'title' => 'Результати пошуку',
+            'title' => 'Результаты поиска',
             'items' => [
-                    ['title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
-                    ['title' => 'Результати пошуку', 'action' => '', 'active' => TRUE],
+                    ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                    ['title' => 'Результаты поиска', 'action' => '', 'active' => TRUE],
             ]
         ])
 @stop
@@ -22,14 +22,14 @@
     <div class="container">
         <div class="col-md-6 col-md-offset-3 search">
             <h2>Пошук ще раз</h2>
-            <div class="input-group">
-                <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
-                    <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введіть строку пошуку...">
-                    <span class="input-group-btn">
-                        <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
-                    </span>
-                </form>
-            </div>
+            <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
+                        <span class="input-group-btn">
+                            <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                </div>
+            </form>
         </div>
     </div>
 </div><!--/container-->
@@ -40,7 +40,7 @@
     @if (Session::get('errors'))
     <div class="alert alert-danger alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        <h4>Помилка!</h4>
+        <h4>Ошибка!</h4>
         @foreach (Session::get('errors')->getMessages() as $msg)
             @foreach ($msg as $value)
                 {{ $value }}<br>
@@ -49,7 +49,7 @@
     </div>
     @endif
 
-    <span class="results-number">Всього результатів: {{ isset($res_count) ? $res_count : '0' }} </span>
+    <span class="results-number">Всего результатов: {{ isset($res_count) ? $res_count : '0' }} </span>
 
     @if (isset($news) and count($news) > 0)
         <h2>Новости</h2>
@@ -68,7 +68,7 @@
     @endif
 
     @if (isset($products_sika) and count($products_sika) > 0)
-        <h2>Продукти Sika</h2>
+        <h2>Продукты Sika</h2>
         @foreach($products_sika as $item)
         <!-- Begin Inner Results -->
         <div class="inner-results">
@@ -96,7 +96,7 @@
     @endif
 
     @if (isset($products_primer) and count($products_primer) > 0)
-        <h2>Продукти Primer</h2>
+        <h2>Продукты Primer</h2>
         @foreach($products_primer as $item)
         <!-- Begin Inner Results -->
         <div class="inner-results">
@@ -116,7 +116,7 @@
 
                     {!! $item->description_full !!}
 
-                    <p><strong>Фасовка:</strong> {!! $item->package !!}</p>
+                    <p><strong>Упаковка:</strong> {!! $item->package !!}</p>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
     @endif
 
     @if (isset($products_sfs) and count($products_sfs) > 0)
-        <h2>Продукти Sfs</h2>
+        <h2>Продукты Sfs</h2>
         @foreach($products_sfs as $item)
         <!-- Begin Inner Results -->
         <div class="inner-results">

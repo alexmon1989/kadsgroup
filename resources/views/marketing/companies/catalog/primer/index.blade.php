@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
                 'items' => [
-                        [ 'title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
+                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $category->title, 'action' => '', 'active' => TRUE ],
@@ -48,7 +48,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товари</h2>
+                <h2>Товары</h2>
             </div>
         </div>
         <!-- Pager -->
@@ -78,16 +78,16 @@
                                 <p></p>
 
                                 <div class="row">
-                                    <div class="col-md-3"><strong>Фасовка:</strong></div>
-                                    <div class="col-md-9">{{ $products[$i+$j]->package }}</div>
+                                    <div class="col-md-4"><strong>Упаковка:</strong></div>
+                                    <div class="col-md-8">{{ $products[$i+$j]->package }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         @if ($products[$i+$j]->price_1_name && $products[$i+$j]->price_1_val)
-                                        <strong>Ціна:</strong>
+                                        <strong>Стоимость:</strong>
                                         @endif
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         @if ($products[$i+$j]->price_1_name && $products[$i+$j]->price_1_val)
                                             {{ $products[$i+$j]->price_1_name . ' - ' . $products[$i+$j]->price_1_val }}
 
@@ -115,7 +115,7 @@
         @else
             <div class="row">
                 <div class="col-md-12">
-                    <p>Товари відсутні</p>
+                    <p>Товары отсутствуют</p>
                 </div>
             </div>
         @endif

@@ -9,8 +9,8 @@
     @include('marketing.layout.breadcrumbs', [
                 'title' => $company->title,
                 'items' => [
-                        [ 'title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Група компаній', 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
+                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
                         [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
                         [ 'title' => $product->category->title, 'url' => url('/companies/primer/catalog/index/'.$product->category->id), 'active' => FALSE ],
@@ -47,7 +47,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
-                <p><a href="{{ url('/companies/primer/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Повернутись до товарів категорії <strong>"{{ $product->category->title }}"</strong></a></p>
+                <p><a href="{{ url('/companies/primer/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Вернутся к товарам категории <strong>"{{ $product->category->title }}"</strong></a></p>
                 <div class="panel panel-grey">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ $product->title }}</h3>
@@ -63,16 +63,16 @@
                                 <div class="alert alert-info fade in">
                                     {!! $product->description_full !!}
                                 </div>
-                                @foreach(['using'           => 'Використання',
-                                'exec_works'                => 'Виконання робіт',
-                                'tech_characteristics'      => 'Технічні характеристики',
-                                'general_characteristics'   => 'Загальні характеристики',
-                                'application'               => 'Використання',
-                                'properties_using'          => 'Властивості та призначення матеріалу',
-                                'application'               => 'Нанесення',
-                                'phys_chem_properties'      => 'Фізичні та хімічні властивості',
-                                'restrictions'              => 'Обмеження',
-                                'safety'                    => 'Заходи безпеки',
+                                @foreach(['using'           => 'Использование',
+                                'exec_works'                => 'Выполнение работ',
+                                'tech_characteristics'      => 'Технические характеристики',
+                                'general_characteristics'   => 'Общие характеристики',
+                                'application'               => 'Использование',
+                                'properties_using'          => 'Свойства и предназначение материала',
+                                'application'               => 'Нанесение',
+                                'phys_chem_properties'      => 'Физические и химичиские свойства',
+                                'restrictions'              => 'Ограничения',
+                                'safety'                    => 'Меры безопасности',
                                 ] as $key => $item)
                                     @if ($product->$key)
                                     <h5 class="text-uppercase"><span class="color-blue"><strong>{{ $item }}</strong></span></h5>
@@ -80,11 +80,11 @@
                                     @endif
                                 @endforeach
 
-                                <h5 class="text-uppercase"><span class="color-blue"><strong>Фасовка</strong></span></h5>
+                                <h5 class="text-uppercase"><span class="color-blue"><strong>Упаковка</strong></span></h5>
                                 {{ $product->package }}
 
                                 @if ($product->price_1_name && $product->price_1_val)
-                                    <h5 class="text-uppercase"><span class="color-blue"><strong>Ціна</strong></span></h5>
+                                    <h5 class="text-uppercase"><span class="color-blue"><strong>Стоимость</strong></span></h5>
 
                                     {{ $product->price_1_name . ' - ' . $product->price_1_val }}
 

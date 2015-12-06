@@ -4,7 +4,7 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
     <base href="{{ url() . '/' }}">
-    <title>404 Помилка - Kads Group</title>
+    <title>404 Ошибка - Kads Group</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -52,10 +52,10 @@
                 <div class="error-v4">
                     <a href="{{ url() }}"><img src="assets/img/logo-kadsgroup-footer.png" alt=""></a>
                     <h1>404</h1>
-                    <span class="sorry">Вибачте, сторінку не знайдено!</span>
+                    <span class="sorry">Извините, страница не найдена!</span>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <a class="btn-u btn-brd btn-u-light" href="{{ url() }}"> Перейти назад на головну сторінку</a>
+                            <a class="btn-u btn-brd btn-u-light" href="{{ url() }}"> Перейти на главную страницу</a>
                         </div> 
                     </div> 
                 </div>
@@ -67,7 +67,7 @@
     <!--=== Sticky Footer ===-->
     <div class="container sticky-footer">
         <p class="copyright-space">
-            {{ date('Y') }} &copy; Всі права захищені
+            {{ date('Y') }} &copy; Все права защищены
         </p>  
     </div>
     <!--=== End Sticky Footer ===-->

@@ -61,17 +61,17 @@
             <h4><i class="icon fa fa-info"></i> Внимание!</h4>
             Следующие поля не есть обязательными для заполнения. Для раскрытия любого из них нажмите плюс ("+").
         </div>
-        @foreach(['using'           => 'Використання',
-        'exec_works'                => 'Виконання робіт',
-        'tech_characteristics'      => 'Технічні характеристики',
-        'general_characteristics'   => 'Загальні характеристики',
-        'application'               => 'Використання',
-        'properties_using'          => 'Властивості та призначення матеріалу',
-        'application'               => 'Нанесення',
-        'phys_chem_properties'      => 'Фізичні та хімічні властивості',
-        'restrictions'              => 'Обмеження',
-        'safety'                    => 'Заходи безпеки',
-        ] as $key => $item)
+        @foreach(['using' => 'Использование',
+                'exec_works'                => 'Выполнение работ',
+                'tech_characteristics'      => 'Технические характеристики',
+                'general_characteristics'   => 'Общие характеристики',
+                'application'               => 'Использование',
+                'properties_using'          => 'Свойства и предназначение материала',
+                'application'               => 'Нанесение',
+                'phys_chem_properties'      => 'Физические и химичиские свойства',
+                'restrictions'              => 'Ограничения',
+                'safety'                    => 'Меры безопасности',
+                ] as $key => $item)
         <div class="box box-default box-solid collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">{{ $item }}</h3>

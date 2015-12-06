@@ -1,17 +1,17 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Відео "Праймер"
+Видео "Праймер"
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Відео "Праймер"',
-                'items' => array(
-                        array('title' => 'Головна', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Відео "Праймер"', 'action' => '', 'active' => TRUE),
-                )
+                'title' => 'Видео "Праймер"',
+                'items' => [
+                        ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                        ['title' => 'Видео "Праймер"', 'action' => '', 'active' => TRUE],
+                ]
             ])
 @stop
 
@@ -44,7 +44,7 @@
         </div>
         <!-- End Pager -->
     @else
-        <h2>Відео відсутні</h2>
+        <h2>Відео отсутствуют</h2>
     @endif
 @stop
 

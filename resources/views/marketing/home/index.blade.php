@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h2 class="news-link"><a href="{{ action('Marketing\NewsController@getIndex') }}">Новини</a></h2>
+            <h2 class="news-link"><a href="{{ action('Marketing\NewsController@getIndex') }}">Новости</a></h2>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
                     <div class="caption">
                         <h3><a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}" class="hover-effect">{{ $item->title }}</a></h3>
                         <p>{!! $item->preview_text_small !!}</p>
-                        <p><a class="btn-u btn-u-xs" href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">Детальніше <i class="fa fa-angle-right margin-left-5"></i></a></p>
+                        <p><a class="btn-u btn-u-xs" href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">Детальнее <i class="fa fa-angle-right margin-left-5"></i></a></p>
                     </div>
                 </div>
             </div>
