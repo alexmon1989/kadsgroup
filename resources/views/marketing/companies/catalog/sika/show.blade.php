@@ -1,19 +1,19 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-{{ $company->title }}
+    {{ $product->page_title != '' ? $product->page_title  : $product->title }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => $company->title,
+                'title' => '',
                 'items' => [
                         [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
-                        [ 'title' => 'Группа компаний', 'action' => '', 'active' => FALSE ],
-                        [ 'title' => $company->title, 'action' => '', 'active' => FALSE ],
-                        [ 'title' => 'Каталог', 'action' => '', 'active' => FALSE ],
-                        [ 'title' => $product->category->title, 'url' => url('/companies/sika/catalog/index/'.$product->category->id), 'active' => FALSE ],
+                        [ 'title' => $company->title, 'action' => 'Marketing\Companies\AboutController@getShow', 'action_params' => ['shortTitle' => 'sika'], 'active' => FALSE ],
+                        [ 'title' => $product->category->group_category->title, 'action' => 'Marketing\Companies\Sika\CatalogController@getGroup', 'action_params' => ['id' => $product->category->group_category->id], 'active' => FALSE ],
+                        $product->category->parent_category ? [ 'title' => $product->category->parent_category->title, 'action' => 'Marketing\Companies\Sika\CatalogController@getIndex', 'action_params' => ['id' => $product->category->parent_category->id], 'active' => FALSE ] : null,
+                        [ 'title' => $product->category->title, 'action' => 'Marketing\Companies\Sika\CatalogController@getIndex', 'action_params' => ['id' => $product->category->id], 'active' => FALSE ],
                         [ 'title' => $product->title, 'action' => '', 'active' => TRUE ],
                 ]
             ])
@@ -25,7 +25,7 @@
     <div class="col-md-3">
         @foreach($group_categories as $group_category)
             <ul class="list-group sidebar-nav-v1" id="sidebar-nav-{{ $group_category->id }}">
-                <li class="list-group-item first"><a href="{{ Request::url() }}#">{{ $group_category->title }}</a></li>
+                <li class="list-group-item first"><a href="{{ action('Marketing\Companies\Sika\CatalogController@getGroup', ['id' => $group_category->id]) }}">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($product->category->id) || $cat->id == $product->category->id ? 'active' : '' }}">
                     <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sika/catalog/index/'.$cat->id) }}">{{ $cat->title }}</a>
@@ -45,6 +45,13 @@
     </div>
 
     <div class="col-md-9">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ $product->page_h1 != '' ? $product->page_h1  : $product->title }}</h1>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <p><a href="{{ url('/companies/sika/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Вернутся к товарам категории <strong>"{{ $product->category->title }}"</strong></a></p>
@@ -84,4 +91,9 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $product->page_keywords }}">
+    <meta name="description" content="{{ trim($product->page_description) != '' ? $product->page_description : str_limit(strip_tags($product->description), 200) }}">
 @stop

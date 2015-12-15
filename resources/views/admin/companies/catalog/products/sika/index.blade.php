@@ -32,6 +32,7 @@
                         <th>ID</th>
                         <th>Название</th>
                         <th>Категория</th>
+                        <th>Группа категорий</th>
                         <th>Включено</th>
                         <th>Создано</th>
                         <th>Последнее редактирование</th>
@@ -57,7 +58,8 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'title', name: 'title' },
-                { data: 'category', name: 'category' },
+                { data: 'category.title', name: 'category.title' },
+                { data: 'category.group_category.title', name: 'category.group_category.title' },
                 { data: 'enabled', name: 'enabled' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },

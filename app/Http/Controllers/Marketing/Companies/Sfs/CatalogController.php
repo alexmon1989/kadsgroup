@@ -42,9 +42,15 @@ class CatalogController extends BaseCatalogController
             }
         }
 
-        // Категория вместе с товарами
+        // Категория
         $data['category'] = Category::whereEnabled(TRUE)
             ->with(['parent_category' => function ($q) {
+                $q->whereEnabled(TRUE);
+            }])
+            ->with(['child_categories' => function ($q) {
+                $q->whereEnabled(TRUE)->orderBy('order', 'asc');;
+            }])
+            ->with(['group_category' => function ($q) {
                 $q->whereEnabled(TRUE);
             }])
             ->whereEnabled(TRUE)
@@ -54,11 +60,13 @@ class CatalogController extends BaseCatalogController
             abort(404);
         }
 
-        // Получаем товары отдельно для погинации
-        $data['products'] = ProductSfs::whereCategoryId($categoryId)
-            ->whereEnabled(TRUE)
-            ->orderBy('created_at')
-            ->paginate(9);
+        // Если это не родительская категория, то получаем товары отдельно для погинации
+        if (count($data['category']->child_categories) == 0) {
+            $data['products'] = ProductSfs::whereCategoryId($categoryId)
+                ->whereEnabled(TRUE)
+                ->orderBy('created_at')
+                ->paginate(9);
+        }
 
         // Отображаем
         return view('marketing.companies.catalog.sfs.index', $data);
@@ -72,7 +80,20 @@ class CatalogController extends BaseCatalogController
      */
     public function getShow($id)
     {
-        // Для этого каталога нет страницы товара
-        abort(404);
+        // Получаем продукт из БД
+        $data['product'] = ProductSfs::whereEnabled(TRUE)
+            ->with('category')
+            ->find($id);
+
+        if (!empty($data['product']))
+        {
+            // Получаем группы категорий для фирмы "Sfs" вместе с подкатегориями
+            $data['group_categories'] = $this->getCategories();
+
+            // Отображаем
+            return view('marketing.companies.catalog.sfs.show', $data);
+        } else {
+            abort(404);
+        }
     }
 }

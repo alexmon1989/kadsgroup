@@ -1,28 +1,32 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Сертификаты
+{{ $certificates_description->page_title != '' ? $certificates_description->page_title  : 'Сертификаты' }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Сертификаты',
-                'items' => array(
-                        array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
-                        array('title' => 'Сертификаты', 'action' => '', 'active' => TRUE),
-                )
+                'title' => $certificates_description->page_h1 != '' ? $certificates_description->page_h1  : 'Сертификаты',
+                'items' => [
+                        ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
+                        ['title' => 'Сертификаты', 'action' => '', 'active' => TRUE],
+                ]
             ])
 @stop
 
 @section('content')
     @if (!empty($certificates))
 
-        @if ($certificates_description->title != '' && $certificates_description->full_text != '')
-        <div class="text-center margin-bottom-50">
-            @if ($certificates_description->title != '')<h2 class="title-v2 title-center text-uppercase">{{ $certificates_description->title }}</h2>@endif
-            @if ($certificates_description->full_text != '')<p class="space-lg-hor">{!! $certificates_description->full_text !!}</p>@endif
-        </div>
+        @if ($certificates_description->title != '' || $certificates_description->full_text != '')
+            <div class="text-center margin-bottom-50">
+                @if ($certificates_description->title != '')
+                    <h2 class="{{ $certificates_description->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $certificates_description->title }}</h2>
+                @endif
+                @if ($certificates_description->full_text != '')
+                    {!! $certificates_description->full_text !!}
+                @endif
+            </div>
         @endif
 
         @for($i = 0; $i <= count($certificates) - 1; $i += 3)
@@ -66,4 +70,9 @@
             FancyBox.initFancybox();
         });
     </script>
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $certificates_description->page_keywords }}">
+    <meta name="description" content="{{ trim($certificates_description->page_description) != '' ? $certificates_description->page_description : str_limit(strip_tags($certificates_description->full_text), 200) }}">
 @stop

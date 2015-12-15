@@ -68,6 +68,10 @@ class DescriptionsController extends AdminController
         {
             $company->file_logo = $imageSaver->save('file_logo', 'companies'.DIRECTORY_SEPARATOR.'top', NULL, 89, $company->file_logo);
         }
+        $company->page_title = trim($request->page_title);
+        $company->page_keywords = trim($request->page_keywords);
+        $company->page_description = trim($request->page_description);
+        $company->page_h1 = trim($request->page_h1);
         $company->save();
 
         return redirect()->back()->with('success', 'Описание успешно сохранено.');

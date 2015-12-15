@@ -153,6 +153,7 @@ return [
         Orchestra\Memory\MemoryServiceProvider::class,
         Orchestra\Memory\CommandServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
 
     ],
 

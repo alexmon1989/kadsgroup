@@ -4,13 +4,11 @@
 <!--[if !IE]><!--> <html lang="ua"> <!--<![endif]-->
 <head>
     <base href="{{ url() . '/' }}">
-    <title>@yield('page_title', 'Головна') - Kads Group</title>
+    <title>@yield('page_title', 'Главная') - Kads Group</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
     @yield('meta')
 
     <!-- Favicon -->
@@ -25,7 +23,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
-    <?php //dd(Request::segment(1)); ?>
+
     @if (Request::segment(1) == null)
     <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
     @else

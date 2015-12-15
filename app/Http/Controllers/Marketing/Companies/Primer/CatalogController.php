@@ -48,17 +48,26 @@ class CatalogController extends BaseCatalogController
             ->with(['parent_category' => function ($q) {
                 $q->whereEnabled(TRUE);
             }])
+            ->with(['child_categories' => function ($q) {
+                $q->whereEnabled(TRUE)->orderBy('order', 'asc');;
+            }])
+            ->with(['group_category' => function ($q) {
+                $q->whereEnabled(TRUE);
+            }])
+            ->whereEnabled(TRUE)
             ->find($categoryId);
 
         if (!$data['category']) {
             abort(404);
         }
 
-        // Получаем товары отдельно для погинации
-        $data['products'] = ProductPrimer::whereCategoryId($categoryId)
-            ->whereEnabled(TRUE)
-            ->orderBy('created_at')
-            ->paginate(9);
+        // Если это не родительская категория, то получаем товары отдельно для погинации
+        if (count($data['category']->child_categories) == 0) {
+            $data['products'] = ProductPrimer::whereCategoryId($categoryId)
+                ->whereEnabled(TRUE)
+                ->orderBy('created_at')
+                ->paginate(9);
+        }
 
         // Отображаем
         return view('marketing.companies.catalog.primer.index', $data);

@@ -5,6 +5,9 @@ class StoreProductsSfsRequest extends Request {
     protected $rules = [
         'title'             => 'required|max:255',
         'category_id'       => 'required|exists:categories,id',
+        'photo'             => 'image',
+        'description_small' => 'required|max:255',
+        'description_full'  => '',
         'enabled'           => 'boolean',
         'file_name'         => 'mimes:pdf',
     ];
