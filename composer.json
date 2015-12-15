@@ -14,7 +14,8 @@
         "intervention/image": "^2.3",
         "barryvdh/laravel-elfinder": "^0.3.4",
         "orchestra/memory": "~3.1",
-        "yajra/laravel-datatables-oracle": "^5.11"
+        "yajra/laravel-datatables-oracle": "^5.11",
+        "roumen/sitemap": "2.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

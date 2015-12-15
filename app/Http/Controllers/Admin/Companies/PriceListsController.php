@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Companies;
 
+use App\Article;
 use App\Company;
 use App\Http\Controllers\Admin\AdminController;
 use Carbon\Carbon;
@@ -34,12 +35,15 @@ class PriceListsController extends AdminController
      */
     public function getIndex()
     {
-        // Ищем кфирму по короткому названию
+        // Ищем фирму по короткому названию
         $data['company'] = Company::whereShortTitle($this->companyName)->first();
 
         if (empty($data['company'])) {
             abort(404);
         }
+
+        // Статья с описанием прайс-листа
+        $data['article'] = Article::firstOrCreate(['type' => 'price_list_description']);
 
         // Последнее обновление прайса
         $last_update = Memory::get('price.primer.last_update');
@@ -61,17 +65,29 @@ class PriceListsController extends AdminController
      */
     public function postIndex(StorePriceListsRequest $request)
     {
-        // Удаляем старый файл
-        File::delete('assets/price-list/'.Memory::get('price.primer.file_name'));
+        // Изменяем статью
+        $article = Article::whereType('price_list_description')->first();
+        $article->full_text         = $request->get('full_text');
+        $article->page_title        = $request->get('page_title');
+        $article->page_keywords     = $request->get('page_keywords');
+        $article->page_description  = $request->get('page_description');
+        $article->page_h1           = $request->get('page_h1');
+        $article->save();
 
-        // Сохраняем загруженный файл
-        $fileName = 'prices.'.$request->file('file_name')->getClientOriginalExtension();
-        $request->file('file_name')->move('assets/price-list/', $fileName);
+        // Сохраняем файл прайса
+        if ($request->hasFile('file_name')) {
+            // Удаляем старый файл
+            File::delete('assets/price-list/' . Memory::get('price.primer.file_name'));
 
-        // Обновляем данные БД
-        Memory::put('price.primer.file_name', $fileName);
-        Memory::put('price.primer.last_update', Carbon::now());
+            // Сохраняем загруженный файл
+            $fileName = 'prices.' . $request->file('file_name')->getClientOriginalExtension();
+            $request->file('file_name')->move('assets/price-list/', $fileName);
 
-        return redirect()->back()->with('success', 'Прайс-лист успешно обновлён.');
+            // Обновляем данные БД
+            Memory::put('price.primer.file_name', $fileName);
+            Memory::put('price.primer.last_update', Carbon::now());
+        }
+
+        return redirect()->back()->with('success', 'Данные успешно обновлены.');
     }
 }

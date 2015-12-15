@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Marketing;
 
+use App\Article;
 use App\News;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,6 +18,11 @@ class NewsController extends Controller
      */
     public function getIndex()
     {
+        // Статья с описанием новостей
+        Model::unguard();
+        $data['news_description'] = Article::firstOrCreate(['type' => 'news_description']);
+        Model::reguard();
+
         $data['news'] = News::orderBy('created_at', 'DESC')->paginate(4);
 
         return view('marketing.news.index', $data);

@@ -21,7 +21,7 @@
 <div class="search-block-v2">
     <div class="container">
         <div class="col-md-6 col-md-offset-3 search">
-            <h2>Пошук ще раз</h2>
+            <h2>Поиск ещё раз</h2>
             <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
                 <div class="input-group">
                         <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
@@ -54,7 +54,7 @@
     @if (isset($news) and count($news) > 0)
         <h2>Новости</h2>
         @foreach($news as $item)
-                <!-- Begin Inner Results -->
+        <!-- Begin Inner Results -->
         <div class="inner-results">
             <h3><a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
             <ul class="list-inline up-ul">
@@ -75,18 +75,44 @@
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
                     <h3><a href="{{ action('Marketing\Companies\Sika\CatalogController@getShow', ['id'=>$item->id]) }}">{{ $item->title }}</a></h3>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-1">
                     <img alt="{{ $item->title }}" src="{{ asset('assets/img/products/sika/'.$item->photo) }}" class="img-responsive">
-                </span>
                 </div>
                 <div class="col-md-11">
                     {!! $item->description !!}
 
                     {!! $item->package_list !!}
+                </div>
+            </div>
+        </div>
+        <!-- Begin Inner Results -->
+        <hr>
+        @endforeach
+    @endif
+
+    @if (isset($products_sfs) and count($products_sfs) > 0)
+        <h2>Продукты Sfs</h2>
+        @foreach($products_sfs as $item)
+        <!-- Begin Inner Results -->
+        <div class="inner-results">
+            <div class="row margin-bottom-10">
+                <div class="col-md-12">
+                    <h3><a href="{{ action('Marketing\Companies\Sfs\CatalogController@getShow', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1">
+                    <img alt="{{ $item->title }}" src="{{ asset('assets/img/products/sfs/'.$item->photo) }}" class="img-responsive">
+                </div>
+                <div class="col-md-11">
+                    {!! $item->description_small !!}
                 </div>
             </div>
         </div>
@@ -103,13 +129,13 @@
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
                     <h3><a href="{{ action('Marketing\Companies\Primer\CatalogController@getShow', ['id'=>$item->id]) }}">{{ $item->title }}</a></h3>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-1">
                     <img alt="{{ $item->title }}" src="{{ asset('assets/img/products/primer/'.$item->photo) }}" class="img-responsive">
-                    </span>
                 </div>
                 <div class="col-md-11">
                     <p><strong>{{ $item->description_small }}</strong></p>
@@ -124,23 +150,6 @@
         <hr>
         @endforeach
     @endif
-
-    @if (isset($products_sfs) and count($products_sfs) > 0)
-        <h2>Продукты Sfs</h2>
-        @foreach($products_sfs as $item)
-        <!-- Begin Inner Results -->
-        <div class="inner-results">
-            <div class="row margin-bottom-10">
-                <div class="col-md-12">
-                    <h3><a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex', ['categoryId' => $item->category->id]) }}">{{ $item->title }}</a></h3>
-                </div>
-            </div>
-        </div>
-        <!-- Begin Inner Results -->
-        <hr>
-        @endforeach
-    @endif
-
 </div><!--/container-->
 <!--=== End Search Results ===-->
 

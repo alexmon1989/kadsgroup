@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-Фотогалерея "{{ $company->title }}"
+{{ $article->page_title != '' ? $article->page_title  : 'Фотогалерея "'.$company->title.'"' }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => 'Фотогалерея "'.$company->title.'"',
+                'title' => $article->page_h1 != '' ? $article->page_h1  : 'Фотогалерея "'.$company->title.'"',
                 'items' => array(
                         array('title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE),
                         array('title' => 'Фотогалерея "'.$company->title.'"', 'action' => '', 'active' => TRUE),
@@ -18,11 +18,15 @@
 @section('content')
     @if (!empty($photos))
 
-        @if ($article->title != '' && $article->full_text != '')
-        <div class="text-center margin-bottom-50">
-            @if ($article->title != '')<h2 class="title-v2 title-center text-uppercase">{{ $article->title }}</h2>@endif
-            @if ($article->full_text != '')<p class="space-lg-hor">{!! $article->full_text !!}</p>@endif
-        </div>
+        @if ($article->title != '' || $article->full_text != '')
+            <div class="text-center margin-bottom-50">
+                @if ($article->title != '')
+                    <h2 class="{{ $article->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $article->title }}</h2>
+                @endif
+                @if ($article->full_text != '')
+                    {!! $article->full_text !!}
+                @endif
+            </div>
         @endif
 
         @for($i = 0; $i <= count($photos) - 1; $i += 3)
@@ -65,4 +69,10 @@
             FancyBox.initFancybox();
         });
     </script>
+@stop
+
+
+@section('meta')
+    <meta name="keywords" content="{{ $article->page_keywords }}">
+    <meta name="description" content="{{ trim($article->page_description) != '' ? $article->page_description : str_limit(strip_tags($article->full_text), 200) }}">
 @stop

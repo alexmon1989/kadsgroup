@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 class StorePriceListsRequest extends Request
 {
     protected $rules = [
-        'file_name' => 'required|max:15000',
+        'file_name' => 'max:15000',
     ];
 
     /**
@@ -33,7 +33,6 @@ class StorePriceListsRequest extends Request
     public function messages()
     {
         return [
-            'file_name.required' => 'Поле "Файл" обязательно для заполнения.',
             'file_name.max' => 'Максимальный размер - 15 Мб.',
         ];
     }

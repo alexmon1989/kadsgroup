@@ -56,11 +56,7 @@
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
                                 <li>
-                                    @if(Memory::get('price.primer.file_name'))
-                                    <a target="_blank" href="{{ asset('assets/price-list/'.Memory::get('price.primer.file_name')) }}">Прайс-лист</a>
-                                    @else
-                                    <a href="{{ Request::url().'#' }} ">Прайс-лист</a>
-                                    @endif
+                                    <a href="{{ action('Marketing\Companies\PriceListController@getIndex') }}">Прайс-лист</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a>

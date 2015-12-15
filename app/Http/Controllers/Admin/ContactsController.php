@@ -50,6 +50,12 @@ class ContactsController extends AdminController
 
         // Обновляем тексты
         $contacts_form_text->full_text = $request->get('contacts_form_text');
+        // настройки СЕО
+        $contacts_form_text->page_title        = $request->get('page_title');
+        $contacts_form_text->page_keywords     = $request->get('page_keywords');
+        $contacts_form_text->page_description  = $request->get('page_description');
+        $contacts_form_text->page_h1           = $request->get('page_h1');
+
         $contacts_contacts->full_text = $request->get('contacts_contacts');
         $contacts_working_time->full_text = $request->get('contacts_working_time');
         $contacts_why_us->full_text = $request->get('contacts_why_us');

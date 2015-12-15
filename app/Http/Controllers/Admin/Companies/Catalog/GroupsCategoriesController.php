@@ -73,6 +73,11 @@ class GroupsCategoriesController extends AdminController
         $groupCategory->enabled = $request->get('enabled', FALSE);
         $groupCategory->company_id = $company->id;
         $groupCategory->order = GroupsCategory::whereCompanyId($groupCategory->company_id)->max('order') + 1;
+        // SEO
+        $groupCategory->page_title = $request->page_title;
+        $groupCategory->page_keywords = $request->page_keywords;
+        $groupCategory->page_description = $request->page_description;
+        $groupCategory->page_h1 = $request->page_h1;
         $groupCategory->save();
 
         return redirect('admin/companies/catalog/groups-categories/edit/'.$groupCategory->id.'?company='.$company->short_title)
@@ -110,6 +115,11 @@ class GroupsCategoriesController extends AdminController
         $groupCategory->title = trim($request->title);
         $groupCategory->description = trim($request->description);
         $groupCategory->enabled = $request->get('enabled', FALSE);
+        // SEO
+        $groupCategory->page_title = $request->page_title;
+        $groupCategory->page_keywords = $request->page_keywords;
+        $groupCategory->page_description = $request->page_description;
+        $groupCategory->page_h1 = $request->page_h1;
         $groupCategory->save();
 
         return redirect()->back()->with('success', 'Группа категорий успешно отредактирована.');

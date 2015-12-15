@@ -1,13 +1,13 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-{{ $news->title }}
+{{ $news->page_title != '' ? $news->page_title  : $news->title }}
 @stop
 
 @section('top_content')
     @slider()
     @include('marketing.layout.breadcrumbs', [
-                'title' => $news->title,
+                'title' => $news->page_h1 != '' ? $news->page_h1 : $news->title,
                 'items' => [
                         ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
                         ['title' => 'Новости', 'action' => 'Marketing\NewsController@getIndex', 'active' => FALSE],
@@ -47,5 +47,10 @@
     @endforeach
 </div>
 <!-- End Authored Blog -->
+@stop
+
+@section('meta')
+    <meta name="keywords" content="{{ $news->page_keywords }}">
+    <meta name="description" content="{{ trim($news->page_description) != '' ? $news->page_description : str_limit(strip_tags($news->full_text), 200) }}">
 
 @stop

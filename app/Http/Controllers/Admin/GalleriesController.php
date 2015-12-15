@@ -82,8 +82,12 @@ class GalleriesController extends AdminController
     {
         // Изменяем статью
         $article = Article::whereType('gallery_'.$this->companyName.'_description')->first();
-        $article->title = $request->get('title');
-        $article->full_text = $request->get('full_text');
+        $article->title             = trim($request->get('title'));
+        $article->full_text         = trim($request->get('full_text'));
+        $article->page_title        = trim($request->get('page_title'));
+        $article->page_keywords     = trim($request->get('page_keywords'));
+        $article->page_description  = trim($request->get('page_description'));
+        $article->page_h1           = trim($request->get('page_h1'));
         $article->save();
 
         return redirect()->back()->with('success', 'Данные успешно сохранены.');
