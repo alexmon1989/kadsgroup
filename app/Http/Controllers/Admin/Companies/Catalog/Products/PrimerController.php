@@ -41,7 +41,9 @@ class PrimerController extends AdminController
             ->get();
         // Lazy loading для правильной сортировки по алфавиту укр. симоволов
         $data['group_categories']->load(['categories' => function ($q) {
-            $q->orderBy('title', 'ASC');
+            $q->with(['child_categories' => function($q) { $q->where('enabled', '=', TRUE); }])
+                ->where('enabled', '=', TRUE)
+                ->orderBy('title', 'ASC');
         }]);
 
         return view('admin.companies.catalog.products.primer.create', $data);
@@ -123,7 +125,9 @@ class PrimerController extends AdminController
             ->get();
         // Lazy loading для правильной сортировки по алфавиту укр. симоволов
         $data['group_categories']->load(['categories' => function ($q) {
-            $q->orderBy('title', 'ASC');
+            $q->with(['child_categories' => function($q) { $q->where('enabled', '=', TRUE); }])
+                ->where('enabled', '=', TRUE)
+                ->orderBy('title', 'ASC');
         }]);
 
         return view('admin.companies.catalog.products.primer.edit', $data);
@@ -208,13 +212,9 @@ class PrimerController extends AdminController
      */
     public function anyData()
     {
-        $products = ProductPrimer::with('category')->get();
+        $products = ProductPrimer::with('category.group_category')->get();
 
         return Datatables::of($products)
-            ->addColumn('category', function ($item) {
-                $s =  $item->category->title;
-                return $s;
-            })
             ->addColumn('action', function ($item) {
                 $s =  '<a class="btn btn-primary btn-sm" href="'.action('Admin\Companies\Catalog\Products\PrimerController@getEdit', ['id' => $item->id]).'" title="Редактировать"><i class="fa fa-edit"></i></a>';
                 $s .= '<a class="btn btn-danger btn-sm item-delete" href="'.action('Admin\Companies\Catalog\Products\PrimerController@getDelete', ['id' => $item->id]).'" title="Удалить"><i class="fa fa-remove"></i></a>';

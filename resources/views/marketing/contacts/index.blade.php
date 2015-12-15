@@ -117,5 +117,5 @@
 
 @section('meta')
     <meta name="keywords" content="{{ $contacts_form_text->page_keywords }}">
-    <meta name="description" content="{{ $contacts_form_text->page_description }}">
+    <meta name="description" content="{{ trim($contacts_form_text->page_description) != '' ? $contacts_form_text->page_description : str_limit(strip_tags($contacts_form_text->full_text), 200) }}">
 @stop

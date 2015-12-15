@@ -47,28 +47,41 @@ class SearchController extends Controller {
         // По прудуктам Sika
         if (in_array('products_sika', $this->sources))
         {
-            $data['products_sika'] = ProductSika::where('title', 'LIKE', "%{$q}%")
-                ->orWhere('description', 'LIKE', "%{$q}%")
+            $data['products_sika'] = ProductSika::where(function($query) use ($q) {
+                $query->where('title', 'LIKE', "%{$q}%")
+                    ->orWhere('description', 'LIKE', "%{$q}%");
+            })
+                ->whereEnabled(TRUE)
                 ->orderBy('created_at', 'DESC')
+                ->with(['category' => function($q){ $q->whereEnabled(TRUE); }])
                 ->get();
         }
 
         // По прудуктам Sfs
         if (in_array('products_sfs', $this->sources))
         {
-            $data['products_sfs'] = ProductSfs::where('title', 'LIKE', "%{$q}%")
-                ->with('category')
+            $data['products_sfs'] = ProductSfs::where(function($query) use ($q) {
+                $query->where('title', 'LIKE', "%{$q}%")
+                    ->orWhere('description_small', 'LIKE', "%{$q}%")
+                    ->orWhere('description_full', 'LIKE', "%{$q}%");
+            })
+                ->whereEnabled(TRUE)
                 ->orderBy('created_at', 'DESC')
+                ->with(['category' => function($q){ $q->whereEnabled(TRUE); }])
                 ->get();
         }
 
         // По прудуктам Primer
         if (in_array('products_primer', $this->sources))
         {
-            $data['products_primer'] = ProductPrimer::where('title', 'LIKE', "%{$q}%")
-                ->orWhere('description_small', 'LIKE', "%{$q}%")
-                ->orWhere('description_full', 'LIKE', "%{$q}%")
+            $data['products_primer'] = ProductPrimer::where(function($query) use ($q) {
+                $query->where('title', 'LIKE', "%{$q}%")
+                    ->orWhere('description_small', 'LIKE', "%{$q}%")
+                    ->orWhere('description_full', 'LIKE', "%{$q}%");
+            })
+                ->whereEnabled(TRUE)
                 ->orderBy('created_at', 'DESC')
+                ->with(['category' => function($q){ $q->whereEnabled(TRUE); }])
                 ->get();
         }
 

@@ -23,8 +23,13 @@ Route::group(['namespace' => 'Marketing'], function()
         'contacts'                      => 'ContactsController',
         'galleries'                     => 'GalleriesController',
         'news'                          => 'NewsController',
+        'companies/primer/price-list'   => 'Companies\PriceListController',
         'search'                        => 'SearchController',
     ]);
+
+    Route::get('companies/sika/catalog/index/{categoryId?}', 'Companies\Sika\CatalogController@getIndex');
+    Route::get('companies/primer/catalog/index/{categoryId?}', 'Companies\Primer\CatalogController@getIndex');
+    Route::get('companies/sfs/catalog/index/{categoryId?}', 'Companies\Sfs\CatalogController@getIndex');
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
 

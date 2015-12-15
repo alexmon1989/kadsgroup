@@ -4,7 +4,7 @@
 <!--[if !IE]><!--> <html lang="ua"> <!--<![endif]-->
 <head>
     <base href="{{ url() . '/' }}">
-    <title>@yield('page_title', 'Головна') - Kads Group</title>
+    <title>@yield('page_title', 'Главная') - Kads Group</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

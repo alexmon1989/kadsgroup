@@ -34,7 +34,10 @@ abstract class CatalogController extends Controller
                 $q->whereNull('parent_id')
                     ->where('enabled', '=', TRUE)
                     ->orderBy('order', 'asc')
-                    ->with('child_categories');
+                    ->with(['child_categories' => function ($q) {
+                        $q->whereEnabled(TRUE)
+                          ->orderBy('order', 'asc');
+                    }]);
             }])
             ->whereHas('company', function($query) {
                 $query->where('short_title', '=', $this->shortTitle);
@@ -42,5 +45,26 @@ abstract class CatalogController extends Controller
             ->get();
 
         return $categories;
+    }
+
+    public function getGroup($id)
+    {
+        // Получаем все группы категорий данной ($this->shortTitle) компании
+        $data['group_categories'] = $this->getCategories();
+
+        // Ищем нужную компанию среди всех компаний данной компании
+        foreach($data['group_categories'] as &$group) {
+            if ($group->id == $id) {
+                $data['group'] = &$group;
+                break;
+            }
+        }
+
+        if (!$data['group']) {
+            abort(404);
+        }
+
+        // Отображаем
+        return view('marketing.companies.catalog.'.$this->shortTitle.'.group', $data);
     }
 }

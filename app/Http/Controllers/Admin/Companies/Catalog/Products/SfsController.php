@@ -42,7 +42,9 @@ class SfsController extends AdminController
             ->get();
         // Lazy loading для правильной сортировки по алфавиту укр. симоволов
         $data['group_categories']->load(['categories' => function ($q) {
-            $q->orderBy('title', 'ASC');
+            $q->with(['child_categories' => function($q) { $q->where('enabled', '=', TRUE); }])
+                ->where('enabled', '=', TRUE)
+                ->orderBy('title', 'ASC');
         }]);
 
         return view('admin.companies.catalog.products.sfs.create', $data);
@@ -65,12 +67,25 @@ class SfsController extends AdminController
         $product->title                     = trim($request->title);
         $product->category_id               = $request->category_id;
         $product->enabled                   = $request->get('enabled', FALSE);
+        $product->description_small         = trim($request->description_small);
+        $product->description_full          = trim($request->description_full);
         // PDF
         if ($request->hasFile('file_name')) {
             $generator = \Faker\Factory::create();
             $product->file_name = $generator->uuid.'.pdf';
-            $request->file('file_name')->move(public_path('assets/img/products/sfs/'), $product->file_name);
+            $request->file('file_name')->move(public_path('assets/img/products/sfs/pdf/'), $product->file_name);
         }
+
+        // Изображение
+        if ($request->hasFile('photo')) {
+            $product->photo = $imageSaver->save('photo', 'products/sfs', 260);
+        }
+
+        // SEO
+        $product->page_title = $request->page_title;
+        $product->page_keywords = $request->page_keywords;
+        $product->page_description = $request->page_description;
+        $product->page_h1 = $request->page_h1;
 
         // Сохраняем
         $product->save();
@@ -101,7 +116,9 @@ class SfsController extends AdminController
             ->get();
         // Lazy loading для правильной сортировки по алфавиту укр. симоволов
         $data['group_categories']->load(['categories' => function ($q) {
-            $q->orderBy('title', 'ASC');
+            $q->with(['child_categories' => function($q) { $q->where('enabled', '=', TRUE); }])
+                ->where('enabled', '=', TRUE)
+                ->orderBy('title', 'ASC');
         }]);
 
         return view('admin.companies.catalog.products.sfs.edit', $data);
@@ -123,14 +140,33 @@ class SfsController extends AdminController
         $product->title                     = trim($request->title);
         $product->category_id               = $request->category_id;
         $product->enabled                   = $request->get('enabled', FALSE);
+        $product->description_small         = trim($request->description_small);
+        $product->description_full          = trim($request->description_full);
         // PDF
         if ($request->hasFile('file_name')) {
             // Удаляем старый файл
-            File::delete(public_path('assets/img/products/sfs/'.$product->file_name));
+            File::delete(public_path('assets/img/products/sfs/pdf/'.$product->file_name));
             $generator = \Faker\Factory::create();
             $product->file_name = $generator->uuid.'.pdf';
-            $request->file('file_name')->move(public_path('assets/img/products/sfs/'), $product->file_name);
+            $request->file('file_name')->move(public_path('assets/img/products/sfs/pdf/'), $product->file_name);
         }
+
+        // Изображение
+        if ($request->hasFile('photo')) {
+            $product->photo                 = $imageSaver->save(
+                                                    'photo',
+                                                    'products/sfs',
+                                                    260,
+                                                    NULL,
+                                                    $product->photo != 'default.jpg' ? $product->photo : NULL
+                                            );
+        }
+
+        // SEO
+        $product->page_title                = $request->page_title;
+        $product->page_keywords             = $request->page_keywords;
+        $product->page_description          = $request->page_description;
+        $product->page_h1                   = $request->page_h1;
 
         // Сохраняем
         $product->save();
@@ -162,13 +198,9 @@ class SfsController extends AdminController
      */
     public function anyData()
     {
-        $products = ProductSfs::with('category')->get();
+        $products = ProductSfs::with('category.group_category')->get();
 
         return Datatables::of($products)
-            ->addColumn('category', function ($item) {
-                $s =  $item->category->title;
-                return $s;
-            })
             ->addColumn('action', function ($item) {
                 $s =  '<a class="btn btn-primary btn-sm" href="'.action('Admin\Companies\Catalog\Products\SfsController@getEdit', ['id' => $item->id]).'" title="Редактировать"><i class="fa fa-edit"></i></a>';
                 $s .= '<a class="btn btn-danger btn-sm item-delete" href="'.action('Admin\Companies\Catalog\Products\SfsController@getDelete', ['id' => $item->id]).'" title="Удалить"><i class="fa fa-remove"></i></a>';

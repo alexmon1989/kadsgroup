@@ -92,6 +92,12 @@ class CategoriesController extends AdminController
         }
         $category->order =  $category->order->max('order') + 1;
 
+        // SEO
+        $category->page_title = $request->page_title;
+        $category->page_keywords = $request->page_keywords;
+        $category->page_description = $request->page_description;
+        $category->page_h1 = $request->page_h1;
+
         // Сохранение
         $category->save();
 
@@ -174,6 +180,12 @@ class CategoriesController extends AdminController
             }
             $category->order =  $category->order->max('order') + 1;
         }
+
+        // SEO
+        $category->page_title = $request->page_title;
+        $category->page_keywords = $request->page_keywords;
+        $category->page_description = $request->page_description;
+        $category->page_h1 = $request->page_h1;
 
         // Сохранение
         $category->save();

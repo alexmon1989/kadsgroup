@@ -24,7 +24,7 @@
                     <h2 class="{{ $certificates_description->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $certificates_description->title }}</h2>
                 @endif
                 @if ($certificates_description->full_text != '')
-                    <p class="space-lg-hor">{!! $certificates_description->full_text !!}</p>
+                    {!! $certificates_description->full_text !!}
                 @endif
             </div>
         @endif
@@ -74,5 +74,5 @@
 
 @section('meta')
     <meta name="keywords" content="{{ $certificates_description->page_keywords }}">
-    <meta name="description" content="{{ $certificates_description->page_description }}">
+    <meta name="description" content="{{ trim($certificates_description->page_description) != '' ? $certificates_description->page_description : str_limit(strip_tags($certificates_description->full_text), 200) }}">
 @stop

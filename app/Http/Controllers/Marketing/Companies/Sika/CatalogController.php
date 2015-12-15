@@ -41,9 +41,15 @@ class CatalogController extends BaseCatalogController
             }
         }
 
-        // Категория вместе с товарами
+        // Категория
         $data['category'] = Category::whereEnabled(TRUE)
             ->with(['parent_category' => function ($q) {
+                $q->whereEnabled(TRUE);
+            }])
+            ->with(['child_categories' => function ($q) {
+                $q->whereEnabled(TRUE)->orderBy('order', 'asc');;
+            }])
+            ->with(['group_category' => function ($q) {
                 $q->whereEnabled(TRUE);
             }])
             ->whereEnabled(TRUE)
@@ -53,11 +59,13 @@ class CatalogController extends BaseCatalogController
             abort(404);
         }
 
-        // Получаем товары отдельно для погинации
-        $data['products'] = ProductSika::whereCategoryId($categoryId)
-            ->whereEnabled(TRUE)
-            ->orderBy('created_at')
-            ->paginate(9);
+        // Если это не родительская категория, то получаем товары отдельно для погинации
+        if (count($data['category']->child_categories) == 0) {
+            $data['products'] = ProductSika::whereCategoryId($categoryId)
+                ->whereEnabled(TRUE)
+                ->orderBy('created_at')
+                ->paginate(9);
+        }
 
         // Отображаем
         return view('marketing.companies.catalog.sika.index', $data);

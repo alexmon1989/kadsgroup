@@ -24,7 +24,7 @@
                     <h2 class="{{ $article->full_text != '' ? 'title-v2 ' : '' }}title-center text-uppercase">{{ $article->title }}</h2>
                 @endif
                 @if ($article->full_text != '')
-                    <p class="space-lg-hor">{!! $article->full_text !!}</p>
+                    {!! $article->full_text !!}
                 @endif
             </div>
         @endif
@@ -74,5 +74,5 @@
 
 @section('meta')
     <meta name="keywords" content="{{ $article->page_keywords }}">
-    <meta name="description" content="{{ $article->page_description }}">
+    <meta name="description" content="{{ trim($article->page_description) != '' ? $article->page_description : str_limit(strip_tags($article->full_text), 200) }}">
 @stop

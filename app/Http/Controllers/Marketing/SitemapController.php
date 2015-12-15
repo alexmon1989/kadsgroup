@@ -77,10 +77,18 @@ class SitemapController extends Controller
 
                         // Добавление товаров для каждой категории
                         foreach($category->products_sika as $productSika) {
+                            // Ссылка на страницу продукта
                             $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productSika->id}"));
+
+                            // Ссылка на техкарту
+                            $sitemap->add(URL::to("assets/img/products/{$company}/tech-carts/{$productSika->tech_cart_file}"));
                         }
                         foreach($category->products_sfs as $productSfs) {
-                            $sitemap->add(URL::to("assets/img/products/{$company}/{$productSfs->file_name}"));
+                            // Ссылка на страницу продукта
+                            $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productSfs->id}"));
+
+                            // Ссылка на pdf
+                            $sitemap->add(URL::to("assets/img/products/{$company}/pdf/{$productSfs->file_name}"));
                         }
                         foreach($category->products_primer as $productPrimer) {
                             $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productPrimer->id}"));

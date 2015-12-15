@@ -67,5 +67,5 @@
 
 @section('meta')
     <meta name="keywords" content="{{ $news_description->page_keywords }}">
-    <meta name="description" content="{{ $news_description->page_description }}">
+    <meta name="description" content="{{ trim($news_description->page_description) != '' ? $news_description->page_description : str_limit(strip_tags($news_description->full_text), 200) }}">
 @stop

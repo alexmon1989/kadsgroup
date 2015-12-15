@@ -24,7 +24,7 @@
         @if ($last_update != 'Никогда')
         <p>Ссылка на текущий файл: <a href="{{ asset('assets/price-list/'.$file_name) }}" target="_blank">Скачать</a></p>
         @endif
-        <p>Последнее обновление прайс-листа: <strong>{{ $last_update }}</strong></p>
+        <p>Последнее обновление файла прайс-листа: <strong>{{ $last_update }}</strong></p>
 
         @include('admin.companies.price_list._form')
     </div><!-- /.box-body -->
@@ -32,4 +32,9 @@
 
     </div><!-- /.box-footer-->
 </div><!-- /.box -->
+@stop
+
+@section('script')
+<!-- CKEDITOR -->
+<script src="{{ asset('assets/plugins/adminlte/plugins/ckeditor/ckeditor.js') }}"></script>
 @stop
