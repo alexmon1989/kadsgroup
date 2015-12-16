@@ -2,7 +2,7 @@
 
 @section('top_content')
 @include('admin.layout.breadcrumbs', [
-            'title' => 'Редактирование товара Sika',
+            'title' => 'Редактирование товара Sfs',
             'items' => [
                     ['title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE ],
                     [ 'title' => 'Компании', 'action' => '', 'active' => FALSE ],
