@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
-                                    <a class="active" target="_blank" href="{{ Memory::get('price.primer.file_name') ? asset('assets/price-list/'.Memory::get('price.primer.file_name')) : '#' }} ">Прайс-лист</a> |
+                                    <a class="active" href="{{ action('Marketing\Companies\PriceListController@getIndex') }}">Прайс-лист</a> |
                                     <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a> |
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </div>
