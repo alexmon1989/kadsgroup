@@ -48,6 +48,7 @@ class SitemapController extends Controller
             $sitemap->add(URL::to('companies/primer/about'));
             $sitemap->add(URL::to('companies/primer/catalog'));
             $sitemap->add(URL::to('companies/primer/videos'));
+            $sitemap->add(URL::to('companies/primer/price-list'));
 
             // Добавление страниц групп категорий и категорий всех трёх компаний, а также галерей
             foreach(['sika', 'sfs', 'primer'] as $company) {
