@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    # Запрет доступа к главной и другим страницам через index.php
+    RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+    RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
+
+    # Запрет доступа к www-домену
     RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
     RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
