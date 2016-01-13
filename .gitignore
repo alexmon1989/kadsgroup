@@ -20,3 +20,5 @@ public/assets/price-list/*
 
 public/assets/plugins/adminlte/plugins/ckeditor/config.js
 resources/assets/bower_components/adminlte/plugins/ckeditor/config.js
+
+public/packages/barryvdh
