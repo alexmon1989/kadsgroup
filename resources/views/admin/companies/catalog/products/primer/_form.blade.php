@@ -33,7 +33,7 @@
             @if (isset($product))
             <div class="row">
                 <div class="col-md-12 margin-bottom-10">
-                    <img width="200" src="{{ asset('assets/img/products/sika/'.$product->photo) }}" alt="{{ $product->title }}" class="img-responsive">
+                    <img width="200" src="{{ asset('assets/img/products/primer/'.$product->photo) }}" alt="{{ $product->title }}" class="img-responsive">
                 </div>
             </div>
             @endif
