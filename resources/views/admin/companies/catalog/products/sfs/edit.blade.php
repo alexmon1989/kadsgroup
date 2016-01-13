@@ -22,6 +22,7 @@
         </div>
     </div>
     <div class="box-body">
+        <a href="{{ action('Admin\Companies\Catalog\Products\SfsController@getIndex') }}">Назад ко всем продуктам</a>
         @include('admin.companies.catalog.products.sfs._form')
     </div><!-- /.box-body -->
     <div class="box-footer">
