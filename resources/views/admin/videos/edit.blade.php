@@ -5,6 +5,7 @@
             'title' => 'Редактирование видео',
             'items' => array(
                     array('title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE),
+                    array('title' => $video->company->title, 'action' => '', 'active' => FALSE),
                     array('title' => 'Видео', 'action' => 'Admin\VideosController@getIndex', 'active' => FALSE),
                     array('title' => $video->youtube_id, 'action' => '', 'active' => TRUE),
             )
@@ -29,7 +30,7 @@
         @include('admin.videos._form_video')
     </div><!-- /.box-body -->
     <div class="box-footer">
-        <a href="{{ action('Admin\VideosController@getIndex') }}">Назад ко всем видео</a>
+        <a href="{{ action('Admin\VideosController@getIndex', ['company' => $video->company->short_title]) }}">Назад ко всем видео</a>
     </div><!-- /.box-footer-->
 </div><!-- /.box -->
 @stop

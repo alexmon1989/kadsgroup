@@ -37,4 +37,9 @@ class Company extends Model
     {
         return $this->hasMany('App\GroupsCategory');
     }
+
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
+    }
 }

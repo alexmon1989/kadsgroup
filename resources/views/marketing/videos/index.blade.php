@@ -1,17 +1,17 @@
 @extends('marketing.layout.master')
 
 @section('page_title')
-{{ $videos_description->page_title != '' ? $videos_description->page_title : 'Видео "Праймер"' }}
+{{ $videos_description->page_title != '' ? $videos_description->page_title : 'Видео "' . $company->title . '"' }}
 @stop
 
 @section('top_content')
     @slider()
 
     @include('marketing.layout.breadcrumbs', [
-                'title' => $videos_description->page_h1 != '' ? $videos_description->page_h1 : 'Видео "Праймер"',
+                'title' => $videos_description->page_h1 != '' ? $videos_description->page_h1 : 'Видео "' . $company->title . '"',
                 'items' => [
                         ['title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE],
-                        ['title' => 'Праймер', 'action' => 'Marketing\Companies\AboutController@getShow', 'action_params' => ['shortTitle' => 'primer'], 'active' => FALSE],
+                        ['title' => $company->title, 'action' => 'Marketing\Companies\AboutController@getShow', 'action_params' => ['shortTitle' => $company->short_title], 'active' => FALSE],
                         ['title' => 'Видео', 'action' => '', 'active' => TRUE],
                 ]
             ])
@@ -19,7 +19,7 @@
 @stop
 
 @section('content')
-    @if (!empty($videos))
+    @if (count($videos))
 
         @if ($videos_description->title != '' || $videos_description->full_text != '')
             <div class="text-center margin-bottom-50">
@@ -51,7 +51,7 @@
         </div>
         <!-- End Pager -->
     @else
-        <h2>Відео отсутствуют</h2>
+        <p>Видео отсутствуют</p>
     @endif
 @stop
 

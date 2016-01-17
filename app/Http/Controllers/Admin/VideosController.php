@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Company;
 use App\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -18,10 +19,12 @@ class VideosController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         // Видео
-        $data['videos'] = Video::orderBy('created_at', 'DESC')->get();
+        $data['videos'] = Company::whereShortTitle($request->segment(3))
+            ->first()
+            ->videos;
 
         return view('admin.videos.index', $data);
     }
@@ -67,7 +70,7 @@ class VideosController extends AdminController
      *
      * @return \Illuminate\View\View
      */
-    public function getCreate()
+    public function getCreate(Request $request)
     {
         return view('admin.videos.add');
     }
@@ -83,9 +86,10 @@ class VideosController extends AdminController
     {
         $video = new Video;
         $video->youtube_id = trim($request->youtube_id);
+        $video->company_id = Company::whereShortTitle($request->segment(3))->first()->id;
         $video->save();
 
-        return redirect()->action('Admin\VideosController@getEdit', array('id' => $video->id))
+        return redirect()->action('Admin\VideosController@getEdit', ['id' => $video->id])
             ->with('success', 'Видео успешно сохранено.');
     }
 
@@ -124,9 +128,10 @@ class VideosController extends AdminController
 
         // Меняем данные и сохраняем
         $video->youtube_id = trim($request->youtube_id);
+        $video->company_id = Company::whereShortTitle($request->segment(3))->first()->id;
         $video->save();
 
-        return redirect()->action('Admin\VideosController@getEdit', array('id' => $id))
+        return redirect()->action('Admin\VideosController@getEdit', ['id' => $id])
             ->with('success', 'Видео успешно сохранено.');
     }
 
