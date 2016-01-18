@@ -190,7 +190,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(2) == 'companies' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::get('company') == 'sfs' || Request::segment(3) == 'sfs'|| Request::segment(5) == 'sfs') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-circle-o"></i> SFS intent <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -199,6 +199,23 @@
                                 <a href="{{ action('Admin\Companies\DescriptionsController@getIndex', ['company' => 'sfs']) }}">
                                     <i class="fa fa-circle-o"></i> Описание
                                 </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sfs' && Request::segment(4) == 'videos' ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-video-camera"></i> <span>Видео</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sfs' && Request::segment(4) == 'videos' && (Request::segment(5) == 'create' || Request::segment(5) == 'edit' || Request::segment(5) == '') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\VideosController@getIndex', ['company' => 'sfs']) }}">
+                                            <i class="fa fa-circle-o"></i> Список видео
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'sfs' && Request::segment(4) == 'videos' && Request::segment(5) == 'settings' ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\VideosController@getSettings', ['company' => 'sfs']) }}">
+                                            <i class="fa fa-circle-o"></i> Настройки
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
                                 <a href="#">
@@ -224,7 +241,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(2) == 'companies' && (Request::segment(5) == 'primer' || Request::get('company') == 'primer') ? 'active' : '' }}">
+                    <li class="{{ Request::segment(2) == 'companies' && (Request::segment(3) == 'primer' || Request::segment(5) == 'primer' || Request::get('company') == 'primer') ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-circle-o"></i> Праймер <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -245,12 +262,12 @@
                                 </a>
                                 <ul class="treeview-menu">
                                     <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'videos' && (Request::segment(5) == 'create' || Request::segment(5) == 'edit' || Request::segment(5) == '') ? 'active' : '' }}">
-                                        <a href="{{ action('Admin\VideosController@getIndex') }}">
+                                        <a href="{{ action('Admin\VideosController@getIndex', ['company' => 'primer']) }}">
                                             <i class="fa fa-circle-o"></i> Список видео
                                         </a>
                                     </li>
                                     <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'primer' && Request::segment(4) == 'videos' && Request::segment(5) == 'settings' ? 'active' : '' }}">
-                                        <a href="{{ action('Admin\VideosController@getSettings') }}">
+                                        <a href="{{ action('Admin\VideosController@getSettings', ['company' => 'primer']) }}">
                                             <i class="fa fa-circle-o"></i> Настройки
                                         </a>
                                     </li>

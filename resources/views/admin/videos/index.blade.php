@@ -21,7 +21,7 @@
     </div>
     <div class="box-body">
         <p>
-            <a class="btn btn-primary" href="{{ action('Admin\VideosController@getCreate') }}"><i class="fa fa-plus"></i> Создать</a>
+            <a class="btn btn-primary" href="{{ action('Admin\VideosController@getCreate', ['company' => Request::segment(3)]) }}"><i class="fa fa-plus"></i> Создать</a>
         </p>
         <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -43,8 +43,8 @@
                     <td>{{ date('d.m.Y H:i:s', strtotime($item->updated_at)) }}</td>
                     <td>
                         <div class="btn-group">
-                            <a class="btn btn-primary btn-sm" href="{{ action('Admin\VideosController@getEdit', array('id' => $item->id)) }}" title="Редактировать"><i class="fa fa-edit"></i></a>
-                            <a class="btn btn-danger btn-sm item-delete" href="{{ action('Admin\VideosController@getDelete', array('id' => $item->id)) }}" title="Удалить"><i class="fa fa-remove"></i></a>
+                            <a class="btn btn-primary btn-sm" href="{{ action('Admin\VideosController@getEdit', array('company' => Request::segment(3), 'id' => $item->id)) }}" title="Редактировать"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm item-delete" href="{{ action('Admin\VideosController@getDelete', array('company' => Request::segment(3), 'id' => $item->id)) }}" title="Удалить"><i class="fa fa-remove"></i></a>
                         </div>
                     </td>
                 </tr>

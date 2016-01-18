@@ -5,6 +5,7 @@
             'title' => 'Создание видео',
             'items' => array(
                     array('title' => 'Начало работы', 'action' => 'Admin\DashboardController@getIndex', 'active' => FALSE),
+                    array('title' => Request::segment(3), 'action' => '', 'active' => FALSE),
                     array('title' => 'Видео', 'action' => 'Admin\VideosController@getIndex', 'active' => FALSE),
                     array('title' => 'Создание видео', 'action' => '', 'active' => TRUE),
             )
@@ -24,7 +25,7 @@
         @include('admin.videos._form_video')
     </div><!-- /.box-body -->
     <div class="box-footer">
-        <a href="{{ action('Admin\VideosController@getIndex') }}">Назад ко всем видео</a>
+        <a href="{{ action('Admin\VideosController@getIndex', ['company' => Request::segment(3)]) }}">Назад ко всем видео</a>
     </div><!-- /.box-footer-->
 </div><!-- /.box -->
 @stop

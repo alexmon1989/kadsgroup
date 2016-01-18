@@ -33,7 +33,7 @@ Route::group(['namespace' => 'Marketing'], function()
 
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
 
-    Route::get('companies/primer/videos', 'VideosController@getIndex');
+    Route::get('companies/{company}/videos', 'VideosController@getIndex');
 
     // Sitemap
     Route::get('sitemap/{format?}/{cached?}', 'SitemapController@getIndex');
@@ -54,7 +54,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
         'companies/descriptions'                => 'Companies\DescriptionsController',
         'companies/prices'                      => 'Companies\PriceListsController',
-        'companies/primer/videos'               => 'VideosController',
+        'companies/{company}/videos'            => 'VideosController',
         'contacts'                              => 'ContactsController',
         'dashboard'                             => 'DashboardController',
         'galleries'                             => 'GalleriesController',

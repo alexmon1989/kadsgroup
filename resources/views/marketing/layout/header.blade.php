@@ -44,6 +44,9 @@
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sfs' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
                                 </li>
+                                <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'videos' ? 'active' : '' }}">
+                                    <a href="{{ action('Marketing\VideosController@getIndex', ['shortTitle' => 'sfs']) }}">Видео</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' ? 'active' : '' }}">
@@ -59,7 +62,7 @@
                                     <a href="{{ action('Marketing\Companies\PriceListController@getIndex') }}">Прайс-лист</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'primer' && Request::segment(3) == 'videos' ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a>
+                                    <a href="{{ action('Marketing\VideosController@getIndex', ['shortTitle' => 'primer']) }}">Видео</a>
                                 </li>
                             </ul>
                         </li>

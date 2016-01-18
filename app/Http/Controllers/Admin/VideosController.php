@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Company;
 use App\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -18,10 +19,12 @@ class VideosController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         // Видео
-        $data['videos'] = Video::orderBy('created_at', 'DESC')->get();
+        $data['videos'] = Company::whereShortTitle($request->segment(3))
+            ->first()
+            ->videos;
 
         return view('admin.videos.index', $data);
     }
@@ -31,11 +34,11 @@ class VideosController extends AdminController
      *
      * @return \Illuminate\View\View
      */
-    public function getSettings()
+    public function getSettings(Request $request)
     {
         // Статья с описанием сертификатов
         Model::unguard();
-        $data['videos_description'] = Article::firstOrCreate(['type' => 'videos_description']);
+        $data['videos_description'] = Article::firstOrCreate(['type' => $request->segment(3) . '_videos_description']);
         Model::reguard();
 
         return view('admin.videos.settings', $data);
@@ -50,7 +53,7 @@ class VideosController extends AdminController
     public function postSettings(StoreVideosSettingsRequest $request)
     {
         // Изменяем статью
-        $article = Article::whereType('videos_description')->first();
+        $article = Article::whereType($request->segment(3) . '_videos_description')->first();
         $article->title = $request->get('title');
         $article->full_text = $request->get('full_text');
         $article->page_title        = $request->get('page_title');
@@ -67,7 +70,7 @@ class VideosController extends AdminController
      *
      * @return \Illuminate\View\View
      */
-    public function getCreate()
+    public function getCreate(Request $request)
     {
         return view('admin.videos.add');
     }
@@ -83,20 +86,21 @@ class VideosController extends AdminController
     {
         $video = new Video;
         $video->youtube_id = trim($request->youtube_id);
+        $video->company_id = Company::whereShortTitle($request->segment(3))->first()->id;
         $video->save();
 
-        return redirect()->action('Admin\VideosController@getEdit', array('id' => $video->id))
+        return redirect()->action('Admin\VideosController@getEdit', ['company' => $request->segment(3), 'id' => $video->id])
             ->with('success', 'Видео успешно сохранено.');
     }
 
     /**
      * Действие для отображения страницы редактирования видео.
      *
-     * @param $id
      * @return \Illuminate\View\View
      */
-    public function getEdit($id)
+    public function getEdit(Request $request)
     {
+        $id = $request->segment(6);
         $data['video'] = Video::find($id);
 
         if (empty($data['video'])) {
@@ -110,12 +114,11 @@ class VideosController extends AdminController
      * Действие-обработчик запроса на редактирование видео
      *
      * @param StoreVideosRequest $request
-     * @param $id
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Services\Exception
      */
-    public function postEdit(StoreVideosRequest $request, $id)
+    public function postEdit(StoreVideosRequest $request)
     {
+        $id = $request->segment(6);
         $video = Video::find($id);
 
         if (empty($video)) {
@@ -124,20 +127,21 @@ class VideosController extends AdminController
 
         // Меняем данные и сохраняем
         $video->youtube_id = trim($request->youtube_id);
+        $video->company_id = Company::whereShortTitle($request->segment(3))->first()->id;
         $video->save();
 
-        return redirect()->action('Admin\VideosController@getEdit', array('id' => $id))
+        return redirect()->action('Admin\VideosController@getEdit', ['company' => $request->segment(3), 'id' => $id])
             ->with('success', 'Видео успешно сохранено.');
     }
 
     /**
      * Удаление видео.
      *
-     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getDelete($id)
+    public function getDelete(Request $request)
     {
+        $id = $request->segment(6);
         $video = Video::find($id);
 
         if (empty($video)) {
@@ -146,7 +150,7 @@ class VideosController extends AdminController
 
         $video->delete();
 
-        return redirect()->action('Admin\VideosController@getIndex')
+        return redirect()->action('Admin\VideosController@getIndex', ['company' => $request->segment(3)])
             ->with('success', 'Видео успешно удалено.');
     }
 

@@ -9,14 +9,19 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property string $youtube_id
+ * @property string $company_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Video whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Video whereYoutubeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Video whereCompanyId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Video whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Video whereUpdatedAt($value)
  */
 class Video extends Model
 {
-    //
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }
