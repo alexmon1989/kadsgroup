@@ -44,6 +44,7 @@ class SitemapController extends Controller
 
             $sitemap->add(URL::to('companies/sfs/about'));
             $sitemap->add(URL::to('companies/sfs/catalog'));
+            $sitemap->add(URL::to('companies/sfs/videos'));
 
             $sitemap->add(URL::to('companies/primer/about'));
             $sitemap->add(URL::to('companies/primer/catalog'));
