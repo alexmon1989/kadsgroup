@@ -1,4 +1,4 @@
-<form role="form" method="post" action="{{ action('Admin\VideosController@postSettings') }}">
+<form role="form" method="post" action="{{ action('Admin\VideosController@postSettings', ['company' => Request::segment(3)]) }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="box-body">
         <div class="form-group">
