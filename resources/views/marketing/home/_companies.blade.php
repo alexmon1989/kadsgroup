@@ -44,7 +44,8 @@
                         <div class="row">
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
-                                    <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
+                                    <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a> |
+                                    <a href="{{ action('Marketing\VideosController@getIndex', ['company' => 'sfs']) }}">Видео</a>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                             <div class="col-md-12 company-menu text-center">
                                 <div class="links">
                                     <a class="active" href="{{ action('Marketing\Companies\PriceListController@getIndex') }}">Прайс-лист</a> |
-                                    <a href="{{ action('Marketing\VideosController@getIndex') }}">Видео</a> |
+                                    <a href="{{ action('Marketing\VideosController@getIndex', ['company' => 'primer']) }}">Видео</a> |
                                     <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
                                 </div>
                             </div>
