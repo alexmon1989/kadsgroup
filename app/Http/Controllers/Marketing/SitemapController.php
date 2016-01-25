@@ -75,7 +75,7 @@ class SitemapController extends Controller
 
                     // Добавление категории
                     foreach($groupCategory->categories as $category) {
-                        $sitemap->add(URL::to("companies/{$company}/catalog/index/{$category->id}"));
+                        $sitemap->add(URL::to("companies/{$company}/catalog/category/{$category->id}"));
 
                         // Добавление товаров для каждой категории
                         foreach($category->products_sika as $productSika) {
