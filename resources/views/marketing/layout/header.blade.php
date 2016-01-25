@@ -31,7 +31,7 @@
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sika']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sika' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex') }}">Каталог</a>
+                                    <a href="{{ url('companies/sika/catalog') }}">Каталог</a>
                                 </li>
                             </ul>
                         </li>
@@ -42,7 +42,7 @@
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'sfs' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex') }}">Каталог</a>
+                                    <a href="{{ url('companies/sfs/catalog') }}">Каталог</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'videos' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\VideosController@getIndex', ['shortTitle' => 'sfs']) }}">Видео</a>
@@ -56,7 +56,7 @@
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'primer']) }}">О компании</a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'companies'&& Request::segment(2) == 'primer' && Request::segment(3) == 'catalog'  ? 'active' : '' }}">
-                                    <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex') }}">Каталог</a>
+                                    <a href="{{ url('companies/primer/catalog') }}">Каталог</a>
                                 </li>
                                 <li>
                                     <a href="{{ action('Marketing\Companies\PriceListController@getIndex') }}">Прайс-лист</a>

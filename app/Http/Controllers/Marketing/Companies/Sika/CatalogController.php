@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Marketing\Companies\Sika;
 
 use App\Category;
-use App\Company;
-use App\GroupsCategory;
 use App\ProductSika;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,12 +16,12 @@ class CatalogController extends BaseCatalogController
     protected $shortTitle = 'sika';
 
     /**
-     * Отображает страницу каталога Sika
+     * Отображает страницу категории Sika
      *
      * @param null $categoryId
      * @return \Illuminate\View\View
      */
-    public function getIndex($categoryId = NULL)
+    public function getCategory($categoryId = NULL)
     {
         // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
         $data['group_categories'] = $this->getCategories();
@@ -68,7 +66,7 @@ class CatalogController extends BaseCatalogController
         }
 
         // Отображаем
-        return view('marketing.companies.catalog.sika.index', $data);
+        return view('marketing.companies.catalog.sika.category', $data);
     }
 
     /**
