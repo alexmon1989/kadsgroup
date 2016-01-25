@@ -19,12 +19,12 @@ class CatalogController extends BaseCatalogController
     protected $shortTitle = 'sfs';
 
     /**
-     * Отображает страницу каталога Sika
+     * Отображает страницу категории SFS
      *
      * @param null $categoryId
      * @return \Illuminate\View\View
      */
-    public function getIndex($categoryId = NULL)
+    public function getCategory($categoryId = NULL)
     {
         // Получаем группы категорий для фирмы "Сика" вместе с подкатегориями
         $data['group_categories'] = $this->getCategories();
@@ -69,7 +69,7 @@ class CatalogController extends BaseCatalogController
         }
 
         // Отображаем
-        return view('marketing.companies.catalog.sfs.index', $data);
+        return view('marketing.companies.catalog.sfs.category', $data);
     }
 
     /**

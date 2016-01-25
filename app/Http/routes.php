@@ -52,6 +52,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'certificates'                          => 'CertificatesController',
         'companies/catalog/categories'          => 'Companies\Catalog\CategoriesController',
         'companies/catalog/groups-categories'   => 'Companies\Catalog\GroupsCategoriesController',
+        'companies/catalog/settings'            => 'Companies\Catalog\SettingsController',
         'companies/descriptions'                => 'Companies\DescriptionsController',
         'companies/prices'                      => 'Companies\PriceListsController',
         'companies/{company}/videos'            => 'VideosController',

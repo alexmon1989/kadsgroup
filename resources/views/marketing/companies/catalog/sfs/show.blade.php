@@ -11,9 +11,10 @@
                 'items' => [
                         [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => 'Marketing\Companies\AboutController@getShow', 'action_params' => ['shortTitle' => 'sika'], 'active' => FALSE ],
+                        [ 'title' => 'Каталог', 'url' => 'companies/sfs/catalog', 'active' => FALSE ],
                         [ 'title' => $product->category->group_category->title, 'action' => 'Marketing\Companies\Sfs\CatalogController@getGroup', 'action_params' => ['id' => $product->category->group_category->id], 'active' => FALSE ],
-                        $product->category->parent_category ? [ 'title' => $product->category->parent_category->title, 'action' => 'Marketing\Companies\Sfs\CatalogController@getIndex', 'action_params' => ['id' => $product->category->parent_category->id], 'active' => FALSE ] : null,
-                        [ 'title' => $product->category->title, 'action' => 'Marketing\Companies\Sfs\CatalogController@getIndex', 'action_params' => ['id' => $product->category->id], 'active' => FALSE ],
+                        $product->category->parent_category ? [ 'title' => $product->category->parent_category->title, 'action' => 'Marketing\Companies\Sfs\CatalogController@getCategory', 'action_params' => ['id' => $product->category->parent_category->id], 'active' => FALSE ] : null,
+                        [ 'title' => $product->category->title, 'action' => 'Marketing\Companies\Sfs\CatalogController@getCategory', 'action_params' => ['id' => $product->category->id], 'active' => FALSE ],
                         [ 'title' => $product->title, 'action' => '', 'active' => TRUE ],
                 ]
             ])
@@ -28,12 +29,12 @@
                 <li class="list-group-item first"><a href="{{ Request::url() }}#">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($product->category->id) || $cat->id == $product->category->id ? 'active' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sfs/catalog/index/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse {{ $cat->child_categories->contains($product->category->id) ? 'in' : '' }}">
                         @foreach($cat->child_categories as $child_category)
                         <li class="{{ $child_category->id == $product->category->id ? 'active' : '' }}">
-                            <a href="{{ url('/companies/sfs/catalog/index/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
+                            <a href="{{ url('/companies/sfs/catalog/category/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -53,7 +54,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p><a href="{{ url('/companies/sfs/catalog/index/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Вернутся к товарам категории <strong>"{{ $product->category->title }}"</strong></a></p>
+                <p><a href="{{ url('/companies/sfs/catalog/category/'.$product->category->id) }}"><i class="fa fa-arrow-circle-left"></i> Вернутся к товарам категории <strong>"{{ $product->category->title }}"</strong></a></p>
 
                 <div class="panel panel-grey margin-bottom-40">
                     <div class="panel-heading">

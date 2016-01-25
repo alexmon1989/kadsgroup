@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Marketing\Companies;
 
+use App\Article;
 use App\Company;
 use App\GroupsCategory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,7 +21,26 @@ abstract class CatalogController extends Controller
         View::share('company', Company::whereShortTitle($this->shortTitle)->first());
     }
 
-    abstract public function getIndex($categoryId = NULL);
+    abstract public function getCategory($categoryId = NULL);
+
+    /**
+     * Индексная страница каталога
+     *
+     * @return View
+     */
+    public function getIndex()
+    {
+        // Статья
+        Model::unguard();
+        $data['catalog_description'] = Article::firstOrCreate(['type' => $this->shortTitle . '_catalog_description']);
+        Model::reguard();
+
+        // Получаем группы категорий для фирмы вместе с подкатегориями
+        $data['group_categories'] = $this->getCategories();
+
+        // Отображаем
+        return view('marketing.companies.catalog.' . $this->shortTitle . '.index', $data);
+    }
 
     /**
      * Выборка групп категорий для фирмы вместе с подкатегориями (для бокового меню)

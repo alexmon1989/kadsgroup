@@ -186,6 +186,11 @@
                                             <i class="fa fa-circle-o"></i> Товары
                                         </a>
                                     </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'settings' && (Request::get('company') == 'sika' || Request::segment(5) == 'sika') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\SettingsController@getIndex', ['company' => 'sika']) }}">
+                                            <i class="fa fa-circle-o"></i> Настройки
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -235,6 +240,11 @@
                                     <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
                                         <a href="{{ action('Admin\Companies\Catalog\Products\SfsController@getIndex') }}">
                                             <i class="fa fa-circle-o"></i> Товары
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'settings' && (Request::get('company') == 'sfs' || Request::segment(5) == 'sfs') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\SettingsController@getIndex', ['company' => 'sfs']) }}">
+                                            <i class="fa fa-circle-o"></i> Настройки
                                         </a>
                                     </li>
                                 </ul>
@@ -291,6 +301,11 @@
                                     <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'products' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
                                         <a href="{{ action('Admin\Companies\Catalog\Products\PrimerController@getIndex') }}">
                                             <i class="fa fa-circle-o"></i> Товары
+                                        </a>
+                                    </li>
+                                    <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'catalog' && Request::segment(4) == 'settings' && (Request::get('company') == 'primer' || Request::segment(5) == 'primer') ? 'active' : '' }}">
+                                        <a href="{{ action('Admin\Companies\Catalog\SettingsController@getIndex', ['company' => 'primer']) }}">
+                                            <i class="fa fa-circle-o"></i> Настройки
                                         </a>
                                     </li>
                                 </ul>

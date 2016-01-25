@@ -11,7 +11,8 @@
                 'items' => [
                         [ 'title' => 'Главная', 'action' => 'Marketing\HomeController@index', 'active' => FALSE ],
                         [ 'title' => $company->title, 'action' => 'Marketing\Companies\AboutController@getShow', 'action_params' => ['shortTitle' => 'primer'], 'active' => FALSE ],
-                        [ 'title' => $group->title, 'action' => '', 'active' => FALSE ],
+                        [ 'title' => 'Каталог', 'url' => 'companies/primer/catalog', 'active' => FALSE ],
+                        [ 'title' => $group->title, 'action' => '', 'active' => TRUE ],
                 ]
             ])
 @stop
@@ -25,12 +26,12 @@
                     <li class="list-group-item first {{ $group_category->id == $group->id ? 'active' : '' }}"><a href="{{ action('Marketing\Companies\Primer\CatalogController@getGroup', ['id' => $group_category->id]) }}">{{ $group_category->title }}</a></li>
                     @foreach($group_category->categories as $cat)
                         <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }}">
-                            <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/primer/catalog/index/'.$cat->id) }}">{{ $cat->title }}</a>
+                            <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/primer/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                             @if (count($cat->child_categories) > 0)
                                 <ul id="category-{{ $cat->id }}" class="collapse">
                                     @foreach($cat->child_categories as $child_category)
                                         <li>
-                                            <a href="{{ url('/companies/primer/catalog/index/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
+                                            <a href="{{ url('/companies/primer/catalog/category/'.$child_category->id) }}"><i class="fa fa-chevron-circle-right"></i> {{ $child_category->title }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -61,7 +62,7 @@
 
                 <ul>
                     @foreach($group->categories as $сategory)
-                        <li><a class="text-primary" href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex', ['id' => $сategory->id]) }}">{{ $сategory->title }}</a></li>
+                        <li><a class="text-primary" href="{{ action('Marketing\Companies\Primer\CatalogController@getCategory', ['id' => $сategory->id]) }}">{{ $сategory->title }}</a></li>
                     @endforeach
                 </ul>
             @endif
