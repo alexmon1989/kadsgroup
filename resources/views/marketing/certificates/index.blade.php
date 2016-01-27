@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $certificates_description->page_title != '' ? $certificates_description->page_title  : 'Сертификаты' }}
-@stop
+@section('page_title'){{ $certificates_description->page_title != '' ? $certificates_description->page_title  : 'Сертификаты' }}{{ $certificates->currentPage() != 1 ? ' - Страница ' . $certificates->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -16,7 +14,7 @@
 @stop
 
 @section('content')
-    @if (!empty($certificates))
+    @if (count($certificates) > 0)
 
         @if ($certificates_description->title != '' || $certificates_description->full_text != '')
             <div class="text-center margin-bottom-50">
@@ -75,4 +73,16 @@
 @section('meta')
     <meta name="keywords" content="{{ $certificates_description->page_keywords }}">
     <meta name="description" content="{{ trim($certificates_description->page_description) != '' ? $certificates_description->page_description : str_limit(strip_tags($certificates_description->full_text), 200) }}">
+
+    @if ($certificates->currentPage() == 1)
+    <link rel="canonical" href="{{ url('certificates') }}"/>
+    @endif
+
+    @if ($certificates->currentPage() < $certificates->lastPage())
+    <link rel="next" href="{{ url('certificates?page=' . ($certificates->currentPage() + 1)) }}" />
+    @endif
+
+    @if ($certificates->currentPage() > 1)
+    <link rel="prev" href="{{ url('certificates?page=' . ($certificates->currentPage() - 1)) }}" />
+    @endif
 @stop

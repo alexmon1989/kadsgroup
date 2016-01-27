@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $news_description->page_title != '' ? $news_description->page_title  : 'Новости' }}
-@stop
+@section('page_title'){{ $news_description->page_title != '' ? $news_description->page_title  : 'Новости' }}{{ $news->currentPage() != 1 ? ' - Страница ' . $news->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -68,4 +66,16 @@
 @section('meta')
     <meta name="keywords" content="{{ $news_description->page_keywords }}">
     <meta name="description" content="{{ trim($news_description->page_description) != '' ? $news_description->page_description : str_limit(strip_tags($news_description->full_text), 200) }}">
+
+    @if ($news->currentPage() == 1)
+    <link rel="canonical" href="{{ url('news') }}"/>
+    @endif
+
+    @if ($news->currentPage() < $news->lastPage())
+    <link rel="next" href="{{ url('news?page=' . ($news->currentPage() + 1)) }}" />
+    @endif
+
+    @if ($news->currentPage() > 1)
+    <link rel="prev" href="{{ url('news?page=' . ($news->currentPage() - 1)) }}" />
+    @endif
 @stop

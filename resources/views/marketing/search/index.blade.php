@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-Результаты поиска
-@stop
+@section('page_title')Результаты поиска@stop
 
 @section('top_content')
 @slider()

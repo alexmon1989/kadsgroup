@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $videos_description->page_title != '' ? $videos_description->page_title : 'Видео "' . $company->title . '"' }}
-@stop
+@section('page_title'){{ $videos_description->page_title != '' ? $videos_description->page_title : 'Видео "' . $company->title . '"' }}{{ $videos->currentPage() != 1 ? ' - Страница ' . $videos->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -62,4 +60,16 @@
 @section('meta')
     <meta name="keywords" content="{{ $videos_description->page_keywords }}">
     <meta name="description" content="{{ trim($videos_description->page_description) != '' ? $videos_description->page_description : str_limit(strip_tags($videos_description->full_text), 200) }}">
+
+    @if ($videos->currentPage() == 1)
+    <link rel="canonical" href="{{ url('companies/' . $company->short_title . '/videos') }}"/>
+    @endif
+
+    @if ($videos->currentPage() < $videos->lastPage())
+    <link rel="next" href="{{ url('companies/' . $company->short_title . '/videos?page=' . ($videos->currentPage() + 1)) }}" />
+    @endif
+
+    @if ($videos->currentPage() > 1)
+    <link rel="prev" href="{{ url('companies/' . $company->short_title . '/videos?page=' . ($videos->currentPage() - 1)) }}" />
+    @endif
 @stop

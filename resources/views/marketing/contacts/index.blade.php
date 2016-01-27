@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $contacts_form_text->page_title != '' ? $contacts_form_text->page_title  : 'Контакты' }}
-@stop
+@section('page_title'){{ $contacts_form_text->page_title != '' ? $contacts_form_text->page_title  : 'Контакты' }}@stop
 
 @section('top_content')
 @slider()

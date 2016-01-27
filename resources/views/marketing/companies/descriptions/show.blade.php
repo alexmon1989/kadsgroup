@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $company->page_title != '' ? $company->page_title : $company->title }}
-@stop
+@section('page_title'){{ $company->page_title != '' ? $company->page_title : $company->title }}@stop
 
 @section('top_content')
     @slider()
