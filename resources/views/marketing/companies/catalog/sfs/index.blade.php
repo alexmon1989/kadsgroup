@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-    {{ $catalog_description->page_title != '' ? $catalog_description->page_title  : 'Каталог товаров Sfs intec' }}
-@stop
+@section('page_title'){{ $catalog_description->page_title != '' ? $catalog_description->page_title  : 'Каталог товаров Sfs intec' }}@stop
 
 @section('top_content')
     @slider()
@@ -25,7 +23,7 @@
                 <li class="list-group-item first"><a href="{{ action('Marketing\Companies\Sfs\CatalogController@getGroup', ['id' => $group_category->id]) }}">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse">
                         @foreach($cat->child_categories as $child_category)

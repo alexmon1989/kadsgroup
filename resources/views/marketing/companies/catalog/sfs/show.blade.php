@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-    {{ $product->page_title != '' ? $product->page_title  : $product->title }}
-@stop
+@section('page_title'){{ $product->page_title != '' ? $product->page_title  : $product->title }}@stop
 
 @section('top_content')
     @slider()
@@ -29,7 +27,7 @@
                 <li class="list-group-item first"><a href="{{ Request::url() }}#">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($product->category->id) || $cat->id == $product->category->id ? 'active' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse {{ $cat->child_categories->contains($product->category->id) ? 'in' : '' }}">
                         @foreach($cat->child_categories as $child_category)

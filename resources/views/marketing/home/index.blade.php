@@ -46,9 +46,7 @@
     </script>
 @stop
 
-@section('page_title')
-    {{ $article->page_title != '' ? $article->page_title : 'Главная страница' }}
-@stop
+@section('page_title'){{ $article->page_title != '' ? $article->page_title : 'Главная страница' }}@stop
 
 @section('meta')
     <meta name="keywords" content="{{ $article->page_keywords }}">

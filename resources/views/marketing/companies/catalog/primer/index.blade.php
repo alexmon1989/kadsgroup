@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-    {{ $catalog_description->page_title != '' ? $catalog_description->page_title  : 'Каталог товаров ТМ Sika' }}
-@stop
+@section('page_title'){{ $catalog_description->page_title != '' ? $catalog_description->page_title  : 'Каталог товаров ТМ Праймер' }}{{ $products->currentPage() != 1 ? ' - Страница ' . $products->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -25,7 +23,7 @@
                 <li class="list-group-item first"><a href="{{ action('Marketing\Companies\Primer\CatalogController@getGroup', ['id' => $group_category->id]) }}">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/primer/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ url('/companies/primer/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse">
                         @foreach($cat->child_categories as $child_category)
@@ -53,7 +51,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Товары</h2>
+                <h2>Товары (всего: {{ $products->total() }})</h2>
             </div>
         </div>
         <!-- Pager -->
@@ -136,4 +134,16 @@
 @section('meta')
     <meta name="keywords" content="{{ $catalog_description->page_keywords }}">
     <meta name="description" content="{{ trim($catalog_description->page_description) != '' ? $catalog_description->page_description : str_limit(strip_tags($catalog_description->description), 200) }}">
+
+    @if ($products->currentPage() == 1)
+    <link rel="canonical" href="{{ url('companies/primer/catalog') }}"/>
+    @endif
+
+    @if ($products->currentPage() < $products->lastPage())
+    <link rel="next" href="{{ url('companies/primer/catalog?page=' . ($products->currentPage() + 1)) }}" />
+    @endif
+
+    @if ($products->currentPage() > 1)
+    <link rel="prev" href="{{ url('companies/primer/catalog?page=' . ($products->currentPage() - 1)) }}" />
+    @endif
 @stop

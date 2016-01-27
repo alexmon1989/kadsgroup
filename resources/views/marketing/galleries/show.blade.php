@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $article->page_title != '' ? $article->page_title  : 'Фотогалерея "'.$company->title.'"' }}
-@stop
+@section('page_title'){{ $article->page_title != '' ? $article->page_title  : 'Фотогалерея "'.$company->title.'"' }}{{ $photos->currentPage() != 1 ? ' - Страница ' . $photos->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -16,7 +14,7 @@
 @stop
 
 @section('content')
-    @if (!empty($photos))
+    @if (count($photos))
 
         @if ($article->title != '' || $article->full_text != '')
             <div class="text-center margin-bottom-50">
@@ -75,4 +73,16 @@
 @section('meta')
     <meta name="keywords" content="{{ $article->page_keywords }}">
     <meta name="description" content="{{ trim($article->page_description) != '' ? $article->page_description : str_limit(strip_tags($article->full_text), 200) }}">
+
+    @if ($photos->currentPage() == 1)
+    <link rel="canonical" href="{{ url('galleries/show/' . $company->short_title) }}"/>
+    @endif
+
+    @if ($photos->currentPage() < $photos->lastPage())
+    <link rel="next" href="{{ url('galleries/show/' . $company->short_title . '?page=' . ($products->currentPage() + 1)) }}" />
+    @endif
+
+    @if ($photos->currentPage() > 1)
+    <link rel="prev" href="{{ url('galleries/show/' . $company->short_title . '?page=' . ($products->currentPage() - 1)) }}" />
+    @endif
 @stop

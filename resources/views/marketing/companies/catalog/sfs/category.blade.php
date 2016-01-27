@@ -1,8 +1,6 @@
 @extends('marketing.layout.master')
 
-@section('page_title')
-{{ $category->page_title != '' ? $category->page_title  : $category->title }}
-@stop
+@section('page_title'){{ $category->page_title != '' ? $category->page_title  : $category->title }}{{ isset($products) && $products->currentPage() != 1 ? ' - Страница ' . $products->currentPage() : '' }}@stop
 
 @section('top_content')
     @slider()
@@ -28,7 +26,7 @@
                 <li class="list-group-item first"><a href="{{ action('Marketing\Companies\Sfs\CatalogController@getGroup', ['id' => $group_category->id]) }}">{{ $group_category->title }}</a></li>
                 @foreach($group_category->categories as $cat)
                 <li class="list-group-item {{ count($cat->child_categories) > 0 ? 'list-toggle' : '' }} {{ $cat->child_categories->contains($category->id) || $cat->id == $category->id ? 'active' : '' }}">
-                    <a data-toggle="{{ count($cat->child_categories) > 0 ? 'collapse' : '' }}" data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ count($cat->child_categories) > 0 ? '#category-'.$cat->id : url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
+                    <a data-parent="#sidebar-nav-{{ $group_category->id }}" href="{{ url('/companies/sfs/catalog/category/'.$cat->id) }}">{{ $cat->title }}</a>
                     @if (count($cat->child_categories) > 0)
                     <ul id="category-{{ $cat->id }}" class="collapse {{ $cat->child_categories->contains($category->id) || $cat->id == $category->id ? 'in' : '' }}">
                         @foreach($cat->child_categories as $child_category)
@@ -121,4 +119,19 @@
 @section('meta')
     <meta name="keywords" content="{{ $category->page_keywords }}">
     <meta name="description" content="{{ trim($category->page_description) != '' ? $category->page_description : str_limit(strip_tags($category->description), 200) }}">
+
+
+    @if (isset($products))
+        @if ($products->currentPage() == 1)
+        <link rel="canonical" href="{{ url('companies/sfs/catalog/category/'.$category->id) }}"/>
+        @endif
+
+        @if ($products->currentPage() < $products->lastPage())
+        <link rel="next" href="{{ url('companies/sfs/catalog/category/' . $category->id . '?page=' . ($products->currentPage() + 1)) }}" />
+        @endif
+
+        @if ($products->currentPage() > 1)
+        <link rel="prev" href="{{ url('companies/sfs/catalog/category/' . $category->id . '?page=' . ($products->currentPage() - 1)) }}" />
+        @endif
+    @endif
 @stop
