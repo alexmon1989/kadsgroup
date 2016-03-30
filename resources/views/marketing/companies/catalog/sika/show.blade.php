@@ -63,7 +63,7 @@
                         <strong>{!! $product->description !!}</strong>
 
                         @if ($product->tech_cart_file)
-                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Завантажити"><i class="fa fa-file-pdf-o"></i> Технческая карта</a>
+                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Техническая карта</a>
                         @endif
                     </div>
                     <table class="table table-bordered">
