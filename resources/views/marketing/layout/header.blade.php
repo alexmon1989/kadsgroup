@@ -21,7 +21,7 @@
                 <!-- Верхнее меню -->
                 <li class="dropdown {{ Request::segment(1) == 'companies' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Группа компаний
+                        Компании
                     </a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sika' ? 'active' : '' }}">
@@ -71,7 +71,7 @@
 
                 <li class="dropdown {{ Request::segment(1) == 'galleries' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Фотогалереи
+                        Фото
                     </a>
                     <ul class="dropdown-menu">
                         <li class="{{ Request::segment(3) == 'sika' ? 'active' : '' }}">
@@ -91,6 +91,9 @@
                 </li>
                 <li class="{{ Request::segment(1) == 'news' ? 'active' : '' }}">
                     <a href="{{ action('Marketing\NewsController@getIndex') }}">Новости</a>
+                </li>
+                <li class="{{ Request::segment(1) == 'partners-and-projects' ? 'active' : '' }}">
+                    <a href="{{ route('partners-and-projects') }}">Партнёры и объекты</a>
                 </li>
                 <li class="{{ Request::segment(1) == 'contacts' ? 'active' : '' }}">
                     <a href="{{ action('Marketing\ContactsController@getIndex') }}">Контакты</a>

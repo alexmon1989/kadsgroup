@@ -114,3 +114,26 @@ $factory->define(App\ProductSfs::class, function (Faker\Generator $faker) {
         'enabled'                   => TRUE,
     ];
 });
+
+$factory->define(App\Partner::class, function(Faker\Generator $faker) {
+    return [
+        'title'         => $faker->text(50),
+        'description'   => '<p>' . $faker->text(200) . '</p>',
+        'web_site'      => $faker->domainName(),
+        'category'      => $faker->text(15),
+        'image'         => $faker->image('public/assets/img/partners/', 140, 140, 'business', FALSE),
+        'enabled'       => true,
+    ];
+});
+
+$factory->define(App\Project::class, function(Faker\Generator $faker) {
+    $title = $faker->text(50);
+    return [
+        'title'                 => $title,
+        'slug'                  => str_slug($title),
+        'description_short'     => '<p>' . $faker->text(200) . '</p>',
+        'description_full'      => '<p>' . $faker->text(600) . '</p>',
+        'image'                 => $faker->image('public/assets/img/projects/', 140, 140, 'city', FALSE),
+        'enabled'               => true,
+    ];
+});
