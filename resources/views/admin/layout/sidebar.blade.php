@@ -320,6 +320,11 @@
                     <i class="fa fa-building-o"></i> <span>Партнёры и объекты</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
+                    <li class="{{ Request::segment(2) == 'partners-and-projects' && Request::segment(3) == 'partners' ? 'active' : '' }}">
+                        <a href="{{ action('Admin\PartnersController@getIndex') }}">
+                            <i class="fa fa-circle-o"></i> Список партнёров
+                        </a>
+                    </li>
                     <li class="{{ Request::segment(2) == 'partners-and-projects' && Request::segment(3) == 'projects' ? 'active' : '' }}">
                         <a href="{{ action('Admin\ProjectsController@getIndex') }}">
                             <i class="fa fa-circle-o"></i> Список объектов

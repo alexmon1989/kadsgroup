@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'galleries'                             => 'GalleriesController',
         'home'                                  => 'HomeController',
         'news'                                  => 'NewsController',
+        'partners-and-projects/partners'        => 'PartnersController',
         'partners-and-projects/projects'        => 'ProjectsController',
         'settings'                              => 'SettingsController',
         'sliders'                               => 'SliderController',
