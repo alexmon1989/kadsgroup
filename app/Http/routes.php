@@ -16,15 +16,15 @@ Route::get('/', 'Marketing\HomeController@index');
 Route::group(['namespace' => 'Marketing'], function()
 {
     Route::controllers([
-        'certificates'                  => 'CertificatesController',
-        'companies/sika/catalog'        => 'Companies\Sika\CatalogController',
-        'companies/sfs/catalog'         => 'Companies\Sfs\CatalogController',
-        'companies/primer/catalog'      => 'Companies\Primer\CatalogController',
-        'contacts'                      => 'ContactsController',
-        'galleries'                     => 'GalleriesController',
-        'news'                          => 'NewsController',
-        'companies/primer/price-list'   => 'Companies\PriceListController',
-        'search'                        => 'SearchController',
+        'certificates'                      => 'CertificatesController',
+        'companies/sika/catalog'            => 'Companies\Sika\CatalogController',
+        'companies/sfs/catalog'             => 'Companies\Sfs\CatalogController',
+        'companies/primer/catalog'          => 'Companies\Primer\CatalogController',
+        'companies/primer/price-list'       => 'Companies\PriceListController',
+        'contacts'                          => 'ContactsController',
+        'galleries'                         => 'GalleriesController',
+        'news'                              => 'NewsController',
+        'search'                            => 'SearchController',
     ]);
 
     Route::get('companies/sika/catalog/index/{categoryId?}', 'Companies\Sika\CatalogController@getIndex');
@@ -34,6 +34,13 @@ Route::group(['namespace' => 'Marketing'], function()
     Route::get('companies/{company}/about', 'Companies\AboutController@getShow');
 
     Route::get('companies/{company}/videos', 'VideosController@getIndex');
+
+    Route::get('partners-and-projects',  [
+        'as' => 'partners-and-projects', 'uses' => 'PartnersProjectsController@index'
+    ]);
+    Route::get('partners-and-projects/{slug}',  [
+        'as' => 'project-action', 'uses' => 'PartnersProjectsController@project'
+    ]);
 
     // Sitemap
     Route::get('sitemap/{format?}/{cached?}', 'SitemapController@getIndex');
@@ -61,6 +68,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'galleries'                             => 'GalleriesController',
         'home'                                  => 'HomeController',
         'news'                                  => 'NewsController',
+        'partners-and-projects/partners'        => 'PartnersController',
+        'partners-and-projects/projects'        => 'ProjectsController',
         'settings'                              => 'SettingsController',
         'sliders'                               => 'SliderController',
     ]);

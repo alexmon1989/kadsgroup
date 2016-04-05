@@ -315,23 +315,23 @@
                 </ul>
             </li>
 
-            <!--<li class="{{ Request::segment(2) == 'videos' ? 'active' : '' }}">
+            <li class="{{ Request::segment(2) == 'partners-and-projects' ? 'active' : '' }}">
                 <a href="#">
-                    <i class="fa fa-video-camera"></i> <span>Видео</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-building-o"></i> <span>Партнёры и объекты</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::segment(2) == 'videos' && (Request::segment(3) == 'create' || Request::segment(3) == 'edit' || Request::segment(3) == '') ? 'active' : '' }}">
-                        <a href="{{ action('Admin\VideosController@getIndex') }}">
-                            <i class="fa fa-circle-o"></i> Список видео
+                    <li class="{{ Request::segment(2) == 'partners-and-projects' && Request::segment(3) == 'partners' ? 'active' : '' }}">
+                        <a href="{{ action('Admin\PartnersController@getIndex') }}">
+                            <i class="fa fa-circle-o"></i> Список партнёров
                         </a>
                     </li>
-                    <li class="{{ Request::segment(2) == 'videos' && Request::segment(3) == 'settings' ? 'active' : '' }}">
-                        <a href="{{ action('Admin\VideosController@getSettings') }}">
-                            <i class="fa fa-circle-o"></i> Настройки
+                    <li class="{{ Request::segment(2) == 'partners-and-projects' && Request::segment(3) == 'projects' ? 'active' : '' }}">
+                        <a href="{{ action('Admin\ProjectsController@getIndex') }}">
+                            <i class="fa fa-circle-o"></i> Список объектов
                         </a>
                     </li>
                 </ul>
-            </li>-->
+            </li>
         </ul>
 
         <ul class="sidebar-menu">

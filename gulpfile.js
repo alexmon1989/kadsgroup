@@ -56,6 +56,8 @@ elixir(function(mix) {
         assetsPublicPath + 'css/pages/page_error4_404.css')
         .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_search_inner.css',
         assetsPublicPath + 'css/pages/page_search_inner.css')
+        .copy(assetsResourcesPathBootstrapUnify + 'css/pages/page_clients.css',
+        assetsPublicPath + 'css/pages/page_clients.css')
 
         // JS шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'js/custom.js',
@@ -76,8 +78,6 @@ elixir(function(mix) {
         // Images шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'img/blur/img2.jpg',
         assetsPublicPath + 'img/blur/img2.jpg')
-
-
 
         // AdminLTE
         .copy(assetsResourcesPathAdminLte + 'bootstrap',
