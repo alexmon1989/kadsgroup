@@ -60,4 +60,10 @@
 h3 {
   margin-top: 15px; }
 
+.header .dropdown > a::after {
+  right: 13px; }
+
+.header .navbar-nav > li > a {
+  padding: 9px 27px 9px 17px; }
+
 /*# sourceMappingURL=custom.css.map */

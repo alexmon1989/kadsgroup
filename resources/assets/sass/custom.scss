@@ -94,3 +94,13 @@
 h3 {
   margin-top: 15px;
 }
+
+.header {
+  .dropdown > a::after {
+    right: 13px;
+  }
+
+  .navbar-nav > li > a {
+    padding: 9px 27px 9px 17px;
+  }
+}
