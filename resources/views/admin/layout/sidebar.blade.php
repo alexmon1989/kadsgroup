@@ -197,7 +197,7 @@
                     </li>
                     <li class="{{ Request::segment(2) == 'companies' && (Request::get('company') == 'sfs' || Request::segment(3) == 'sfs'|| Request::segment(5) == 'sfs') ? 'active' : '' }}">
                         <a href="#">
-                            <i class="fa fa-circle-o"></i> SFS intent <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-circle-o"></i> SFS intec <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
                             <li class="{{ Request::segment(2) == 'companies' && Request::segment(3) == 'descriptions' && Request::get('company') == 'sfs' ? 'active' : '' }}">

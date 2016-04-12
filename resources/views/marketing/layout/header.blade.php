@@ -36,7 +36,7 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu {{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' ? 'active' : '' }}">
-                            <a href="#">Sfs intec</a>
+                            <a href="#">SFS intec</a>
                             <ul class="dropdown-menu">
                                 <li class="{{ Request::segment(1) == 'companies' && Request::segment(2) == 'sfs' && Request::segment(3) == 'about' ? 'active' : '' }}">
                                     <a href="{{ action('Marketing\Companies\AboutController@getShow', ['shortTitle' => 'sfs']) }}">О компании</a>
