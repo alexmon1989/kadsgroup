@@ -3,6 +3,8 @@ var shell = require('gulp-shell');
 var elixir = require('laravel-elixir');
 var del = require('del');
 
+elixir.config.sourcemaps = false;
+
 elixir.extend("remove", function(path) {
     gulp.task("remove", function() {
         del(path);
