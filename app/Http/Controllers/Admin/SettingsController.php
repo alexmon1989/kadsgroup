@@ -40,6 +40,9 @@ class SettingsController extends AdminController
         // Сохраняем координаты в таблице настроек
         Memory::put('site.email_to', $request->get('email_to'));
 
+        // JivoSite
+        Memory::put('site.jivosite_enabled', $request->get('jivosite_enabled', 0));
+
         // Данные статей
         $mainArticle = Article::whereType('main_article')->first();
         $footerAbout = Article::whereType('footer_about')->first();

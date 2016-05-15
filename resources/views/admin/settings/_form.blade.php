@@ -25,6 +25,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="jivosite_enabled" value="1" {{ old('jivosite_enabled', Memory::get('site.jivosite_enabled', 0)) == 1 ? 'checked=""' : ''  }}> JivoSite включён
+                    </label>
+                </div>
+            </div>
+        </div>
     </div><!-- /.box-body -->
 
     <div class="box-footer">

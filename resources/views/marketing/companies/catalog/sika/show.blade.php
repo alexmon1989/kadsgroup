@@ -60,11 +60,18 @@
                         <h3 class="panel-title">{{ $product->title }}</h3>
                     </div>
                     <div class="panel-body">
-                        <strong>{!! $product->description !!}</strong>
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9">
+                                <strong>{!! $product->description !!}</strong>
 
-                        @if ($product->tech_cart_file)
-                        <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Техническая карта</a>
-                        @endif
+                                @if ($product->tech_cart_file)
+                                    <a target="_blank" href="{{ asset('assets/img/products/sika/tech-carts/'.$product->tech_cart_file) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Техническая карта</a>
+                                @endif
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <p class="text-center"><button class="btn-u btn-u-red btn-u-lg rounded" data-toggle="modal" data-target="#responsive"><i class="fa fa-cart-plus"></i> Купить</button></p>
+                            </div>
+                        </div>
                     </div>
                     <table class="table table-bordered">
                         <thead>
@@ -86,10 +93,26 @@
                     </table>
                 </div>
 
+                @include('marketing.companies.catalog._partials.modal_form_buy')
             </div>
         </div>
     </div>
 </div>
+@stop
+
+@section('styles')
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
+@stop
+
+@section('scripts')
+    <script src="{{ asset('assets/js/forms/order.js') }}"></script>
+    <script>
+        $(function() {
+            OrderForm.initOrderForm();
+        });
+    </script>
 @stop
 
 @section('meta')

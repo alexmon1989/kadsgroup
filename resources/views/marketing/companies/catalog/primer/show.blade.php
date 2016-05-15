@@ -62,7 +62,8 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                    <img alt="{{ $product->title }}" src="assets/img/products/primer/{{ $product->photo }}" class="img-responsive">
+                                <img alt="{{ $product->title }}" src="assets/img/products/primer/{{ $product->photo }}" class="img-responsive">
+                                <p class="text-center"><button class="btn-u btn-u-red btn-u-lg rounded" data-toggle="modal" data-target="#responsive"><i class="fa fa-cart-plus"></i> Купить</button></p>
                             </div>
                             <div class="col-md-9">
                                 <div class="alert alert-info fade in">
@@ -103,6 +104,8 @@
                                         <br /> {{ $product->price_4_name . ' - ' . $product->price_4_val }}
                                     @endif
                                 @endif
+
+                                @include('marketing.companies.catalog._partials.modal_form_buy')
                             </div>
                         </div>
 
@@ -118,4 +121,19 @@
 @section('meta')
     <meta name="keywords" content="{{ $product->page_keywords }}">
     <meta name="description" content="{{ trim($product->page_description) != '' ? $product->page_description : str_limit(strip_tags($product->description_full), 200) }}">
+@stop
+
+@section('styles')
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
+@stop
+
+@section('scripts')
+    <script src="{{ asset('assets/js/forms/order.js') }}"></script>
+    <script>
+        $(function() {
+            OrderForm.initOrderForm();
+        });
+    </script>
 @stop

@@ -62,14 +62,16 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <img alt="{{ $product->title }}" src="assets/img/products/sfs/{{ $product->photo }}" class="img-responsive">
+                                <p class="text-center"><button class="btn-u btn-u-red btn-u-lg rounded margin-top-20" data-toggle="modal" data-target="#responsive"><i class="fa fa-cart-plus"></i> Купить</button></p>
                             </div>
                             <div class="col-md-8">
                                 <h5 class="text-uppercase"><span class="color-blue"><strong>Описание</strong></span></h5>
 
                                 <?php $description = $product->description_full != '' ? $product->description_full : ($product->description_small != '' ? '<p>'.$product->description_small.'</p>' : '<p>Описание отсутствует.</p>'); ?>
                                 {!! $description !!}
-
                                 <a target="_blank" href="{{ asset('assets/img/products/sfs/pdf/'.$product->file_name) }}" class="btn-u btn-u-blue rounded" title="Загрузить"><i class="fa fa-file-pdf-o"></i> Детальная информация (pdf)</a>
+
+                                @include('marketing.companies.catalog._partials.modal_form_buy')
                             </div>
                         </div>
                     </div>
@@ -79,6 +81,21 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('styles')
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
+@stop
+
+@section('scripts')
+    <script src="{{ asset('assets/js/forms/order.js') }}"></script>
+    <script>
+        $(function() {
+            OrderForm.initOrderForm();
+        });
+    </script>
 @stop
 
 @section('meta')

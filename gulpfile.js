@@ -3,6 +3,8 @@ var shell = require('gulp-shell');
 var elixir = require('laravel-elixir');
 var del = require('del');
 
+elixir.config.sourcemaps = false;
+
 elixir.extend("remove", function(path) {
     gulp.task("remove", function() {
         del(path);
@@ -68,6 +70,8 @@ elixir(function(mix) {
         assetsPublicPath + 'js/forms/contact.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/pages/page_contacts.js',
         assetsPublicPath + 'js/pages/page_contacts.js')
+        .copy(assetsResourcesPathBootstrapUnify + 'js/forms/order.js',
+        assetsPublicPath + 'js/forms/order.js')
 
         // Plugins Шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'js/plugins',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Order;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,6 +16,9 @@ class AdminController extends Controller {
     {
         // Глобальная перменная для шаблона - залогиненный пользователь
         view()->share('auser', Auth::user());
+
+        // Количество новых заказов
+        view()->share('newOrdersCount', Order::whereStatus(1)->count());
     }
 
 }

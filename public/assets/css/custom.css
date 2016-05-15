@@ -66,4 +66,6 @@ h3 {
 .header .navbar-nav > li > a {
   padding: 9px 27px 9px 17px; }
 
-/*# sourceMappingURL=custom.css.map */
+#topcontrol {
+  left: 14px !important;
+  right: 0px !important; }
