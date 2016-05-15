@@ -22,6 +22,16 @@
                 </a>
             </li>
 
+            <li class="{{ Request::segment(2) == 'orders' ? 'active' : '' }}">
+                <a href="{{ action('Admin\OrdersController@getIndex') }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Заказы</span>
+                    @if($newOrdersCount > 0)
+                    <small title="Новые заказы" class="label pull-right bg-red">{{ $newOrdersCount }}</small>
+                    @endif
+                </a>
+            </li>
+
             <li class="{{ Request::segment(2) == 'auth' ? 'active' : '' }}">
                 <a href="{{ action('Auth\AuthController@getList') }}">
                     <i class="fa fa-users "></i> Пользователи (админы)

@@ -44,6 +44,11 @@ Route::group(['namespace' => 'Marketing'], function()
 
     // Sitemap
     Route::get('sitemap/{format?}/{cached?}', 'SitemapController@getIndex');
+
+    Route::post('order', [
+        'uses' => 'Companies\OrdersController@makeOrder',
+        'as' => 'order',
+    ]);
 });
 
 // Authentication routes...
@@ -72,6 +77,22 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'partners-and-projects/projects'        => 'ProjectsController',
         'settings'                              => 'SettingsController',
         'sliders'                               => 'SliderController',
+    ]);
+
+    Route::get('orders', [
+        'uses' => 'OrdersController@getIndex',
+        'as' => 'orders.index'
+    ]);
+    Route::get('orders/edit/{order}', [
+        'uses' => 'OrdersController@getEdit',
+        'as' => 'orders.edit'
+    ]);
+    Route::post('orders/edit/{order}', [
+        'uses' => 'OrdersController@postEdit'
+    ]);
+    Route::get('orders/delete/{order}', [
+        'uses' => 'OrdersController@getDelete',
+        'as' => 'orders.delete'
     ]);
 
     Route::controller('companies/catalog/products/sika', 'Companies\Catalog\Products\SikaController', [

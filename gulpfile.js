@@ -70,6 +70,8 @@ elixir(function(mix) {
         assetsPublicPath + 'js/forms/contact.js')
         .copy(assetsResourcesPathBootstrapUnify + 'js/pages/page_contacts.js',
         assetsPublicPath + 'js/pages/page_contacts.js')
+        .copy(assetsResourcesPathBootstrapUnify + 'js/forms/order.js',
+        assetsPublicPath + 'js/forms/order.js')
 
         // Plugins Шаблона
         .copy(assetsResourcesPathBootstrapUnify + 'js/plugins',
