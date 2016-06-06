@@ -1,9 +1,9 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        #Options -MultiViews
-    </IfModule>
-
     RewriteEngine On
+
+    # Переадресация на https
+    RewriteCond %{HTTP:SSL} !=1 [NC]
+    RewriteRule ^(.*) https://%{SERVER_NAME}/$1 [L,R=301]
 
     # Запрет доступа к главной и другим страницам через index.php
     RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
