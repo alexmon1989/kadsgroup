@@ -15,14 +15,14 @@
 
 @section('content')
 
-<!--=== Search Block Version 2 ===-->
+        <!--=== Search Block Version 2 ===-->
 <div class="search-block-v2">
     <div class="container">
         <div class="col-md-6 col-md-offset-3 search">
             <h2>Поиск ещё раз</h2>
             <form action="{{ action('Marketing\SearchController@getIndex') }}" method="get">
                 <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
+                    <input type="text" class="form-control" name="q" value="{{ Input::get('q') }}" placeholder="Введите строку поиска...">
                         <span class="input-group-btn">
                             <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -36,15 +36,15 @@
 <!--=== Search Results ===-->
 <div class="container s-results margin-bottom-50">
     @if (Session::get('errors'))
-    <div class="alert alert-danger alert-dismissable">
-        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        <h4>Ошибка!</h4>
-        @foreach (Session::get('errors')->getMessages() as $msg)
-            @foreach ($msg as $value)
-                {{ $value }}<br>
+        <div class="alert alert-danger alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <h4>Ошибка!</h4>
+            @foreach (Session::get('errors')->getMessages() as $msg)
+                @foreach ($msg as $value)
+                    {{ $value }}<br>
+                @endforeach
             @endforeach
-        @endforeach
-    </div>
+        </div>
     @endif
 
     <span class="results-number">Всего результатов: {{ isset($res_count) ? $res_count : '0' }} </span>
@@ -52,7 +52,7 @@
     @if (isset($news) and count($news) > 0)
         <h2>Новости</h2>
         @foreach($news as $item)
-        <!-- Begin Inner Results -->
+                <!-- Begin Inner Results -->
         <div class="inner-results">
             <h3><a href="{{ action('Marketing\NewsController@getShow', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
             <ul class="list-inline up-ul">
@@ -68,12 +68,12 @@
     @if (isset($products_sika) and count($products_sika) > 0)
         <h2>Продукты Sika</h2>
         @foreach($products_sika as $item)
-        <!-- Begin Inner Results -->
+                <!-- Begin Inner Results -->
         <div class="inner-results">
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
                     <h3><a href="{{ action('Marketing\Companies\Sika\CatalogController@getShow', ['id'=>$item->id]) }}">{{ $item->title }}</a></h3>
-                    <p>Категория: <a href="{{ action('Marketing\Companies\Sika\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Sika\CatalogController@getCategory', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
                 </div>
             </div>
 
@@ -96,12 +96,12 @@
     @if (isset($products_sfs) and count($products_sfs) > 0)
         <h2>Продукты Sfs</h2>
         @foreach($products_sfs as $item)
-        <!-- Begin Inner Results -->
+                <!-- Begin Inner Results -->
         <div class="inner-results">
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
                     <h3><a href="{{ action('Marketing\Companies\Sfs\CatalogController@getShow', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
-                    <p>Категория: <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Sfs\CatalogController@getCategory', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
                 </div>
             </div>
 
@@ -122,12 +122,12 @@
     @if (isset($products_primer) and count($products_primer) > 0)
         <h2>Продукты Primer</h2>
         @foreach($products_primer as $item)
-        <!-- Begin Inner Results -->
+                <!-- Begin Inner Results -->
         <div class="inner-results">
             <div class="row margin-bottom-10">
                 <div class="col-md-12">
                     <h3><a href="{{ action('Marketing\Companies\Primer\CatalogController@getShow', ['id'=>$item->id]) }}">{{ $item->title }}</a></h3>
-                    <p>Категория: <a href="{{ action('Marketing\Companies\Primer\CatalogController@getIndex', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
+                    <p>Категория: <a href="{{ action('Marketing\Companies\Primer\CatalogController@getCategory', ['id' => $item->category->id]) }}">{{ $item->category->title }}</a></p>
                 </div>
             </div>
 
