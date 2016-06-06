@@ -4,6 +4,6 @@ Disallow: /admin/
 
 User-agent: Yandex
 Disallow:
-Host: kadsgroup.com.ua
+Host: https://kadsgroup.com.ua
 
-Sitemap: http://kadsgroup.com.ua/sitemap
+Sitemap: https://kadsgroup.com.ua/sitemap
