@@ -99,7 +99,7 @@
 @stop
 
 @section('scripts')
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="assets/plugins/gmap/gmap.js"></script>
     <script type="text/javascript" src="assets/js/pages/page_contacts.js"></script>
     <script type="text/javascript" src="assets/js/forms/contact.js"></script>
