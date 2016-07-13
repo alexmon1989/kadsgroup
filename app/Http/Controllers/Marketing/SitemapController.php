@@ -44,14 +44,14 @@ class SitemapController extends Controller
 
             $sitemap->add(URL::to('companies/sfs/about'));
             $sitemap->add(URL::to('companies/sfs/catalog'));
-            $sitemap->add(URL::to('companies/sfs/videos'));
+            //$sitemap->add(URL::to('companies/sfs/videos'));
 
             $sitemap->add(URL::to('companies/primer/about'));
             $sitemap->add(URL::to('companies/primer/catalog'));
-            $sitemap->add(URL::to('companies/primer/videos'));
+            //$sitemap->add(URL::to('companies/primer/videos'));
             $sitemap->add(URL::to('companies/primer/price-list'));
 
-            // Добавление страниц групп категорий и категорий всех трёх компаний, а также галерей
+            // Добавление страниц групп категорий и категорий всех трёх компаний
             foreach(['sika', 'sfs', 'primer'] as $company) {
                 $groupCategories = GroupsCategory::whereEnabled(TRUE)
                     ->with(['categories' => function ($q) {
@@ -83,14 +83,14 @@ class SitemapController extends Controller
                             $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productSika->id}"));
 
                             // Ссылка на техкарту
-                            $sitemap->add(URL::to("assets/img/products/{$company}/tech-carts/{$productSika->tech_cart_file}"));
+                            //$sitemap->add(URL::to("assets/img/products/{$company}/tech-carts/{$productSika->tech_cart_file}"));
                         }
                         foreach($category->products_sfs as $productSfs) {
                             // Ссылка на страницу продукта
                             $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productSfs->id}"));
 
                             // Ссылка на pdf
-                            $sitemap->add(URL::to("assets/img/products/{$company}/pdf/{$productSfs->file_name}"));
+                            //$sitemap->add(URL::to("assets/img/products/{$company}/pdf/{$productSfs->file_name}"));
                         }
                         foreach($category->products_primer as $productPrimer) {
                             $sitemap->add(URL::to("companies/{$company}/catalog/show/{$productPrimer->id}"));
@@ -99,7 +99,7 @@ class SitemapController extends Controller
                 }
 
                 // Галереи
-                $galleryImages = Gallery::whereHas('company', function ($query) use ($company) {
+                /*$galleryImages = Gallery::whereHas('company', function ($query) use ($company) {
                     $query->whereShortTitle($company);
                 })->get();
                 $images = []; // Массив описаний изображений для Sitemap
@@ -109,10 +109,10 @@ class SitemapController extends Controller
                         'title' => $image->title,
                     ];
                 }
-                $sitemap->add(URL::to("galleries/show/{$company}"), null, null, null, $images);
+                $sitemap->add(URL::to("galleries/show/{$company}"), null, null, null, $images);*/
             }
 
-            $certificates = Certificate::all();
+            /*$certificates = Certificate::all();
             $imagesCertificates = []; // Массив описаний изображений для сертификатов
             foreach($certificates as $certificate) {
                 $imagesCertificates[] = [
@@ -120,7 +120,7 @@ class SitemapController extends Controller
                     'title' => $certificate->title,
                 ];
             }
-            $sitemap->add(URL::to('certificates'), null, null, null, $imagesCertificates);
+            $sitemap->add(URL::to('certificates'), null, null, null, $imagesCertificates);*/
 
             $sitemap->add(URL::to('news'));
             // Добавляем все статьи новостей

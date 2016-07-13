@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /search*
 Disallow: /admin/
+Disallow: /companies/sfs/videos
+Disallow: /companies/primer/videos
+Disallow: /galleries/
+Disallow: /certificates
 
 User-agent: Yandex
 Disallow:

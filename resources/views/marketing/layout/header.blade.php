@@ -6,6 +6,10 @@
         </a>
         <!-- End Logo -->
 
+        <div class="topbar" style="text-align: center">
+            <a href="https://www.facebook.com/profile.php?id=100012694396081" target="_blank" rel="nofollow" title="Наша страница в Facebook"><i class="icon-custom rounded icon-color-blue fa fa-facebook-official"></i></a>
+        </div>
+
         <!-- Toggle get grouped for better mobile display -->
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="sr-only">Toggle navigation</span>
