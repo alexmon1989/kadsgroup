@@ -132,6 +132,12 @@
                 {!! str_replace('/?', '?', $products->render()) !!}
             </div>
             <!-- End Pager -->
+
+            @if($category->description_long)
+            <div class="row">
+                <div class="col-md-12 text-muted">{!! $category->description_long !!}</div>
+            </div>
+            @endif
         @else
             <h2>Подкатегории:</h2>
             <ul>
