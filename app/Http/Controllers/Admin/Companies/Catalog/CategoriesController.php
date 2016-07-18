@@ -76,6 +76,7 @@ class CategoriesController extends AdminController
         $category = new Category;
         $category->title = trim($request->title);
         $category->description = trim($request->description);
+        $category->description_long = trim($request->description_long);
         $category->enabled = $request->get('enabled', FALSE);
         if ($request->get('parent_id')) {
             $category->parent_id = (int) $request->get('parent_id');
@@ -138,6 +139,7 @@ class CategoriesController extends AdminController
         $category = $this->findCategory($id);
         $category->title = trim($request->title);
         $category->description = trim($request->description);
+        $category->description_long = trim($request->description_long);
         $category->enabled = $request->get('enabled', FALSE);
         $oldGroupCategoryId = $category->group_category_id;
         $oldParentId = $category->parent_id;

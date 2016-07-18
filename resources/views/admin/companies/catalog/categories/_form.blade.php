@@ -50,6 +50,10 @@
             <label for="description">Описание</label>
             <textarea id="description" name="description" rows="10" cols="80" class="form-control ckeditor">{{ old('description', isset($category) ? $category->description : '') }}</textarea>
         </div>
+        <div class="form-group">
+            <label for="description">Описание длинное (внизу товаров)</label>
+            <textarea id="description_long" name="description_long" rows="10" cols="80" class="form-control ckeditor">{{ old('description_long', isset($category) ? $category->description_long : '') }}</textarea>
+        </div>
 
         <hr/>
 
