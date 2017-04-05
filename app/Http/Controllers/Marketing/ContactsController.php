@@ -36,13 +36,17 @@ class ContactsController extends Controller {
     public function postIndex(ContactsMessageRequest $request)
     {
         // Отправляем сообщение на email
-        $subject = 'Повідомлення користувача веб-сайту '. url();
-        Mail::raw(nl2br($request->get('message')), function($message) use (&$request, &$subject)
+        Mail::send('emails.contacts', [
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'message_text' => nl2br($request->get('message')),
+        ], function($message)
         {
-            $message->from($request->get('email'), $request->get('name'));
-            $message->subject($subject);
-            $message->to(Memory::get('site.email_to', 'llckadsgroup@gmail.com'));
+            $message->from('info@kadsgroup.com.ua');
+            $message->to(Memory::get('site.email_to', 'llckadsgroup@gmail.com'))
+                ->subject('Сообщение пользователя сайта kadsgroup.com.ua');
         });
+
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         } else {
