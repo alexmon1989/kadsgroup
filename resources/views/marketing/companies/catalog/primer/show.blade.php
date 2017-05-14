@@ -63,6 +63,25 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <img alt="{{ $product->title }}" src="assets/img/products/primer/{{ $product->photo }}" class="img-responsive">
+
+                                <div class="text-center margin-bottom-20">
+                                    @if ($product->price_1_name && $product->price_1_val)
+                                        <h5 class="text-uppercase"><span class="color-blue"><strong>Стоимость</strong></span></h5>
+
+                                        {!! $product->price_1_name . ' - <strong>' . $product->price_1_val . '</strong>' !!}
+
+                                        @if ($product->price_2_name && $product->price_2_val)
+                                            <br /> {!! $product->price_2_name . ' - <strong>' . $product->price_2_val . '</strong>' !!}
+                                        @endif
+                                        @if ($product->price_3_name && $product->price_3_val)
+                                            <br /> {!! $product->price_3_name . ' - <strong>' . $product->price_3_val . '</strong>' !!}
+                                        @endif
+                                        @if ($product->price_4_name && $product->price_4_val)
+                                            <br /> {!! $product->price_4_name . ' - <strong>' . $product->price_4_val . '</strong>' !!}
+                                        @endif
+                                    @endif
+                                </div>
+
                                 <p class="text-center"><button class="btn-u btn-u-red btn-u-lg rounded" data-toggle="modal" data-target="#responsive"><i class="fa fa-cart-plus"></i> Купить</button></p>
                             </div>
                             <div class="col-md-9">
@@ -88,22 +107,6 @@
 
                                 <h5 class="text-uppercase"><span class="color-blue"><strong>Упаковка</strong></span></h5>
                                 {{ $product->package }}
-
-                                @if ($product->price_1_name && $product->price_1_val)
-                                    <h5 class="text-uppercase"><span class="color-blue"><strong>Стоимость</strong></span></h5>
-
-                                    {{ $product->price_1_name . ' - ' . $product->price_1_val }}
-
-                                    @if ($product->price_2_name && $product->price_2_val)
-                                        <br /> {{ $product->price_2_name . ' - ' . $product->price_2_val }}
-                                    @endif
-                                    @if ($product->price_3_name && $product->price_3_val)
-                                        <br /> {{ $product->price_3_name . ' - ' . $product->price_3_val }}
-                                    @endif
-                                    @if ($product->price_4_name && $product->price_4_val)
-                                        <br /> {{ $product->price_4_name . ' - ' . $product->price_4_val }}
-                                    @endif
-                                @endif
 
                                 @include('marketing.companies.catalog._partials.modal_form_buy')
                             </div>
