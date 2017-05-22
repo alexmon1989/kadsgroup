@@ -64,7 +64,7 @@
                             <div class="col-md-3">
                                 <img alt="{{ $product->title }}" src="assets/img/products/primer/{{ $product->photo }}" class="img-responsive">
 
-                                @if(date('d.m.Y') >= '22.05.2017' and ($product->category->id == 71 or $product->category->id == 72))
+                                @if(date('d.m.Y') >= '25.05.2017' and ($product->category->id == 71 or $product->category->id == 72))
                                     <div class="text-center margin-bottom-10 promo">
                                         <a href="https://kadsgroup.com.ua/news/show/8" target="_blank"><strong>Летняя Акция: -10%</strong></a>
                                     </div>
