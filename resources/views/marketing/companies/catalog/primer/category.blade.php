@@ -82,6 +82,15 @@
                                         </div>
                                         <div class="caption">
                                             <h3><a class="hover-effect" href="{{ action('Marketing\Companies\Primer\CatalogController@getShow', ['id'=>$products[$i+$j]->id]) }}">{{ $products[$i+$j]->title }}</a></h3>
+
+                                            @if(date('d.m.Y') >= '22.05.2017' and ($products[$i+$j]->category->id == 71 or $products[$i+$j]->category->id == 72))
+                                                <div class="row">
+                                                    <div class="col-md-12 promo margin-bottom-10">
+                                                        <a href="https://kadsgroup.com.ua/news/show/8" target="_blank"><strong>Летняя Акция: -10%</strong></a>
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                             {!! $products[$i+$j]->description_small !!}
                                             <p></p>
 
